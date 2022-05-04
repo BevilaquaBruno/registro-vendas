@@ -1,0 +1,22 @@
+.myButton {
+  padding: 5px;
+  border-radius: 5px;
+  min-width: 60px;
+  color: white;
+}
+
+.myButtonGreen {
+  background-color: #2d8766;
+}
+
+.myButtonRed {
+  background-color: #872d2d;
+}
+
+.myButtonBlue {
+  background-color: #392d87;
+}
+
+.myButton > a {
+  color: white;
+}
