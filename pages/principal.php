@@ -19,7 +19,14 @@
 <body>
     <script type="text/javascript">
       //VARIABLE INITIALIZATION
-      let notifier = new AWN({ labels: { alert: 'Erro', confirm: 'Confirmação' }}) // where options is an object with your custom values
+      let notifier = new AWN({
+        labels: {
+          alert: 'Erro',
+          confirm: 'Confirmação',
+          success: 'Sucesso',
+          confirmOk: 'Sim',
+          confirmCancel: 'Não'
+        }}) // where options is an object with your custom values
     </script>
     <?php require('menu.php'); ?>
     <?php require('./pages/'.$dados['pagina'].'.php'); ?>

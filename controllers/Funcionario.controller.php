@@ -39,10 +39,32 @@ class ControllerFuncionario {
 
   public function cadastrar($app) {
     $funcionario = [
-      "id_pessoa" => $_POST['id_pessoa'],
+      "id_pessoa" => (int)$_POST['id_pessoa'],
       "data_admissao" => $_POST['data_admissao'],
-      "salario" => $_POST['salario']
+      "salario" => (float)$_POST['salario']
     ];
+
+    //var_dump($funcionario);exit();
+
+    if(null === $funcionario['id_pessoa'] || 0 === $funcionario['id_pessoa']){
+      echo(json_encode([ "success" => false, "message" => "Falta selecionar a pessoa" ]));
+      exit();
+    }
+
+    if("" === $funcionario['data_admissao']){
+      echo(json_encode([ "success" => false, "message" => "Data de admissão não pode ser vazia" ]));
+      exit();
+    }
+
+    if(date_create($funcionario['data_admissao']) > date_create('now')){
+      echo(json_encode([ "success" => false, "message" => "Data de admissão não pode ser depois de hoje" ]));
+      exit();
+    }
+
+    if((float)0 === $funcionario['salario']){
+      echo(json_encode([ "success" => false, "message" => "Salário não pode ser 0(zero)" ]));
+      exit();
+    }
 
     $mdlFuncionario = new ModelFuncionario();
     $result = $mdlFuncionario->cadastrar($app->db, $funcionario);
@@ -82,11 +104,35 @@ class ControllerFuncionario {
       "salario" => $_POST['salario']
     ];
 
-    $mdlFuncionario = new ModelFuncionario();
-    $mdlFuncionario->alterar($app->db, $funcionario);
+    if(null === $funcionario['id'] || 0 === $funcionario['id']){
+      echo(json_encode([ "success" => false, "message" => "Erro grave ao alterar o funcionário, atualize a página" ]));
+      exit();
+    }
 
-    //redirecionamento em php
-    header('Location: index.php?m=funcionario&a=lista');
+    if(null === $funcionario['id_pessoa'] || 0 === $funcionario['id_pessoa']){
+      echo(json_encode([ "success" => false, "message" => "Falta selecionar a pessoa" ]));
+      exit();
+    }
+
+    if("" === $funcionario['data_admissao']){
+      echo(json_encode([ "success" => false, "message" => "Data de admissão não pode ser vazia" ]));
+      exit();
+    }
+
+    if(date_create($funcionario['data_admissao']) > date_create('now')){
+      echo(json_encode([ "success" => false, "message" => "Data de admissão não pode ser depois de hoje" ]));
+      exit();
+    }
+
+    if((float)0 === $funcionario['salario']){
+      echo(json_encode([ "success" => false, "message" => "Salário não pode ser 0(zero)" ]));
+      exit();
+    }
+
+    $mdlFuncionario = new ModelFuncionario();
+    $result = $mdlFuncionario->alterar($app->db, $funcionario);
+
+    echo(json_encode([ "success" => $result, "message" => "" ]));
   }
 }
 ?>

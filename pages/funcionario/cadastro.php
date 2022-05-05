@@ -23,7 +23,7 @@
 <script type="text/javascript">
   function handleSalvar() {
     notifier.confirm(
-      "Confirma que deseja cadastrar o funcionário?",
+      "Confirma que deseja <?=$dados['acao']?> o funcionário?",
       () => {salvar();},
       () => {}
     );
@@ -38,8 +38,10 @@
     .then(function (response) {
       if(false === response.data.success) {
         notifier.alert(response.data.message);
-      }else{
+      }else if(true === response.data.success){
         window.location.href = "index.php?m=funcionario&a=lista";
+      }else{
+        notifier.alert("Erro grave ao gravar o funcionário");
       }
     })
     .catch(function (error) {

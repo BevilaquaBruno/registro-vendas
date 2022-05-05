@@ -25,6 +25,14 @@
     getFuncionarios();
   }
 
+  function handleExcluir(id, index) {
+    notifier.confirm(
+      "Confirma que deseja excluir o funcionário?",
+      () => {excluir(id, index);},
+      () => {}
+    );
+  }
+
   function excluir(id, index){
     axios.get("index.php?m=funcionario&a=deletar&id="+id)
     .then(function (response) {
@@ -32,6 +40,7 @@
       if (true === response.data.success) {
         lista_funcionarios.splice(index, 1);
         document.getElementById('funcionarioTable').children[1].children[index].remove();
+        notifier.success('Funcionário deletado com sucesso');
       }
     })
     .catch(function (error) {
@@ -59,7 +68,7 @@
             "<a href='index.php?m=funcionario&a=alteracao&id="+funcionario['id']+"'>Editar</a> "+
           "</button> "+
           "<button class='myButton myButtonRed'> "+
-           "<span onclick=\"excluir("+funcionario['id']+", "+i+");\">Excluir</span> "+
+           "<span onclick=\"handleExcluir("+funcionario['id']+", "+i+");\">Excluir</span> "+
           "</button>"+
         "</td> "+
       "</tr>";
