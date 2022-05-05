@@ -14,22 +14,22 @@
 
   switch ($modulo) {
     case 'inicial':
-      require_once('./controllers/Geral.controller.php');
+      require_once('./src/controllers/Geral.controller.php');
       $controllerGeral = new ControllerGeral();
       $controllerGeral->$acao($app);
       break;
     case 'pessoa':
-      require_once('./controllers/pessoa.controller.php');
+      require_once('./src/controllers/pessoa.controller.php');
       $controllerPessoa = new ControllerPessoa();
       $controllerPessoa->$acao($app);
       break;
     case 'funcionario':
-      require_once('./controllers/Funcionario.controller.php');
+      require_once('./src/controllers/Funcionario.controller.php');
       $controllerFuncionario = new ControllerFuncionario();
       $controllerFuncionario->$acao($app);
       break;
     default:
-      require_once('./controllers/Geral.controller.php');
+      require_once('./src/controllers/Geral.controller.php');
       $controllerGeral = new ControllerGeral();
       $controllerGeral->$acao($app);
       break;

@@ -17,13 +17,12 @@
 
 <script type="text/javascript">
   var  lista_funcionarios = [];
-  window.onload = function () {
+  window.addEventListener("load", function () {
     //https://www.cssscript.com/lightweight-vanilla-data-table-component/
-    let funcionarioTable = document.getElementById('funcionarioTable');
-    var dataTable = new DataTable(funcionarioTable, {});
+    var dataTable = new DataTable(document.getElementById('funcionarioTable'), {});
 
     getFuncionarios();
-  }
+  });
 
   function handleExcluir(id, index) {
     notifier.confirm(

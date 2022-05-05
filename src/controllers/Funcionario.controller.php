@@ -1,7 +1,7 @@
 <?php
-require_once('./models/Pessoa.model.php');
-require_once('./models/Funcionario.model.php');
-require_once('./controllers/Geral.controller.php');
+require_once('./src/models/Pessoa.model.php');
+require_once('./src/models/Funcionario.model.php');
+require_once('./src/controllers/Geral.controller.php');
 
 class ControllerFuncionario {
   public function lista($app){

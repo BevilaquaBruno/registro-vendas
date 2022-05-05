@@ -1,6 +1,6 @@
 <?php
-require_once('./models/Pessoa.model.php');
-require_once('./controllers/Geral.controller.php');
+require_once('./src/models/Pessoa.model.php');
+require_once('./src/controllers/Geral.controller.php');
 
 class ControllerPessoa {
   public function lista($app){

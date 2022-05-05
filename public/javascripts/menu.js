@@ -37,7 +37,8 @@ function closeSubmenu(e) {
     }
   }
 }
-window.onload = function () {
+
+window.addEventListener("load", function () {
   const toggle = document.querySelector(".toggle");
   const items = document.querySelectorAll(".item");
   /* Event Listeners */
@@ -49,4 +50,4 @@ window.onload = function () {
     item.addEventListener("keypress", toggleItem, false);
   }
   document.addEventListener("click", closeSubmenu, false);
-}
+});

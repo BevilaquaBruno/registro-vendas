@@ -25,6 +25,7 @@ a {
   padding: 7.5px 10px 7.5px 0;
 }
 .item {
+  cursor: pointer;
   padding: 10px;
 }
 .item.button {
