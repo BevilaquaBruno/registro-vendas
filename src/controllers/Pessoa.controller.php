@@ -1,6 +1,7 @@
 <?php
 require_once('./src/models/Pessoa.model.php');
 require_once('./src/controllers/Geral.controller.php');
+require_once('./src/general.php');
 
 class ControllerPessoa {
   public function lista($app){
@@ -13,6 +14,13 @@ class ControllerPessoa {
     ];
     $controllerGeral = new ControllerGeral();
     $controllerGeral->carregaTela($app, $dados);
+  }
+
+  public function listajson($app) {
+    $mdlPessoa = new ModelPessoa();
+    $lista_pessoa = $mdlPessoa->todas($app->db);
+
+    echo(json_encode($lista_pessoa));
   }
 
   public function cadastro($app) {
@@ -39,21 +47,41 @@ class ControllerPessoa {
       "data_nascimento" => $_POST['data_nascimento'] == "" ? null : $_POST['data_nascimento']
     ];
 
-    $mdlPessoa = new ModelPessoa();
-    $mdlPessoa->cadastrar($app->db, $pessoa);
+    if("" === $pessoa['nome'] || null === $pessoa['nome']) {
+      echo(json_encode([ "success" => false, "message" => "Nome é obrigatório" ]));
+      exit();
+    }
 
-    //redirecionamento em php
-    header('Location: index.php?m=pessoa&a=lista');
+    if("" === $pessoa['email'] || null === $pessoa['email']){
+      echo(json_encode([ "success" => false, "message" => "Email é obrigatório" ]));
+      exit();
+    }
+
+    if(!validateEmail($pessoa['email'])){
+      echo(json_encode([ "success" => false, "message" => "Email inválido" ]));
+      exit();
+    }
+
+    if("" !== $pessoa['data_nascimento'] && null !== $pessoa['data_nascimento']){
+      if(date_create($pessoa['data_nascimento']) > date_create('now')){
+        echo(json_encode([ "success" => false, "message" => "Data de nascimento não pode ser depois de hoje" ]));
+        exit();
+      }
+    }
+
+    $mdlPessoa = new ModelPessoa();
+    $result = $mdlPessoa->cadastrar($app->db, $pessoa);
+
+    echo(json_encode([ "success" => $result, "message" => "" ]));
   }
 
   public function deletar($app) {
     $id = $_GET['id'];
 
     $mdlPessoa = new ModelPessoa();
-    $mdlPessoa->excluir($app->db, $id);
+    $result = $mdlPessoa->excluir($app->db, $id);
 
-    //redirecionamento em php
-    header('Location: index.php?m=pessoa&a=lista');
+    echo(json_encode([ "success" => $result, "message" => "" ]));
   }
 
   public function alteracao($app) {
@@ -78,11 +106,37 @@ class ControllerPessoa {
       "data_nascimento" => $_POST['data_nascimento'] == "" ? null : $_POST['data_nascimento']
     ];
 
-    $mdlPessoa = new ModelPessoa();
-    $mdlPessoa->alterar($app->db, $pessoa);
+    if(null === $pessoa['id'] || 0 === $pessoa['id']){
+      echo(json_encode([ "success" => false, "message" => "Erro grave ao alterar a pessoa, atualize a página" ]));
+      exit();
+    }
 
-    //redirecionamento em php
-    header('Location: index.php?m=pessoa&a=lista');
+    if("" === $pessoa['nome'] || null === $pessoa['nome']) {
+      echo(json_encode([ "success" => false, "message" => "Nome é obrigatório" ]));
+      exit();
+    }
+
+    if("" === $pessoa['email'] || null === $pessoa['email']){
+      echo(json_encode([ "success" => false, "message" => "Email é obrigatório" ]));
+      exit();
+    }
+
+    if(!validateEmail($pessoa['email'])){
+      echo(json_encode([ "success" => false, "message" => "Email inválido" ]));
+      exit();
+    }
+
+    if("" !== $pessoa['data_nascimento'] && null !== $pessoa['data_nascimento']){
+      if(date_create($pessoa['data_nascimento']) > date_create('now')){
+        echo(json_encode([ "success" => false, "message" => "Data de nascimento não pode ser depois de hoje" ]));
+        exit();
+      }
+    }
+
+    $mdlPessoa = new ModelPessoa();
+    $result = $mdlPessoa->alterar($app->db, $pessoa);
+
+    echo(json_encode([ "success" => $result, "message" => "" ]));
   }
 }
 ?>

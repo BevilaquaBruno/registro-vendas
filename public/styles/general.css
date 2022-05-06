@@ -1,0 +1,13 @@
+.full-width {
+  width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+}
+
+.title-list {
+  margin-bottom: 5px;
+  padding: 10px;
+  background-color: rgb(223, 223, 223);
+}

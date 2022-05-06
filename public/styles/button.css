@@ -1,22 +1,28 @@
-.myButton {
-  padding: 5px;
-  border-radius: 5px;
-  min-width: 60px;
-  color: white;
+.button-success,
+.button-error,
+.button-warning,
+.button-secondary {
+    color: white;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 
-.myButtonGreen {
-  background-color: #2d8766;
+.button-success {
+    background: rgb(28, 184, 65);
+    /* this is a green */
 }
 
-.myButtonRed {
-  background-color: #872d2d;
+.button-error {
+    background: rgb(202, 60, 60);
+    /* this is a maroon */
 }
 
-.myButtonBlue {
-  background-color: #392d87;
+.button-warning {
+    background: rgb(223, 117, 20);
+    /* this is an orange */
 }
 
-.myButton > a {
-  color: white;
+.button-secondary {
+    background: rgb(66, 184, 221);
+    /* this is a light blue */
 }

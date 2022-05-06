@@ -44,8 +44,6 @@ class ControllerFuncionario {
       "salario" => (float)$_POST['salario']
     ];
 
-    //var_dump($funcionario);exit();
-
     if(null === $funcionario['id_pessoa'] || 0 === $funcionario['id_pessoa']){
       echo(json_encode([ "success" => false, "message" => "Falta selecionar a pessoa" ]));
       exit();

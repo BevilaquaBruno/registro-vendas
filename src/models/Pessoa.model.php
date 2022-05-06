@@ -5,7 +5,7 @@ class ModelPessoa {
     try {
       $sm_query = $conexao->prepare("SELECT id, nome, email, telefone, date_format(data_nascimento, '%d/%m/%Y') as data_nascimento,
         data_nascimento as data_nascimento_original
-        FROM pessoa");
+        FROM pessoa ORDER BY id DESC");
 
       if($sm_query->execute()){
         $pessoas = $sm_query->fetchall(PDO::FETCH_ASSOC);

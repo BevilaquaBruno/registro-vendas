@@ -6,7 +6,7 @@ CREATE TABLE pessoa(
 	id  INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	nome VARCHAR(100) NOT NULL,
 	email VARCHAR(30),
-	telefone VARCHAR(11),
+	telefone VARCHAR(20),
 	data_nascimento DATE
 );
 

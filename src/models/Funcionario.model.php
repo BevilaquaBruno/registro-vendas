@@ -7,7 +7,8 @@ class ModelFuncionario {
         f.data_admissao as data_admissao_original, DATE_FORMAT(f.data_admissao, '%d/%m/%Y') as data_admissao,
         DATE_FORMAT(p.data_nascimento, '%d/%m/%Y') as data_nascimento, p.data_nascimento as data_nascimento_original
           FROM funcionario f
-          INNER JOIN pessoa p ON p.id = f.id_pessoa");
+          INNER JOIN pessoa p ON p.id = f.id_pessoa
+          ORDER BY id DESC");
 
       if($sm_query->execute()){
         $pessoas = $sm_query->fetchall(PDO::FETCH_ASSOC);
