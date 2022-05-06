@@ -4,16 +4,16 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Axios -->
+  <!-- Axios https://axios-http.com/ptbr/docs/intro -->
   <script src="public/javascripts/axios.min.js"></script>
-  <!-- Notifications -->
+  <!-- Notifications https://f3oall.github.io/awesome-notifications/ -->
   <link rel="stylesheet" href="public/styles/awesome_notifications.min.css">
   <script src="public/javascripts/awesome_notifications.min.js"></script>
-  <!-- PureCSS -->
+  <!-- PureCSS https://purecss.io/ -->
   <link rel="stylesheet" href="public/styles/pure-min.css">
-  <!-- PureMask -->
+  <!-- PureMask https://romulobrasil.com/puremask-js/ -->
   <script src="public/javascripts/puremask.min.js"></script>
-  <!-- Vanilla DataTable -->
+  <!-- Vanilla DataTable https://www.cssscript.com/lightweight-vanilla-data-table-component/ -->
   <link rel="stylesheet" href="public/styles/vanilla-dataTables.min.css">
   <script src="public/javascripts/vanilla-dataTables.min.js"></script>
   <!-- Mine -->
@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="public/styles/general.css">
   <script src="public/javascripts/menu.js"></script>
   <script src="public/javascripts/general.js"></script>
-  <title>M1 Max</title>
+  <title>Bevilaqua Sistema</title>
 </head>
 <body>
     <script type="text/javascript">
