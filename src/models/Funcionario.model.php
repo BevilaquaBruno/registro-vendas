@@ -35,7 +35,6 @@ class ModelFuncionario {
         $success = true;
       }
     } catch (\Throwable $th) {
-      var_dump($th);
       $success = false;
     }
 
@@ -98,6 +97,7 @@ class ModelFuncionario {
         $success = true;
       }
     } catch (\Throwable $th) {
+      var_dump($th);
       $success = false;
     }
 

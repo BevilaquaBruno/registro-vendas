@@ -2,6 +2,7 @@
 require_once('./src/models/Pessoa.model.php');
 require_once('./src/models/Funcionario.model.php');
 require_once('./src/controllers/Geral.controller.php');
+require_once('./src/general.php');
 
 class ControllerFuncionario {
   public function lista($app){
@@ -41,7 +42,7 @@ class ControllerFuncionario {
     $funcionario = [
       "id_pessoa" => (int)$_POST['id_pessoa'],
       "data_admissao" => $_POST['data_admissao'],
-      "salario" => (float)$_POST['salario']
+      "salario" => brlCurrencyToDb($_POST['salario'])
     ];
 
     if(null === $funcionario['id_pessoa'] || 0 === $funcionario['id_pessoa']){
@@ -96,10 +97,10 @@ class ControllerFuncionario {
 
   public function alterar($app) {
     $funcionario = [
-      "id" => $_POST['id'],
+      "id" => (int)$_POST['id'],
       "id_pessoa" => $_POST['id_pessoa'],
       "data_admissao" => $_POST['data_admissao'],
-      "salario" => $_POST['salario']
+      "salario" => brlCurrencyToDb($_POST['salario'])
     ];
 
     if(null === $funcionario['id'] || 0 === $funcionario['id']){
