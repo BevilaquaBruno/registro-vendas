@@ -1,6 +1,5 @@
 <?php
 class Aplicacao {
-  const nome_aplicacao = "Teste - Bruno Bevilaqua";
   const db = null;
 
   function __construct() {

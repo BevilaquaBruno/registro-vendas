@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="public/styles/general.css">
   <script src="public/javascripts/menu.js"></script>
   <script src="public/javascripts/general.js"></script>
-  <title>M1 Max</title>
+  <title>Bevilaqua Sistema</title>
 </head>
 <body>
     <script type="text/javascript">
