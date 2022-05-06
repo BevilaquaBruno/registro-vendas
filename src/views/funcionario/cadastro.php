@@ -32,7 +32,7 @@
     <div class="pure-control-group">
       <label for="salario">Salário:</label>
       <div class="pure-u-1-5">
-        <input class="salario-mask full-width" data-mask="###.###.###.###.###.###,##" required name="salario" id="salario" type="text" value="<?=$dados['funcionario']['salario']?>" />
+        <input class="salario-mask full-width" required name="salario" id="salario" type="text" value="<?=$dados['funcionario']['salario']?>" />
       </div>
       <span class="pure-form-message-inline">* Obrigatório.</span>
     </div>
@@ -80,6 +80,16 @@
   }
 
   window.addEventListener("load", function () {
-    PureMask.format(".salario-mask", true);
+    SimpleMaskMoney.setMask("#salario", {
+      allowNegative: false ,
+      cursor: 'move',
+      decimalSeparator: ',',
+      fixed:  true ,
+      fractionDigits:  2 ,
+      negativeSignAfter:  false ,
+      prefix: '',
+      suffix: '',
+      thousandsSeparator: '.'
+    });
   });
 </script>
