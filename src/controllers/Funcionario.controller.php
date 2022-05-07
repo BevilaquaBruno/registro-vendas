@@ -31,6 +31,7 @@ class ControllerFuncionario {
         'id' => 0,
         'id_pessoa' => '',
         'data_admissao' => '',
+        'data_admissao_original' => '',
         'salario' => ''
       ]
     ];
