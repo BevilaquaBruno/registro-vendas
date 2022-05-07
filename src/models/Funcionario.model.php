@@ -21,6 +21,29 @@ class ModelFuncionario {
     return $pessoas;
   }
 
+  public function todosIdPessoa(PDO $conexao, int $id_pessoa){
+    $pessoas = 0;
+    try {
+      $sm_query = $conexao->prepare("SELECT f.id, f.id_pessoa, f.salario, p.nome, p.email, p.telefone,
+        f.data_admissao as data_admissao_original, DATE_FORMAT(f.data_admissao, '%d/%m/%Y') as data_admissao,
+        DATE_FORMAT(p.data_nascimento, '%d/%m/%Y') as data_nascimento, p.data_nascimento as data_nascimento_original
+          FROM funcionario f
+          INNER JOIN pessoa p ON p.id = f.id_pessoa
+          WHERE f.id_pessoa = :id_pessoa
+          ORDER BY id DESC");
+      $sm_query->bindParam(':id_pessoa', $id_pessoa);
+
+      if($sm_query->execute()){
+        $pessoas = $sm_query->fetchall(PDO::FETCH_ASSOC);
+      }
+
+    } catch (\Throwable $th) {
+      $pessoas = 0;
+    }
+
+    return $pessoas;
+  }
+
   public function cadastrar(PDO $conexao, $funcionario){
     $success = false;
     try {

@@ -16,9 +16,9 @@
     <tbody></tbody>
   </table>
 </div>
-<button class="button-success pure-button">
-  <a href="index.php?m=pessoa&a=cadastro">Cadastrar</a>
-</button>
+<a href="index.php?m=pessoa&a=cadastro" class="button-success pure-button">
+  <span>Cadastrar</span>
+</a>
 <script type="text/javascript">
   var  lista_pessoas = [];
   var pessoaDatatable = null;
@@ -36,6 +36,8 @@
         lista_pessoas.splice(index, 1);
         document.getElementById('pessoaTable').children[1].children[index].remove();
         notifier.success('Pessoa deletada com sucesso');
+      }else{
+        notifier.alert(response.data.message);
       }
     })
     .catch(function (error) {
@@ -67,11 +69,11 @@
         "<td>"+pessoa['telefone']+"</td> "+
         "<td>"+pessoa['data_nascimento']+"</td> "+
         "<td> "+
-          "<button class='pure-button pure-button-primary'> "+
-            "<a href='index.php?m=pessoa&a=alteracao&id="+pessoa['id']+"'>Editar</a> "+
-          "</button> "+
-          "<button class='button-error pure-button'> "+
-           "<span onclick=\"handleExcluir("+pessoa['id']+", "+i+");\">Excluir</span> "+
+          "<a href='index.php?m=pessoa&a=alteracao&id="+pessoa['id']+"' class='pure-button pure-button-primary'> "+
+            "<span>Editar</span> "+
+          "</a> "+
+          "<button onclick=\"handleExcluir("+pessoa['id']+", "+i+");\" class='button-error pure-button'> "+
+           "Excluir"+
           "</button>"+
         "</td> "+
       "</tr>";

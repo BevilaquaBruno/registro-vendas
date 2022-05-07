@@ -16,9 +16,9 @@
     <tbody></tbody>
   </table>
 </div>
-<button class="button-success pure-button">
-  <a href="index.php?m=funcionario&a=cadastro">Cadastrar</a>
-</button>
+<a href="index.php?m=funcionario&a=cadastro" class="button-success pure-button">
+  <span>Cadastrar</span>
+</a>
 
 <script type="text/javascript">
   var  lista_funcionarios = [];
@@ -68,11 +68,11 @@
         "<td>"+funcionario['data_admissao']+"</td> "+
         "<td>"+(returnBrazilianCurrency(parseFloat(funcionario['salario'])))+"</td> "+
         "<td> "+
-          "<button class='pure-button pure-button-primary'> "+
-            "<a href='index.php?m=funcionario&a=alteracao&id="+funcionario['id']+"'>Editar</a> "+
-          "</button> "+
-          "<button class='button-error pure-button'> "+
-           "<span onclick=\"handleExcluir("+funcionario['id']+", "+i+");\">Excluir</span> "+
+          "<a href='index.php?m=funcionario&a=alteracao&id="+funcionario['id']+"' class='pure-button pure-button-primary'> "+
+            "<span>Editar</span> "+
+          "</a> "+
+          "<button onclick=\"handleExcluir("+funcionario['id']+", "+i+");\" class='button-error pure-button'> "+
+           "Excluir"+
           "</button>"+
         "</td> "+
       "</tr>";
