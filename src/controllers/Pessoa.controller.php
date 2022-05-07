@@ -1,5 +1,6 @@
 <?php
 require_once('./src/models/Pessoa.model.php');
+require_once('./src/models/Funcionario.model.php');
 require_once('./src/controllers/Geral.controller.php');
 require_once('./src/general.php');
 
@@ -32,7 +33,8 @@ class ControllerPessoa {
         "nome" => "",
         "email" => "",
         "telefone" => "",
-        "data_nascimento" => ""
+        "data_nascimento" => "",
+        "data_nascimento_original" => ""
       ]
     ];
     $controllerGeral = new ControllerGeral();
@@ -77,6 +79,14 @@ class ControllerPessoa {
 
   public function deletar($app) {
     $id = $_GET['id'];
+
+    $mdlFuncionario = new ModelFuncionario();
+    $lista_funcionarios = $mdlFuncionario->todosIdPessoa($app->db, $id);
+
+    if(count($lista_funcionarios) > 0){
+      echo(json_encode([ "success" => false, "message" => "Não é possível excluir a pessoa pois já existe vínculos" ]));
+      exit();
+    }
 
     $mdlPessoa = new ModelPessoa();
     $result = $mdlPessoa->excluir($app->db, $id);
