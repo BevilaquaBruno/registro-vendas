@@ -1,18 +1,19 @@
-<nav>
-  <ul class="menu">
-    <li class="logo"><a href="#">Bruno Bevilaqua</a></li>
-    <li class="item"><a href="index.php">Início</a></li>
-    <li class="item has-submenu">
-      <a tabindex="0">Cadastros</a>
-      <ul class="submenu">
-        <li class="subitem">
-          <a href="index.php?m=pessoa&a=lista">Pessoa</a>
+<div class="pure-menu pure-menu-horizontal menu-color">
+  <a href="#" class="pure-menu-heading pure-menu-link">Bruno Bevilaqua</a>
+  <ul class="pure-menu-list">
+    <li class="pure-menu-item">
+      <a href="index.php" class="pure-menu-link">Início</a>
+    </li>
+    <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+      <a href="#" id="menuLink1" class="pure-menu-link">Cadastros</a>
+      <ul class="pure-menu-children">
+        <li class="pure-menu-item">
+          <a href="index.php?m=pessoa&a=lista" class="pure-menu-link">Pessoas</a>
         </li>
-        <li class="subitem">
-          <a href="index.php?m=funcionario&a=lista">Funcionário</a>
+        <li class="pure-menu-item">
+          <a href="index.php?m=funcionario&a=lista" class="pure-menu-link">Funcionários</a>
         </li>
       </ul>
     </li>
-    <li class="toggle"><a href="#"><i class="fas fa-bars"></i></a></li>
   </ul>
-</nav>
+</div>

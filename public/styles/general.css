@@ -1,3 +1,23 @@
+/* Basic styling */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+body {
+  font-family: sans-serif;
+  font-size: 16px;
+  background-color: rgb(246, 246, 246);
+}
+nav {
+  background: #222;
+  padding: 0 15px;
+}
+a {
+  color: white;
+  text-decoration: none;
+}
+
 .full-width {
   width: 100%;
 }
@@ -9,5 +29,5 @@ h1, h2, h3, h4, h5, h6 {
 .title-list {
   margin-bottom: 5px;
   padding: 10px;
-  background-color: rgb(223, 223, 223);
+  background-color: rgb(187, 187, 187);
 }
