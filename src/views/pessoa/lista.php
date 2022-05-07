@@ -66,8 +66,8 @@
         "<td>"+pessoa['id']+"</td> "+
         "<td>"+pessoa['nome']+"</td> "+
         "<td>"+pessoa['email']+"</td> "+
-        "<td>"+pessoa['telefone']+"</td> "+
-        "<td>"+pessoa['data_nascimento']+"</td> "+
+        "<td>"+(pessoa['telefone'] == null ? "-" : pessoa['telefone'])+"</td> "+
+        "<td>"+(pessoa['data_nascimento'] == null ? "-" : pessoa['data_nascimento'])+"</td> "+
         "<td> "+
           "<a href='index.php?m=pessoa&a=alteracao&id="+pessoa['id']+"' class='pure-button pure-button-primary'> "+
             "<span>Editar</span> "+
