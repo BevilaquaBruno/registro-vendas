@@ -22,7 +22,6 @@
   <link rel="stylesheet" href="public/styles/menu.css">
   <link rel="stylesheet" href="public/styles/button.css">
   <link rel="stylesheet" href="public/styles/general.css">
-  <script src="public/javascripts/menu.js"></script>
   <script src="public/javascripts/general.js"></script>
   <title>Bevilaqua Sistema</title>
 </head>
