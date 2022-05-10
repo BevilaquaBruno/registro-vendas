@@ -1,6 +1,6 @@
 <?php
   session_start();
-  $lista_modulos = ['inicial', 'pessoa', 'funcionario', 'login'];
+  $lista_modulos = ['inicial', 'pessoa', 'funcionario', 'login', 'usuario'];
   $lista_acoes = ['lista', 'consulta', 'cadastro', 'cadastrar', 'alteracao', 'alterar', 'deletar', 'listajson', 'logar', 'deslogar'];
 
   $modulo = isset($_GET['m']) ? $_GET['m'] : null;
@@ -33,6 +33,11 @@
       require_once('./src/controllers/Login.controller.php');
       $controllerLogin = new ControllerLogin();
       $controllerLogin->$acao($app);
+      break;
+    case 'usuario':
+      require_once('./src/controllers/Usuario.controller.php');
+      $controllerUsuario = new ControllerUsuario();
+      $controllerUsuario->$acao($app);
       break;
     default:
       require_once('./src/controllers/Geral.controller.php');

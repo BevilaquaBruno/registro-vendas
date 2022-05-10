@@ -1,5 +1,7 @@
 <div class="pure-menu pure-menu-horizontal menu-color">
-  <a href="#" class="pure-menu-heading pure-menu-link">Bruno Bevilaqua</a>
+  <a href="#" class="pure-menu-heading pure-menu-link">
+    <?=(isset($_SESSION['islogged']) && true === $_SESSION['islogged']) ? $_SESSION['nome'] : 'Software Loja' ?>
+  </a>
   <ul class="pure-menu-list">
     <li class="pure-menu-item">
       <a href="index.php" class="pure-menu-link">Início</a>
@@ -23,6 +25,11 @@
           <li class="pure-menu-item">
             <a href="index.php?m=funcionario&a=lista" class="pure-menu-link">Funcionários</a>
           </li>
+          <?php if("A" === $_SESSION['tipo']){ ?>
+            <li class="pure-menu-item">
+              <a href="index.php?m=usuario&a=lista" class="pure-menu-link">Usuários</a>
+            </li>
+          <?php } ?>
         </ul>
       </li>
     <?php } ?>

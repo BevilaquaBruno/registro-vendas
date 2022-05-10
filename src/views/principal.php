@@ -23,7 +23,9 @@
   <link rel="stylesheet" href="public/styles/button.css">
   <link rel="stylesheet" href="public/styles/general.css">
   <script src="public/javascripts/general.js"></script>
-  <title>Bevilaqua Sistema</title>
+  <title>
+    <?=(isset($_SESSION['islogged']) && true === $_SESSION['islogged']) ? $_SESSION['nome'] : 'Software Loja' ?>
+  </title>
 </head>
 <body>
     <script type="text/javascript">

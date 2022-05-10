@@ -6,6 +6,8 @@ require_once('./src/general.php');
 
 class ControllerPessoa {
   public function lista($app){
+    $app->validarUsuario($app, "F");
+
     $mdlPessoa = new ModelPessoa();
     $lista_pessoa = $mdlPessoa->todas($app->db);
 
@@ -25,6 +27,8 @@ class ControllerPessoa {
   }
 
   public function cadastro($app) {
+    $app->validarUsuario($app, "F");
+
     $dados = [
       'pagina' => 'pessoa/cadastro',
       'acao' => "cadastrar",
@@ -42,6 +46,8 @@ class ControllerPessoa {
   }
 
   public function cadastrar($app) {
+    $app->validarUsuario($app, "F", true);
+
     $pessoa = [
       "nome" => $_POST['nome'],
       "email" => $_POST['email'] == "" ? null : $_POST['email'],
@@ -78,6 +84,8 @@ class ControllerPessoa {
   }
 
   public function deletar($app) {
+    $app->validarUsuario($app, "F", true);
+
     $id = $_GET['id'];
 
     $mdlFuncionario = new ModelFuncionario();
@@ -95,6 +103,7 @@ class ControllerPessoa {
   }
 
   public function alteracao($app) {
+    $app->validarUsuario($app, "F");
     $mdlPessoa = new ModelPessoa();
     $id = $_GET['id'];
 
@@ -108,6 +117,8 @@ class ControllerPessoa {
   }
 
   public function alterar($app) {
+    $app->validarUsuario($app, "F", true);
+
     $pessoa = [
       "id" => $_POST['id'],
       "nome" => $_POST['nome'],

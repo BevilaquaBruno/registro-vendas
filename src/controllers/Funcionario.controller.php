@@ -6,6 +6,8 @@ require_once('./src/general.php');
 
 class ControllerFuncionario {
   public function lista($app){
+    $app->validarUsuario($app, "F");
+
     $dados = [
       'pagina' => 'funcionario/lista'
     ];
@@ -22,6 +24,8 @@ class ControllerFuncionario {
   }
 
   public function cadastro($app) {
+    $app->validarUsuario($app, "F");
+
     $mdlPessoa = new ModelPessoa();
     $dados = [
       'pagina' => 'funcionario/cadastro',
@@ -40,6 +44,8 @@ class ControllerFuncionario {
   }
 
   public function cadastrar($app) {
+    $app->validarUsuario($app, "F", true);
+
     $funcionario = [
       "id_pessoa" => (int)$_POST['id_pessoa'],
       "data_admissao" => $_POST['data_admissao'],
@@ -73,6 +79,8 @@ class ControllerFuncionario {
   }
 
   public function deletar($app) {
+    $app->validarUsuario($app, "F", true);
+
     $id = $_GET['id'];
 
     $mdlFuncionario = new ModelFuncionario();
@@ -82,6 +90,8 @@ class ControllerFuncionario {
   }
 
   public function alteracao($app) {
+    $app->validarUsuario($app, "F");
+
     $mdlPessoa = new ModelPessoa();
     $mdlFuncionario = new ModelFuncionario();
     $id = $_GET['id'];
@@ -97,6 +107,8 @@ class ControllerFuncionario {
   }
 
   public function alterar($app) {
+    $app->validarUsuario($app, "F", true);
+
     $funcionario = [
       "id" => (int)$_POST['id'],
       "id_pessoa" => $_POST['id_pessoa'],
