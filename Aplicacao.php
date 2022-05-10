@@ -1,13 +1,41 @@
 <?php
+require_once('./src/controllers/Geral.controller.php');
 class Aplicacao {
   const db = null;
+  const tipos_usuarios = ["A", "F"];
 
   function __construct() {
     $this->createConnetion();
   }
 
+  public function validarUsuario($app, String $needed = "", $json = false){
+    if(!$this->permissoesUsuarios($needed)){
+      if($json){
+        echo(json_encode(['success' => false, 'message' => 'Não autorizado']));
+      }else{
+        $controllerGeral = new ControllerGeral();
+        $controllerGeral->carregaTela($app, [
+          'pagina' => '401'
+        ]);
+      }
+      exit();
+    }
+  }
+
+  public function permissoesUsuarios(String $needed){
+    $result = true;
+    if(!isset($_SESSION['islogged']) || false === $_SESSION['islogged']){
+      $result = false;
+    }else if("A" !== $_SESSION['tipo']){
+      if($needed !== $_SESSION['tipo'])
+        $result = false;
+    }
+
+    return $result;
+  }
+
   public function createConnetion() {
-    $this->db = new PDO('mysql:host=localhost;dbname=bd_funcionarios', "bevilaqua", "Vaporwave05");
+    $this->db = new PDO('mysql:host=localhost;dbname=registro_vendas', "bevilaqua", "Vaporwave05");
   }
 }
 

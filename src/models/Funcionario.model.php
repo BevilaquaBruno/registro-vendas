@@ -21,6 +21,22 @@ class ModelFuncionario {
     return $pessoas;
   }
 
+  public function mediaSalarioTodos(PDO $conexao){
+    $pessoas = 0;
+    try {
+      $sm_query = $conexao->prepare("SELECT f.salario, (SELECT AVG(f2.salario) FROM funcionario f2) AS media FROM funcionario f");
+
+      if($sm_query->execute()){
+        $pessoas = $sm_query->fetchall(PDO::FETCH_ASSOC);
+      }
+
+    } catch (\Throwable $th) {
+      $pessoas = 0;
+    }
+
+    return $pessoas;
+  }
+
   public function todosIdPessoa(PDO $conexao, int $id_pessoa){
     $pessoas = 0;
     try {
