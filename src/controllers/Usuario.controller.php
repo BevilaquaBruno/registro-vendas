@@ -1,6 +1,7 @@
 <?php
 require_once('./src/controllers/Geral.controller.php');
 require_once('./src//models/Usuario.model.php');
+require_once('./src//models/Venda.model.php');
 require_once('./src/general.php');
 
 class ControllerUsuario {
@@ -100,7 +101,13 @@ class ControllerUsuario {
 
     $id = $_GET['id'];
 
-    // AQUI FALTA A VALIDACAO SE O USUARIO TIVER VENDAS
+    $mdlVenda = new ModelVenda();
+    $vendas_usuario = $mdlVenda->todasUsuario($app->db, $id);
+
+    if(count($vendas_usuario) >= 1){
+      echo(json_encode([ "success" => false, "message" => "Não é possível excluir o usuário porque ele está vinculado a vendas" ]));
+      exit();
+    }
 
     $mdlUsuario = new ModelUsuario();
     $result = $mdlUsuario->excluir($app->db, $id);
