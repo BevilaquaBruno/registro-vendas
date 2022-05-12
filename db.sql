@@ -54,6 +54,14 @@ CREATE TABLE venda (
 	id_funcionario INT NOT NULL
 );
 
+CREATE TABLE venda_produto (
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	quantidade DECIMAL(13,3) NOT NULL,
+	valor_unitario DECIMAL(12,2) NOT NULL,
+	id_venda INT NOT NULL,
+	id_produto INT NOT NULL
+);
+
 ALTER TABLE funcionario ADD CONSTRAINT fk_id_funcionario_pessoa FOREIGN KEY (id_pessoa) REFERENCES pessoa(id);
 
 ALTER TABLE cliente ADD CONSTRAINT fk_id_cliente_pessoa FOREIGN KEY (id_pessoa) REFERENCES pessoa(id);
@@ -61,5 +69,8 @@ ALTER TABLE cliente ADD CONSTRAINT fk_id_cliente_pessoa FOREIGN KEY (id_pessoa) 
 ALTER TABLE venda ADD CONSTRAINT fk_id_venda_cliente FOREIGN KEY (id_cliente) REFERENCES cliente(id);
 ALTER TABLE venda ADD CONSTRAINT fk_id_venda_usuario FOREIGN KEY (id_usuario) REFERENCES usuario(id);
 ALTER TABLE venda ADD CONSTRAINT fk_id_venda_funcionario FOREIGN KEY (id_funcionario) REFERENCES funcionario(id);
+
+ALTER TABLE venda_produto ADD CONSTRAINT fk_id_venda_produto_venda FOREIGN KEY (id_venda) REFERENCES venda(id);
+ALTER TABLE venda_produto ADD CONSTRAINT fk_id_venda_produto_produto FOREIGN KEY (id_produto) REFERENCES produto(id);
 
 INSERT INTO usuario (nome, email, senha, tipo) VALUES ('Bruno Bevilaqua', 'bbbevilaqua@gmail.com', '202cb962ac59075b964b07152d234b70', 'A');
