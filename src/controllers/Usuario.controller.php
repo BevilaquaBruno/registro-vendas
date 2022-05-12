@@ -68,6 +68,13 @@ class ControllerUsuario {
       exit();
     }
 
+    $mdlUsuario = new ModelUsuario();
+    $usuarios_email = $mdlUsuario->todosPorEmail($app->db, $usuario['email']);
+    if(count($usuarios_email) >= 1){
+      echo(json_encode([ "success" => false, "message" => "Já existe um usuário com esse email vinculado" ]));
+      exit();
+    }
+
     if (false === array_search($usuario['tipo'], $app->tipos_usuarios)) {
       echo(json_encode([ "success" => false, "message" => "Tipo de usuário inválido" ]));
       exit();
@@ -83,7 +90,6 @@ class ControllerUsuario {
       exit();
     }
 
-    $mdlUsuario = new ModelUsuario();
     $result = $mdlUsuario->cadastrar($app->db, $usuario);
 
     echo(json_encode([ "success" => $result, "message" => "" ]));
@@ -98,6 +104,67 @@ class ControllerUsuario {
 
     $mdlUsuario = new ModelUsuario();
     $result = $mdlUsuario->excluir($app->db, $id);
+
+    echo(json_encode([ "success" => $result, "message" => "" ]));
+  }
+
+  public function alteracao($app) {
+    $app->validarUsuario($app, "A");
+    $mdlUsuario = new ModelUsuario();
+    $id = $_GET['id'];
+
+    $dados = [
+      'pagina' => 'usuario/cadastro',
+      'acao' => "alterar",
+      'usuario' => $mdlUsuario->um($app->db, $id)
+    ];
+    $controllerGeral = new ControllerGeral();
+    $controllerGeral->carregaTela($app, $dados);
+  }
+
+  public function alterar($app) {
+    $app->validarUsuario($app, "A", true);
+
+    $usuario = [
+      "id" => $_POST['id'],
+      "nome" => $_POST['nome'],
+      "email" => $_POST['email'],
+      "tipo" => $_POST['tipo']
+    ];
+
+    if(null === $usuario['id'] || 0 === $usuario['id']){
+      echo(json_encode([ "success" => false, "message" => "Erro grave ao alterar o usuário, atualize a página" ]));
+      exit();
+    }
+
+    if("" === $usuario['nome'] || null === $usuario['nome']) {
+      echo(json_encode([ "success" => false, "message" => "Nome é obrigatório" ]));
+      exit();
+    }
+
+    if("" === $usuario['email'] || null === $usuario['email']){
+      echo(json_encode([ "success" => false, "message" => "Email é obrigatório" ]));
+      exit();
+    }
+
+    if(!validateEmail($usuario['email'])){
+      echo(json_encode([ "success" => false, "message" => "Email inválido" ]));
+      exit();
+    }
+
+    $mdlUsuario = new ModelUsuario();
+    $usuarios_email = $mdlUsuario->todosPorEmail($app->db, $usuario['email'], $usuario['id']);
+    if(count($usuarios_email) >= 1){
+      echo(json_encode([ "success" => false, "message" => "Já existe um usuário com esse email vinculado" ]));
+      exit();
+    }
+
+    if (false === array_search($usuario['tipo'], $app->tipos_usuarios)) {
+      echo(json_encode([ "success" => false, "message" => "Tipo de usuário inválido" ]));
+      exit();
+    }
+
+    $result = $mdlUsuario->alterar($app->db, $usuario);
 
     echo(json_encode([ "success" => $result, "message" => "" ]));
   }
