@@ -1,11 +1,13 @@
 <?php
 require_once('./src/models/Pessoa.model.php');
 require_once('./src/models/Funcionario.model.php');
+require_once('./src/models/Usuario.model.php');
 
 class ControllerGeral {
   public function lista($app){
     $mdlPessoa = new ModelPessoa();
     $mdlFuncionario = new ModelFuncionario();
+    $mdlUsuario = new ModelUsuario();
 
     $data_media_salarial = [];
     $media_salarial_valor = 0;
@@ -20,7 +22,8 @@ class ControllerGeral {
     $dados = [
       'quantidade' => [
         'pessoas' => $mdlPessoa->quantidade($app->db),
-        'funcionarios' => $mdlFuncionario->quantidade($app->db)
+        'funcionarios' => $mdlFuncionario->quantidade($app->db),
+        'usuarios' => $mdlUsuario->quantidade($app->db)
       ],
       'media_salarial' => [
         'data' => $data_media_salarial,

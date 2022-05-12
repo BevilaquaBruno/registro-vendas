@@ -2,7 +2,7 @@
 require_once('./src/controllers/Geral.controller.php');
 class Aplicacao {
   const db = null;
-  const tipos_usuarios = ["A", "F"];
+  public $tipos_usuarios = ["A", "F"];
 
   function __construct() {
     $this->createConnetion();
@@ -15,7 +15,7 @@ class Aplicacao {
       }else{
         $controllerGeral = new ControllerGeral();
         $controllerGeral->carregaTela($app, [
-          'pagina' => '401'
+          'pagina' => 'geral/401'
         ]);
       }
       exit();

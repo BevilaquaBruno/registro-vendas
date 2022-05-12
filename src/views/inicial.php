@@ -15,18 +15,24 @@
   const configDoughutCadastros = {
     type: 'doughnut',
     data: {
-      labels: [ "Pessoas", "Funcionários" ],
+      labels: [ "Pessoas", "Funcionários", "Usuários" ],
       datasets: [{
         label: 'Cadastros',
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)'
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(100, 100, 100, 0.2)'
         ],
         borderColor: [
           'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)'
+          'rgba(54, 162, 235, 1)',
+          'rgba(100, 100, 100, 1)'
         ],
-        data: [<?=$dados['quantidade']['pessoas']['total']?>, <?=$dados['quantidade']['funcionarios']['total']?>]
+        data: [
+          <?=$dados['quantidade']['pessoas']['total']?>,
+          <?=$dados['quantidade']['funcionarios']['total']?>,
+          <?=$dados['quantidade']['usuarios']['total']?>
+        ]
       }]
     },
     options: {
