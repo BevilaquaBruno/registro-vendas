@@ -27,7 +27,7 @@ class ModelVenda {
     try {
       $sm_query = $conexao->prepare("SELECT v.id, v.data_venda as data_venda_original,
           date_format(v.data_venda, '%d/%m/%Y') as data_venda,
-          v.observação, v.id_pessoa, v.id_usuario, v.id_funcionario
+          v.observacao, v.id_cliente, v.id_usuario, v.id_funcionario
         FROM venda v
           LEFT JOIN venda_produto vp on vp.id_venda = v.id
           WHERE vp.id_produto = :id_produto");

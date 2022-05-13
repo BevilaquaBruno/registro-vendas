@@ -3,6 +3,7 @@ require_once('./src/controllers/Geral.controller.php');
 class Aplicacao {
   const db = null;
   public $tipos_usuarios = ["A", "F"];
+  public $unidades_medida = ["UN", "KG", "CX", "L"];
 
   function __construct() {
     $this->createConnetion();

@@ -7,7 +7,7 @@
   $acao = isset($_GET['a']) ? $_GET['a'] : null;
 
   // if array_key returns 0 there is no problem
-  $modulo = false === array_search($modulo, $lista_modulos) ? 'nenhum' : $modulo;
+  $modulo = false === array_search($modulo, $lista_modulos) ? 'inicial' : $modulo;
   $acao = false === array_search($acao, $lista_acoes) ? 'lista' : $acao;
 
 
@@ -53,6 +53,7 @@
         break;
     }
   } catch (\Throwable $th) {
+    var_dump($th);exit();
     require_once('./src/controllers/Geral.controller.php');
     $controllerGeral = new ControllerGeral();
     $controllerGeral->carregaTela($app, ['pagina' => 'geral/404']);

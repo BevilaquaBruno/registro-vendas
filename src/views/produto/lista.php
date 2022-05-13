@@ -7,7 +7,7 @@
       <tr>
         <th>id</th>
         <th>Descrição</th>
-        <th>Quantidade UM</th>
+        <th>Quantidade U.M.</th>
         <th>(R$) Compra/Venda</th>
         <th>Ações</th>
       </tr>
