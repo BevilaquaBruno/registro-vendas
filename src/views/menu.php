@@ -25,6 +25,9 @@
           <li class="pure-menu-item">
             <a href="index.php?m=funcionario&a=lista" class="pure-menu-link">Funcionários</a>
           </li>
+          <li class="pure-menu-item">
+            <a href="index.php?m=produto&a=lista" class="pure-menu-link">Produtos</a>
+          </li>
           <?php if("A" === $_SESSION['tipo']){ ?>
             <li class="pure-menu-item">
               <a href="index.php?m=usuario&a=lista" class="pure-menu-link">Usuários</a>

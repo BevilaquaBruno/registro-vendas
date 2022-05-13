@@ -50,6 +50,18 @@
           info: "Mostrando de {start} até {end} de {rows} registros" //
         }
       }
+
+      var moneyPatternForMask = {
+        allowNegative: false ,
+        cursor: 'move',
+        decimalSeparator: ',',
+        fixed:  true ,
+        fractionDigits:  2,
+        negativeSignAfter:  false ,
+        prefix: '',
+        suffix: '',
+        thousandsSeparator: '.'
+      };
     </script>
     <?php require('menu.php'); ?>
     <?php require('./src/views/'.$dados['pagina'].'.php'); ?>

@@ -80,16 +80,6 @@
   }
 
   window.addEventListener("load", function () {
-    SimpleMaskMoney.setMask("#salario", {
-      allowNegative: false ,
-      cursor: 'move',
-      decimalSeparator: ',',
-      fixed:  true ,
-      fractionDigits:  2 ,
-      negativeSignAfter:  false ,
-      prefix: '',
-      suffix: '',
-      thousandsSeparator: '.'
-    });
+    SimpleMaskMoney.setMask("#salario", moneyPatternForMask);
   });
 </script>
