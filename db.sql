@@ -69,7 +69,7 @@ ALTER TABLE venda ADD CONSTRAINT fk_id_venda_cliente FOREIGN KEY (id_cliente) RE
 ALTER TABLE venda ADD CONSTRAINT fk_id_venda_usuario FOREIGN KEY (id_usuario) REFERENCES usuario(id);
 ALTER TABLE venda ADD CONSTRAINT fk_id_venda_funcionario FOREIGN KEY (id_funcionario) REFERENCES funcionario(id);
 
-ALTER TABLE venda_produto ADD CONSTRAINT fk_id_venda_produto_venda FOREIGN KEY (id_venda) REFERENCES venda(id);
+ALTER TABLE venda_produto ADD CONSTRAINT fk_id_venda_produto_venda FOREIGN KEY (id_venda) REFERENCES venda(id) ON DELETE CASCADE;
 ALTER TABLE venda_produto ADD CONSTRAINT fk_id_venda_produto_produto FOREIGN KEY (id_produto) REFERENCES produto(id);
 
 INSERT INTO usuario (nome, email, senha, tipo) VALUES ('Bruno Bevilaqua', 'bbbevilaqua@gmail.com', '202cb962ac59075b964b07152d234b70', 'A');

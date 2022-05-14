@@ -1,6 +1,6 @@
 <?php
   session_start();
-  $lista_modulos = ['inicial', 'pessoa', 'funcionario', 'login', 'usuario', 'produto', 'cliente'];
+  $lista_modulos = ['inicial', 'pessoa', 'funcionario', 'login', 'usuario', 'produto', 'cliente', 'venda'];
   $lista_acoes = ['lista', 'cadastro', 'cadastrar', 'alteracao', 'alterar', 'deletar', 'listajson', 'logar', 'deslogar'];
 
   $modulo = isset($_GET['m']) ? $_GET['m'] : null;
@@ -51,6 +51,11 @@
         $controllerCliente = new ControllerCliente();
         $controllerCliente->$acao($app);
         break;
+      case 'venda':
+        require_once('./src/controllers/Venda.controller.php');
+        $controllerVenda = new ControllerVenda();
+        $controllerVenda->$acao($app);
+        break;
       default:
         require_once('./src/controllers/Geral.controller.php');
         $controllerGeral = new ControllerGeral();
@@ -58,7 +63,7 @@
         break;
     }
   } catch (\Throwable $th) {
-    var_dump($th);exit();
+    //var_dump($th);exit();
     require_once('./src/controllers/Geral.controller.php');
     $controllerGeral = new ControllerGeral();
     $controllerGeral->carregaTela($app, ['pagina' => 'geral/404']);
