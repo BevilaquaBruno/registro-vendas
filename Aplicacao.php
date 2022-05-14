@@ -4,6 +4,12 @@ class Aplicacao {
   const db = null;
   public $tipos_usuarios = ["A", "F"];
   public $unidades_medida = ["UN", "KG", "CX", "L"];
+  public $ufs = [
+    'AC','AL','AP','AM','BA','CE','DF',
+    'ES','GO','MA','MT','MS','MG','PA',
+    'PB','PR','PE','PI','RJ','RN','RS',
+    'RO','RR','SC','SP','SE','TO'
+  ];
 
   function __construct() {
     $this->createConnetion();
