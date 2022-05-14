@@ -7,7 +7,7 @@
       <tr>
         <th>id</th>
         <th>Nome</th>
-        <th>email</th>
+        <th>Email</th>
         <th>Tipo</th>
         <th>Ações</th>
       </tr>

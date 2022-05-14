@@ -7,7 +7,7 @@
       <tr>
         <th>id</th>
         <th>Nome</th>
-        <th>email</th>
+        <th>Email</th>
         <th>Cidade</th>
         <th>Qtd. Vendas</th>
         <th>Ações</th>
