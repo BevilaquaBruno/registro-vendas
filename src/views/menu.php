@@ -35,6 +35,9 @@
           <?php } ?>
         </ul>
       </li>
+      <li class="pure-menu-item">
+        <a href="index.php?m=cliente&a=lista" class="pure-menu-link">Clientes</a>
+      </li>
     <?php } ?>
   </ul>
 </div>

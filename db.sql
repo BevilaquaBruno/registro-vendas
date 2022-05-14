@@ -37,7 +37,6 @@ CREATE TABLE funcionario(
 CREATE TABLE cliente (
 	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	endereco VARCHAR(30),
-	estado VARCHAR(30),
 	uf CHAR(2),
 	cidade VARCHAR(30),
 	pais VARCHAR(30),
