@@ -42,11 +42,9 @@
     <div onclick="handleSalvar();" class="button-success pure-button">
         Gravar
     </div>
-    <div class="button-error pure-button">
-      <a href="index.php?m=pessoa&a=lista">
-        Voltar
-      </a>
-    </div>
+    <a class="button-error pure-button" href="index.php?m=pessoa&a=lista">
+      Voltar
+    </a>
   </div>
 </form>
 <script type="text/javascript">
