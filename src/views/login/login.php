@@ -29,11 +29,9 @@
       <div onclick="handleLogar();" class="button-success pure-button">
         Logar
       </div>
-      <div class="button-error pure-button">
-        <a href="index.php">
-          Voltar
-        </a>
-      </div>
+      <a class="button-error pure-button" href="index.php">
+        Voltar
+      </a>
     </div>
   </fieldset>
 </form>
