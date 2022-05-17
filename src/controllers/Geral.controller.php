@@ -4,6 +4,7 @@ require_once('./src/models/Funcionario.model.php');
 require_once('./src/models/Usuario.model.php');
 require_once('./src/models/Produto.model.php');
 require_once('./src/models/Cliente.model.php');
+require_once('./src/models/Venda.model.php');
 
 class ControllerGeral {
   public function lista($app){
@@ -11,7 +12,8 @@ class ControllerGeral {
     $mdlFuncionario = new ModelFuncionario();
     $mdlUsuario = new ModelUsuario();
     $mdlProduto = new ModelProduto();
-    $mdlClient = new ModelCliente();
+    $mdlCliente = new ModelCliente();
+    $mdlVenda = new ModelVenda();
 
     $data_media_salarial = [];
     $media_salarial_valor = 0;
@@ -29,12 +31,13 @@ class ControllerGeral {
         'funcionarios' => $mdlFuncionario->quantidade($app->db),
         'usuarios' => $mdlUsuario->quantidade($app->db),
         'produtos' => $mdlUsuario->quantidade($app->db),
-        'clientes' => $mdlClient->quantidade($app->db)
+        'clientes' => $mdlCliente->quantidade($app->db)
       ],
       'media_salarial' => [
         'data' => $data_media_salarial,
         'media' => $media_salarial_valor
       ],
+      'vendas' => $mdlVenda->totalVendas($app->db),
       'pagina' => 'inicial'
     ];
     require('./src/views/principal.php');

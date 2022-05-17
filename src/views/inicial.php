@@ -1,4 +1,9 @@
+<?php require_once('./src/general.php'); ?>
 <script src="public/javascripts/chart.min.js"></script>
+<div class="pure-u-1-3"></div>
+<div class="pure-u-1-3">
+  <h2>Total de vendas: <span id="valor_total_vendas"></span></h2>
+</div>
 <div>
   <div class="pure-u-2-5">
     <canvas id="chartCadastros"></canvas>
@@ -100,5 +105,6 @@
 
   window.addEventListener("load", function () {
     generateCharts();
+    document.getElementById('valor_total_vendas').innerText = returnBrazilianCurrency('<?=$dados['vendas']['total']?>');
   });
 </script>

@@ -264,6 +264,22 @@ class ModelVenda {
       return false;
     }
   }
+
+  public function totalVendas($conexao) {
+    $venda = 0;
+    try {
+      $sm_query = $conexao->prepare("SELECT sum(vp.quantidade * vp.valor_unitario) as total FROM venda_produto vp");
+
+      if($sm_query->execute()){
+        $venda = $sm_query->fetch(PDO::FETCH_ASSOC);
+      }
+
+    } catch (\Throwable $th) {
+      $venda = 0;
+    }
+
+    return $venda;
+  }
 }
 
 ?>
