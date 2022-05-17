@@ -46,7 +46,7 @@ CREATE TABLE cliente (
 
 CREATE TABLE venda (
 	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	data_venda DATETIME NOT NULL,
+	data_venda DATE NOT NULL,
 	observacao VARCHAR(200),
 	id_cliente INT NOT NULL,
 	id_usuario INT NOT NULL,
