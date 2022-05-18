@@ -164,6 +164,7 @@
       document.getElementById('valor_unitario_form').value = returnBrazilianNumber(parseFloat(lista_venda_produto[i].valor_unitario));
       document.getElementById('index_produto_form').value = i;
       document.getElementById('id_form').value = lista_venda_produto[i].id;
+      document.getElementById('id_produto_form').setAttribute('readonly', true);
     }else{
       document.getElementById('modalProdutoTitle').innerText = 'Adicionar produto';
       document.getElementById('id_produto_form').value = 0;
@@ -171,6 +172,7 @@
       document.getElementById('valor_unitario_form').value = '0,00';
       document.getElementById('index_produto_form').value = 'novo';
       document.getElementById('id_form').value = 0;
+      document.getElementById('id_produto_form').removeAttribute('readonly');
     }
 
     document.getElementById('openModalLink').click();
@@ -186,21 +188,26 @@
     let index_produto = document.getElementById('index_produto_form').value;
     let id = document.getElementById('id_form').value;
 
+    if('0' == id_produto){
+      notifier.alert('Produto é obrigatório.');
+      return false;
+    }
+
     if('novo' === index_produto){
       lista_venda_produto.push({
         'id': 0,
         'id_produto': id_produto,
         'descricao_produto': descricao_produto,
-        'quantidade': quantidade.replaceAll('.', ',').replaceAll(',', '.'),
-        'valor_unitario': valor_unitario.replaceAll('.', ',').replaceAll(',', '.')
+        'quantidade': quantidade.replaceAll('.', '').replaceAll(',', '.'),
+        'valor_unitario': valor_unitario.replaceAll('.', '').replaceAll(',', '.')
       });
     }else{
       lista_venda_produto[index_produto] = {
         'id': id,
         'id_produto': id_produto,
         'descricao_produto': descricao_produto,
-        'quantidade': quantidade.replaceAll('.', ',').replaceAll(',', '.'),
-        'valor_unitario': valor_unitario.replaceAll('.', ',').replaceAll(',', '.')
+        'quantidade': quantidade.replaceAll('.', '').replaceAll(',', '.'),
+        'valor_unitario': valor_unitario.replaceAll('.', '').replaceAll(',', '.')
       };
     }
 

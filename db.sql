@@ -12,7 +12,7 @@ CREATE TABLE pessoa(
 
 CREATE TABLE usuario (
 	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(100) NOT NULL,	 
+	nome VARCHAR(100) NOT NULL,
 	email VARCHAR(30) NOT NULL UNIQUE,
 	senha VARCHAR(100),
 	tipo VARCHAR(1) DEFAULT 'F'
@@ -73,3 +73,23 @@ ALTER TABLE venda_produto ADD CONSTRAINT fk_id_venda_produto_venda FOREIGN KEY (
 ALTER TABLE venda_produto ADD CONSTRAINT fk_id_venda_produto_produto FOREIGN KEY (id_produto) REFERENCES produto(id);
 
 INSERT INTO usuario (nome, email, senha, tipo) VALUES ('Bruno Bevilaqua', 'bbbevilaqua@gmail.com', '202cb962ac59075b964b07152d234b70', 'A');
+
+CREATE TRIGGER delete_venda
+	BEFORE DELETE
+	ON venda FOR EACH ROW
+		DELETE FROM venda_produto WHERE id_venda = OLD.id;
+
+CREATE TRIGGER insert_venda_produto
+	AFTER INSERT ON venda_produto
+	FOR EACH ROW
+		UPDATE produto SET quantidade = quantidade - NEW.quantidade WHERE id = NEW.id_produto
+
+CREATE TRIGGER update_venda_produto
+	AFTER UPDATE ON venda_produto
+	FOR EACH ROW
+		UPDATE produto SET quantidade = quantidade + OLD.quantidade - NEW.quantidade WHERE id = NEW.id_produto
+
+CREATE TRIGGER delete_venda_produto
+	AFTER DELETE ON venda_produto
+	FOR EACH ROW
+		UPDATE produto SET quantidade = quantidade + OLD.quantidade WHERE id = OLD.id_produto

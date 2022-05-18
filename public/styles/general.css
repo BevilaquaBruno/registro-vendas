@@ -35,3 +35,9 @@ h1, h2, h3, h4, h5, h6 {
 .cursor-pointer{
   cursor: pointer;
 }
+
+select[readonly] {
+  background: #eee;
+  pointer-events: none;
+  touch-action: none;
+}
