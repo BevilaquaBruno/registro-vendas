@@ -124,6 +124,30 @@ class ModelUsuario {
     return $success;
   }
 
+  public function alterarComSenha(PDO $conexao, $usuario){
+    $success = false;
+    try {
+      $sm_query = $conexao->prepare("UPDATE usuario set nome = :nome,
+          email = :email, tipo = :tipo, senha = :senha
+        WHERE id = :id");
+
+      $sm_query->bindParam(":nome", $usuario['nome']);
+      $sm_query->bindParam(":email", $usuario['email']);
+      $sm_query->bindParam(":tipo", $usuario['tipo']);
+      $usuario['senha'] = md5($usuario['senha']);
+      $sm_query->bindParam(":senha", $usuario['senha']);
+      $sm_query->bindParam(":id", $usuario['id']);
+
+      if($sm_query->execute()){
+        $success = true;
+      }
+    } catch (\Throwable $th) {
+      $success = false;
+    }
+
+    return $success;
+  }
+
   public function quantidade(PDO $conexao){
     $quantidade_usuario = 0;
     try {

@@ -38,7 +38,7 @@
       <span class="pure-form-message-inline">* Obrigatório.</span>
   </div>
 
-  <?php if ('cadastrar' === $dados['acao']){ ?>
+  <?php if ('cadastrar' === $dados['acao'] || $dados['usuario']['id'] == $_SESSION['id_u']){ ?>
     <!-- Senha -->
     <div class="pure-control-group">
       <label for="senha">Senha: </label>

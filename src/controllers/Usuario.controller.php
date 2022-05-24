@@ -139,6 +139,21 @@ class ControllerUsuario {
       "tipo" => $_POST['tipo']
     ];
 
+    if($usuario['id'] == $_SESSION['id_u']){
+      $usuario['senha'] = $_POST['senha'];
+      $usuario['repetir_senha'] = $_POST['repetir_senha'];
+
+      if('' === $usuario['senha'] || '' === $usuario['repetir_senha']){
+        echo(json_encode([ "success" => false, "message" => "As duas senhas são obrigatórias" ]));
+        exit();
+      }
+
+      if($usuario['senha'] !== $usuario['repetir_senha']){
+        echo(json_encode([ "success" => false, "message" => "As duas senhas precisam ser iguais" ]));
+        exit();
+      }
+    }
+
     if(null === $usuario['id'] || 0 === $usuario['id']){
       echo(json_encode([ "success" => false, "message" => "Erro grave ao alterar o usuário, atualize a página" ]));
       exit();
@@ -171,9 +186,12 @@ class ControllerUsuario {
       exit();
     }
 
-    $result = $mdlUsuario->alterar($app->db, $usuario);
+    if($usuario['id'] == $_SESSION['id_u']){
+      $result = $mdlUsuario->alterarComSenha($app->db, $usuario);
+    }else{
+      $result = $mdlUsuario->alterar($app->db, $usuario);
+    }
 
     echo(json_encode([ "success" => $result, "message" => "" ]));
   }
 }
-?>

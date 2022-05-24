@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="public/styles/awesome_notifications.min.css">
   <script src="public/javascripts/awesome_notifications.min.js"></script>
   <!-- Modal -->
-  <link rel="stylesheet" href="public/styles/modal.min.css">
+  <link rel="stylesheet" href="public/styles/modal.css">
   <script src="public/javascripts/modal.js"></script>
   <!-- PureCSS - https://purecss.io/ -->
   <link rel="stylesheet" href="public/styles/pure-min.css">
