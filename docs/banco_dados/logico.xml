@@ -2,7 +2,7 @@
 <MER>
 	<Informacoes>
 		<Posicao Left="0" Top="0"/>
-		<TotalItens Valor="116"/>
+		<TotalItens Valor="108"/>
 		<Tipo Valor="LOGICO"/>
 		<Versao Valor="1.0.0"/>
 	</Informacoes>
@@ -10,7 +10,7 @@
     <Tabela nome="pessoa" id="1">
       <Left Valor="74"/>
       <Top Valor="42"/>
-      <Width Valor="134"/>
+      <Width Valor="169"/>
       <Height Valor="100"/>
       <Fonte default="-1"/>
       <Dicionario></Dicionario>
@@ -22,7 +22,7 @@
         <Campo nome="nome" id="8">
           <Left Valor="74"/>
           <Top Valor="61"/>
-          <Width Valor="132"/>
+          <Width Valor="167"/>
           <Height Valor="19"/>
           <Fonte default="-1"/>
           <Dicionario></Dicionario>
@@ -38,7 +38,7 @@
         <Campo nome="email" id="9">
           <Left Valor="74"/>
           <Top Valor="79"/>
-          <Width Valor="132"/>
+          <Width Valor="167"/>
           <Height Valor="19"/>
           <Fonte default="-1"/>
           <Dicionario></Dicionario>
@@ -54,7 +54,7 @@
         <Campo nome="telefone" id="10">
           <Left Valor="74"/>
           <Top Valor="97"/>
-          <Width Valor="132"/>
+          <Width Valor="167"/>
           <Height Valor="19"/>
           <Fonte default="-1"/>
           <Dicionario></Dicionario>
@@ -70,7 +70,7 @@
         <Campo nome="data_nascimento" id="11">
           <Left Valor="74"/>
           <Top Valor="115"/>
-          <Width Valor="132"/>
+          <Width Valor="167"/>
           <Height Valor="19"/>
           <Fonte default="-1"/>
           <Dicionario></Dicionario>
@@ -134,8 +134,8 @@
     <Tabela nome="cliente" id="3">
       <Left Valor="519"/>
       <Top Valor="51"/>
-      <Width Valor="134"/>
-      <Height Valor="118"/>
+      <Width Valor="159"/>
+      <Height Valor="136"/>
       <Fonte default="-1"/>
       <Dicionario></Dicionario>
       <Nula Valor="0"/>
@@ -146,7 +146,7 @@
         <Campo nome="endereco" id="14">
           <Left Valor="519"/>
           <Top Valor="70"/>
-          <Width Valor="132"/>
+          <Width Valor="157"/>
           <Height Valor="19"/>
           <Fonte default="-1"/>
           <Dicionario></Dicionario>
@@ -156,13 +156,13 @@
           <ApenasSeparador Valor="0"/>
           <IsKey Valor="0"/>
           <IsFKey Valor="0"/>
-          <Tipo Valor="Texto(50)"/>
+          <Tipo Valor="Texto(30)"/>
           <TabOrigem Valor="0"/>
         </Campo>
         <Campo nome="bairro" id="15">
           <Left Valor="519"/>
           <Top Valor="88"/>
-          <Width Valor="132"/>
+          <Width Valor="157"/>
           <Height Valor="19"/>
           <Fonte default="-1"/>
           <Dicionario></Dicionario>
@@ -172,13 +172,13 @@
           <ApenasSeparador Valor="0"/>
           <IsKey Valor="0"/>
           <IsFKey Valor="0"/>
-          <Tipo Valor="Texto(50)"/>
+          <Tipo Valor="Texto(30)"/>
           <TabOrigem Valor="0"/>
         </Campo>
         <Campo nome="cidade" id="16">
           <Left Valor="519"/>
           <Top Valor="106"/>
-          <Width Valor="132"/>
+          <Width Valor="157"/>
           <Height Valor="19"/>
           <Fonte default="-1"/>
           <Dicionario></Dicionario>
@@ -188,13 +188,13 @@
           <ApenasSeparador Valor="0"/>
           <IsKey Valor="0"/>
           <IsFKey Valor="0"/>
-          <Tipo Valor="Texto(50)"/>
+          <Tipo Valor="Texto(30)"/>
           <TabOrigem Valor="0"/>
         </Campo>
         <Campo nome="pais" id="17">
           <Left Valor="519"/>
           <Top Valor="124"/>
-          <Width Valor="132"/>
+          <Width Valor="157"/>
           <Height Valor="19"/>
           <Fonte default="-1"/>
           <Dicionario></Dicionario>
@@ -204,13 +204,13 @@
           <ApenasSeparador Valor="0"/>
           <IsKey Valor="0"/>
           <IsFKey Valor="0"/>
-          <Tipo Valor="Texto(50)"/>
+          <Tipo Valor="Texto(30)"/>
           <TabOrigem Valor="0"/>
         </Campo>
         <Campo nome="estado" id="18">
           <Left Valor="519"/>
           <Top Valor="142"/>
-          <Width Valor="132"/>
+          <Width Valor="157"/>
           <Height Valor="19"/>
           <Fonte default="-1"/>
           <Dicionario></Dicionario>
@@ -220,59 +220,13 @@
           <ApenasSeparador Valor="0"/>
           <IsKey Valor="0"/>
           <IsFKey Valor="0"/>
-          <Tipo Valor="Texto(50)"/>
+          <Tipo Valor="Texto(30)"/>
           <TabOrigem Valor="0"/>
         </Campo>
-      </Campos>
-    </Tabela>
-    <Tabela nome="produto" id="4">
-      <Left Valor="757"/>
-      <Top Valor="386"/>
-      <Width Valor="134"/>
-      <Height Valor="118"/>
-      <Fonte default="-1"/>
-      <Dicionario></Dicionario>
-      <Nula Valor="0"/>
-      <Observacao></Observacao>
-      <Anexos/>
-      <Color Valor="12632256"/>
-      <Campos>
-        <Campo nome="descricao" id="19">
-          <Left Valor="757"/>
-          <Top Valor="405"/>
-          <Width Valor="132"/>
-          <Height Valor="19"/>
-          <Fonte default="-1"/>
-          <Dicionario></Dicionario>
-          <Nula Valor="-1"/>
-          <Observacao></Observacao>
-          <Anexos/>
-          <ApenasSeparador Valor="0"/>
-          <IsKey Valor="0"/>
-          <IsFKey Valor="0"/>
-          <Tipo Valor="Texto(100)"/>
-          <TabOrigem Valor="0"/>
-        </Campo>
-        <Campo nome="quantidade" id="20">
-          <Left Valor="757"/>
-          <Top Valor="423"/>
-          <Width Valor="132"/>
-          <Height Valor="19"/>
-          <Fonte default="-1"/>
-          <Dicionario></Dicionario>
-          <Nula Valor="-1"/>
-          <Observacao></Observacao>
-          <Anexos/>
-          <ApenasSeparador Valor="0"/>
-          <IsKey Valor="0"/>
-          <IsFKey Valor="0"/>
-          <Tipo Valor="float"/>
-          <TabOrigem Valor="0"/>
-        </Campo>
-        <Campo nome="unidade_medida" id="21">
-          <Left Valor="757"/>
-          <Top Valor="441"/>
-          <Width Valor="132"/>
+        <Campo nome="uf" id="19">
+          <Left Valor="519"/>
+          <Top Valor="160"/>
+          <Width Valor="157"/>
           <Height Valor="19"/>
           <Fonte default="-1"/>
           <Dicionario></Dicionario>
@@ -285,10 +239,40 @@
           <Tipo Valor="Texto(2)"/>
           <TabOrigem Valor="0"/>
         </Campo>
-        <Campo nome="valor_compra" id="22">
-          <Left Valor="757"/>
-          <Top Valor="459"/>
-          <Width Valor="132"/>
+      </Campos>
+    </Tabela>
+    <Tabela nome="produto" id="4">
+      <Left Valor="734"/>
+      <Top Valor="311"/>
+      <Width Valor="180"/>
+      <Height Valor="118"/>
+      <Fonte default="-1"/>
+      <Dicionario></Dicionario>
+      <Nula Valor="0"/>
+      <Observacao></Observacao>
+      <Anexos/>
+      <Color Valor="12632256"/>
+      <Campos>
+        <Campo nome="descricao" id="20">
+          <Left Valor="734"/>
+          <Top Valor="330"/>
+          <Width Valor="178"/>
+          <Height Valor="19"/>
+          <Fonte default="-1"/>
+          <Dicionario></Dicionario>
+          <Nula Valor="-1"/>
+          <Observacao></Observacao>
+          <Anexos/>
+          <ApenasSeparador Valor="0"/>
+          <IsKey Valor="0"/>
+          <IsFKey Valor="0"/>
+          <Tipo Valor="Texto(120)"/>
+          <TabOrigem Valor="0"/>
+        </Campo>
+        <Campo nome="quantidade" id="21">
+          <Left Valor="734"/>
+          <Top Valor="348"/>
+          <Width Valor="178"/>
           <Height Valor="19"/>
           <Fonte default="-1"/>
           <Dicionario></Dicionario>
@@ -301,10 +285,42 @@
           <Tipo Valor="float"/>
           <TabOrigem Valor="0"/>
         </Campo>
-        <Campo nome="valor_venda" id="23">
-          <Left Valor="757"/>
-          <Top Valor="477"/>
-          <Width Valor="132"/>
+        <Campo nome="unidade_medida" id="22">
+          <Left Valor="734"/>
+          <Top Valor="366"/>
+          <Width Valor="178"/>
+          <Height Valor="19"/>
+          <Fonte default="-1"/>
+          <Dicionario></Dicionario>
+          <Nula Valor="-1"/>
+          <Observacao></Observacao>
+          <Anexos/>
+          <ApenasSeparador Valor="0"/>
+          <IsKey Valor="0"/>
+          <IsFKey Valor="0"/>
+          <Tipo Valor="Texto(5)"/>
+          <TabOrigem Valor="0"/>
+        </Campo>
+        <Campo nome="valor_compra" id="23">
+          <Left Valor="734"/>
+          <Top Valor="384"/>
+          <Width Valor="178"/>
+          <Height Valor="19"/>
+          <Fonte default="-1"/>
+          <Dicionario></Dicionario>
+          <Nula Valor="-1"/>
+          <Observacao></Observacao>
+          <Anexos/>
+          <ApenasSeparador Valor="0"/>
+          <IsKey Valor="0"/>
+          <IsFKey Valor="0"/>
+          <Tipo Valor="float"/>
+          <TabOrigem Valor="0"/>
+        </Campo>
+        <Campo nome="valor_venda" id="24">
+          <Left Valor="734"/>
+          <Top Valor="402"/>
+          <Width Valor="178"/>
           <Height Valor="19"/>
           <Fonte default="-1"/>
           <Dicionario></Dicionario>
@@ -320,10 +336,10 @@
       </Campos>
     </Tabela>
     <Tabela nome="venda" id="5">
-      <Left Valor="507"/>
-      <Top Valor="246"/>
-      <Width Valor="134"/>
-      <Height Valor="66"/>
+      <Left Valor="387"/>
+      <Top Valor="228"/>
+      <Width Valor="176"/>
+      <Height Valor="68"/>
       <Fonte default="-1"/>
       <Dicionario></Dicionario>
       <Nula Valor="0"/>
@@ -331,10 +347,10 @@
       <Anexos/>
       <Color Valor="12632256"/>
       <Campos>
-        <Campo nome="data_venda" id="24">
-          <Left Valor="507"/>
-          <Top Valor="265"/>
-          <Width Valor="132"/>
+        <Campo nome="data_venda" id="25">
+          <Left Valor="387"/>
+          <Top Valor="247"/>
+          <Width Valor="174"/>
           <Height Valor="19"/>
           <Fonte default="-1"/>
           <Dicionario></Dicionario>
@@ -347,11 +363,27 @@
           <Tipo Valor="data"/>
           <TabOrigem Valor="0"/>
         </Campo>
+        <Campo nome="observacao" id="26">
+          <Left Valor="387"/>
+          <Top Valor="265"/>
+          <Width Valor="174"/>
+          <Height Valor="19"/>
+          <Fonte default="-1"/>
+          <Dicionario></Dicionario>
+          <Nula Valor="-1"/>
+          <Observacao></Observacao>
+          <Anexos/>
+          <ApenasSeparador Valor="0"/>
+          <IsKey Valor="0"/>
+          <IsFKey Valor="0"/>
+          <Tipo Valor="Texto(200)"/>
+          <TabOrigem Valor="0"/>
+        </Campo>
       </Campos>
     </Tabela>
-    <Tabela nome="usuario" id="7">
-      <Left Valor="83"/>
-      <Top Valor="492"/>
+    <Tabela nome="usuario" id="6">
+      <Left Valor="130"/>
+      <Top Valor="415"/>
       <Width Valor="134"/>
       <Height Valor="100"/>
       <Fonte default="-1"/>
@@ -361,9 +393,9 @@
       <Anexos/>
       <Color Valor="12632256"/>
       <Campos>
-        <Campo nome="nome" id="25">
-          <Left Valor="83"/>
-          <Top Valor="511"/>
+        <Campo nome="nome" id="27">
+          <Left Valor="130"/>
+          <Top Valor="434"/>
           <Width Valor="132"/>
           <Height Valor="19"/>
           <Fonte default="-1"/>
@@ -377,9 +409,9 @@
           <Tipo Valor="Texto(100)"/>
           <TabOrigem Valor="0"/>
         </Campo>
-        <Campo nome="email" id="26">
-          <Left Valor="83"/>
-          <Top Valor="529"/>
+        <Campo nome="email" id="28">
+          <Left Valor="130"/>
+          <Top Valor="452"/>
           <Width Valor="132"/>
           <Height Valor="19"/>
           <Fonte default="-1"/>
@@ -393,9 +425,9 @@
           <Tipo Valor="Texto(30)"/>
           <TabOrigem Valor="0"/>
         </Campo>
-        <Campo nome="senha" id="27">
-          <Left Valor="83"/>
-          <Top Valor="547"/>
+        <Campo nome="senha" id="29">
+          <Left Valor="130"/>
+          <Top Valor="470"/>
           <Width Valor="132"/>
           <Height Valor="19"/>
           <Fonte default="-1"/>
@@ -409,9 +441,9 @@
           <Tipo Valor="Texto(100)"/>
           <TabOrigem Valor="0"/>
         </Campo>
-        <Campo nome="tipo" id="28">
-          <Left Valor="83"/>
-          <Top Valor="565"/>
+        <Campo nome="tipo" id="30">
+          <Left Valor="130"/>
+          <Top Valor="488"/>
           <Width Valor="132"/>
           <Height Valor="19"/>
           <Fonte default="-1"/>
@@ -427,37 +459,183 @@
         </Campo>
       </Campos>
     </Tabela>
-    <Tabela nome="faz" id="38">
-      <Left Valor="298"/>
-      <Top Valor="237"/>
-      <Width Valor="134"/>
-      <Height Valor="66"/>
+    <Tabela nome="contém+venda_produto" id="33">
+      <Left Valor="452"/>
+      <Top Valor="417"/>
+      <Width Valor="166"/>
+      <Height Valor="72"/>
       <Fonte default="-1"/>
       <Dicionario></Dicionario>
       <Nula Valor="0"/>
       <Observacao></Observacao>
       <Anexos/>
       <Color Valor="12632256"/>
-      <Campos/>
-    </Tabela>
-    <Tabela nome="contém+venda_produto" id="45">
-      <Left Valor="527"/>
-      <Top Valor="371"/>
-      <Width Valor="134"/>
-      <Height Valor="66"/>
-      <Fonte default="-1"/>
-      <Dicionario></Dicionario>
-      <Nula Valor="0"/>
-      <Observacao></Observacao>
-      <Anexos/>
-      <Color Valor="12632256"/>
-      <Campos/>
+      <Campos>
+        <Campo nome="quantidade" id="55">
+          <Left Valor="452"/>
+          <Top Valor="436"/>
+          <Width Valor="164"/>
+          <Height Valor="19"/>
+          <Fonte default="-1"/>
+          <Dicionario></Dicionario>
+          <Nula Valor="-1"/>
+          <Observacao></Observacao>
+          <Anexos/>
+          <ApenasSeparador Valor="0"/>
+          <IsKey Valor="0"/>
+          <IsFKey Valor="0"/>
+          <Tipo Valor="float"/>
+          <TabOrigem Valor="0"/>
+        </Campo>
+        <Campo nome="valor_unitario" id="56">
+          <Left Valor="452"/>
+          <Top Valor="454"/>
+          <Width Valor="164"/>
+          <Height Valor="19"/>
+          <Fonte default="-1"/>
+          <Dicionario></Dicionario>
+          <Nula Valor="-1"/>
+          <Observacao></Observacao>
+          <Anexos/>
+          <ApenasSeparador Valor="0"/>
+          <IsKey Valor="0"/>
+          <IsFKey Valor="0"/>
+          <Tipo Valor="float"/>
+          <TabOrigem Valor="0"/>
+        </Campo>
+      </Campos>
     </Tabela>
   </Tabelas>
 	<LigacaoEntreTabelas>
-    <LigaTabela nome="pessoa_funcionario_1" id="29">
+    <LigaTabela nome="produto_contém_1" id="34">
+      <Left Valor="601"/>
+      <Top Valor="421"/>
+      <Width Valor="15"/>
+      <Height Valor="10"/>
+      <Fonte default="-1"/>
+      <Dicionario></Dicionario>
+      <Nula Valor="0"/>
+      <Observacao></Observacao>
+      <Anexos/>
+      <Ligacoes>
+        <Ligacao Destino_ID="4">
+          <MostraCardinalidade Valor="-1" Card_id="35"/>
+          <Cardinalidades Cardinalidade="1">
+            <Cardinalidade nome="" id="35">
+              <Left Valor="696"/>
+              <Top Valor="355"/>
+              <Width Valor="40"/>
+              <Height Valor="20"/>
+              <Fonte default="-1"/>
+              <Dicionario></Dicionario>
+              <Nula Valor="0"/>
+              <Observacao></Observacao>
+              <Anexos/>
+              <Cor Valor="15780518"/>
+              <TamAuto Valor="-1"/>
+              <Tipo Valor="0"/>
+              <TextAlin Valor="0"/>
+              <Card Valor="1"/>
+              <Fixa Valor="0"/>
+              <Ligacoes/>
+            </Cardinalidade>
+          </Cardinalidades>
+          <Orientacao Valor="0"/>
+          <Fraca Valor="0"/>
+        </Ligacao>
+        <Ligacao Destino_ID="33">
+          <MostraCardinalidade Valor="-1" Card_id="36"/>
+          <Cardinalidades Cardinalidade="3">
+            <Cardinalidade nome="" id="36">
+              <Left Valor="535"/>
+              <Top Valor="490"/>
+              <Width Valor="40"/>
+              <Height Valor="20"/>
+              <Fonte default="-1"/>
+              <Dicionario></Dicionario>
+              <Nula Valor="0"/>
+              <Observacao></Observacao>
+              <Anexos/>
+              <Cor Valor="15780518"/>
+              <TamAuto Valor="-1"/>
+              <Tipo Valor="0"/>
+              <TextAlin Valor="0"/>
+              <Card Valor="3"/>
+              <Fixa Valor="0"/>
+              <Ligacoes/>
+            </Cardinalidade>
+          </Cardinalidades>
+          <Orientacao Valor="0"/>
+          <Fraca Valor="0"/>
+        </Ligacao>
+      </Ligacoes>
+    </LigaTabela>
+    <LigaTabela nome="venda_contém_1" id="37">
+      <Left Valor="486"/>
+      <Top Valor="359"/>
+      <Width Valor="15"/>
+      <Height Valor="10"/>
+      <Fonte default="-1"/>
+      <Dicionario></Dicionario>
+      <Nula Valor="0"/>
+      <Observacao></Observacao>
+      <Anexos/>
+      <Ligacoes>
+        <Ligacao Destino_ID="5">
+          <MostraCardinalidade Valor="-1" Card_id="38"/>
+          <Cardinalidades Cardinalidade="1">
+            <Cardinalidade nome="" id="38">
+              <Left Valor="503"/>
+              <Top Valor="297"/>
+              <Width Valor="40"/>
+              <Height Valor="20"/>
+              <Fonte default="-1"/>
+              <Dicionario></Dicionario>
+              <Nula Valor="0"/>
+              <Observacao></Observacao>
+              <Anexos/>
+              <Cor Valor="15780518"/>
+              <TamAuto Valor="-1"/>
+              <Tipo Valor="0"/>
+              <TextAlin Valor="0"/>
+              <Card Valor="1"/>
+              <Fixa Valor="0"/>
+              <Ligacoes/>
+            </Cardinalidade>
+          </Cardinalidades>
+          <Orientacao Valor="0"/>
+          <Fraca Valor="0"/>
+        </Ligacao>
+        <Ligacao Destino_ID="33">
+          <MostraCardinalidade Valor="-1" Card_id="39"/>
+          <Cardinalidades Cardinalidade="4">
+            <Cardinalidade nome="" id="39">
+              <Left Valor="535"/>
+              <Top Valor="402"/>
+              <Width Valor="40"/>
+              <Height Valor="20"/>
+              <Fonte default="-1"/>
+              <Dicionario></Dicionario>
+              <Nula Valor="0"/>
+              <Observacao></Observacao>
+              <Anexos/>
+              <Cor Valor="15780518"/>
+              <TamAuto Valor="-1"/>
+              <Tipo Valor="0"/>
+              <TextAlin Valor="0"/>
+              <Card Valor="4"/>
+              <Fixa Valor="0"/>
+              <Ligacoes/>
+            </Cardinalidade>
+          </Cardinalidades>
+          <Orientacao Valor="0"/>
+          <Fraca Valor="0"/>
+        </Ligacao>
+      </Ligacoes>
+    </LigaTabela>
+    <LigaTabela nome="pessoa_funcionario_1" id="40">
       <Left Valor="149"/>
-      <Top Valor="210"/>
+      <Top Valor="219"/>
       <Width Valor="15"/>
       <Height Valor="10"/>
       <Fonte default="-1"/>
@@ -467,10 +645,10 @@
       <Anexos/>
       <Ligacoes>
         <Ligacao Destino_ID="1">
-          <MostraCardinalidade Valor="-1" Card_id="30"/>
+          <MostraCardinalidade Valor="-1" Card_id="41"/>
           <Cardinalidades Cardinalidade="1">
-            <Cardinalidade nome="" id="30">
-              <Left Valor="141"/>
+            <Cardinalidade nome="" id="41">
+              <Left Valor="158"/>
               <Top Valor="143"/>
               <Width Valor="40"/>
               <Height Valor="20"/>
@@ -492,9 +670,9 @@
           <Fraca Valor="0"/>
         </Ligacao>
         <Ligacao Destino_ID="2">
-          <MostraCardinalidade Valor="-1" Card_id="31"/>
+          <MostraCardinalidade Valor="-1" Card_id="42"/>
           <Cardinalidades Cardinalidade="4">
-            <Cardinalidade nome="" id="31">
+            <Cardinalidade nome="" id="42">
               <Left Valor="157"/>
               <Top Valor="281"/>
               <Width Valor="40"/>
@@ -518,7 +696,7 @@
         </Ligacao>
       </Ligacoes>
     </LigaTabela>
-    <LigaTabela nome="pessoa_cliente_1" id="32">
+    <LigaTabela nome="pessoa_cliente_1" id="43">
       <Left Valor="363"/>
       <Top Valor="96"/>
       <Width Valor="15"/>
@@ -530,10 +708,10 @@
       <Anexos/>
       <Ligacoes>
         <Ligacao Destino_ID="1">
-          <MostraCardinalidade Valor="-1" Card_id="33"/>
+          <MostraCardinalidade Valor="-1" Card_id="44"/>
           <Cardinalidades Cardinalidade="1">
-            <Cardinalidade nome="" id="33">
-              <Left Valor="208"/>
+            <Cardinalidade nome="" id="44">
+              <Left Valor="243"/>
               <Top Valor="77"/>
               <Width Valor="40"/>
               <Height Valor="20"/>
@@ -555,11 +733,11 @@
           <Fraca Valor="0"/>
         </Ligacao>
         <Ligacao Destino_ID="3">
-          <MostraCardinalidade Valor="-1" Card_id="34"/>
+          <MostraCardinalidade Valor="-1" Card_id="45"/>
           <Cardinalidades Cardinalidade="4">
-            <Cardinalidade nome="" id="34">
+            <Cardinalidade nome="" id="45">
               <Left Valor="481"/>
-              <Top Valor="95"/>
+              <Top Valor="104"/>
               <Width Valor="40"/>
               <Height Valor="20"/>
               <Fonte default="-1"/>
@@ -581,9 +759,9 @@
         </Ligacao>
       </Ligacoes>
     </LigaTabela>
-    <LigaTabela nome="cliente_venda_1" id="35">
-      <Left Valor="580"/>
-      <Top Valor="207"/>
+    <LigaTabela nome="cliente_venda_1" id="46">
+      <Left Valor="520"/>
+      <Top Valor="208"/>
       <Width Valor="15"/>
       <Height Valor="10"/>
       <Fonte default="-1"/>
@@ -593,11 +771,11 @@
       <Anexos/>
       <Ligacoes>
         <Ligacao Destino_ID="3">
-          <MostraCardinalidade Valor="-1" Card_id="36"/>
+          <MostraCardinalidade Valor="-1" Card_id="47"/>
           <Cardinalidades Cardinalidade="1">
-            <Cardinalidade nome="" id="36">
-              <Left Valor="586"/>
-              <Top Valor="170"/>
+            <Cardinalidade nome="" id="47">
+              <Left Valor="598"/>
+              <Top Valor="188"/>
               <Width Valor="40"/>
               <Height Valor="20"/>
               <Fonte default="-1"/>
@@ -618,11 +796,11 @@
           <Fraca Valor="0"/>
         </Ligacao>
         <Ligacao Destino_ID="5">
-          <MostraCardinalidade Valor="-1" Card_id="37"/>
+          <MostraCardinalidade Valor="-1" Card_id="48"/>
           <Cardinalidades Cardinalidade="4">
-            <Cardinalidade nome="" id="37">
-              <Left Valor="574"/>
-              <Top Valor="231"/>
+            <Cardinalidade nome="" id="48">
+              <Left Valor="479"/>
+              <Top Valor="205"/>
               <Width Valor="40"/>
               <Height Valor="20"/>
               <Fonte default="-1"/>
@@ -644,72 +822,9 @@
         </Ligacao>
       </Ligacoes>
     </LigaTabela>
-    <LigaTabela nome="venda_faz_1" id="39">
-      <Left Valor="469"/>
-      <Top Valor="274"/>
-      <Width Valor="15"/>
-      <Height Valor="10"/>
-      <Fonte default="-1"/>
-      <Dicionario></Dicionario>
-      <Nula Valor="0"/>
-      <Observacao></Observacao>
-      <Anexos/>
-      <Ligacoes>
-        <Ligacao Destino_ID="5">
-          <MostraCardinalidade Valor="-1" Card_id="40"/>
-          <Cardinalidades Cardinalidade="1">
-            <Cardinalidade nome="" id="40">
-              <Left Valor="469"/>
-              <Top Valor="264"/>
-              <Width Valor="40"/>
-              <Height Valor="20"/>
-              <Fonte default="-1"/>
-              <Dicionario></Dicionario>
-              <Nula Valor="0"/>
-              <Observacao></Observacao>
-              <Anexos/>
-              <Cor Valor="15780518"/>
-              <TamAuto Valor="-1"/>
-              <Tipo Valor="0"/>
-              <TextAlin Valor="0"/>
-              <Card Valor="1"/>
-              <Fixa Valor="0"/>
-              <Ligacoes/>
-            </Cardinalidade>
-          </Cardinalidades>
-          <Orientacao Valor="0"/>
-          <Fraca Valor="0"/>
-        </Ligacao>
-        <Ligacao Destino_ID="38">
-          <MostraCardinalidade Valor="-1" Card_id="41"/>
-          <Cardinalidades Cardinalidade="4">
-            <Cardinalidade nome="" id="41">
-              <Left Valor="432"/>
-              <Top Valor="255"/>
-              <Width Valor="40"/>
-              <Height Valor="20"/>
-              <Fonte default="-1"/>
-              <Dicionario></Dicionario>
-              <Nula Valor="0"/>
-              <Observacao></Observacao>
-              <Anexos/>
-              <Cor Valor="15780518"/>
-              <TamAuto Valor="-1"/>
-              <Tipo Valor="0"/>
-              <TextAlin Valor="0"/>
-              <Card Valor="4"/>
-              <Fixa Valor="0"/>
-              <Ligacoes/>
-            </Cardinalidade>
-          </Cardinalidades>
-          <Orientacao Valor="0"/>
-          <Fraca Valor="0"/>
-        </Ligacao>
-      </Ligacoes>
-    </LigaTabela>
-    <LigaTabela nome="funcionario_faz_1" id="42">
-      <Left Valor="261"/>
-      <Top Valor="299"/>
+    <LigaTabela nome="funcionario_venda_1" id="49">
+      <Left Valor="305"/>
+      <Top Valor="296"/>
       <Width Valor="15"/>
       <Height Valor="10"/>
       <Fonte default="-1"/>
@@ -719,9 +834,9 @@
       <Anexos/>
       <Ligacoes>
         <Ligacao Destino_ID="2">
-          <MostraCardinalidade Valor="-1" Card_id="43"/>
+          <MostraCardinalidade Valor="-1" Card_id="50"/>
           <Cardinalidades Cardinalidade="1">
-            <Cardinalidade nome="" id="43">
+            <Cardinalidade nome="" id="50">
               <Left Valor="224"/>
               <Top Valor="314"/>
               <Width Valor="40"/>
@@ -743,138 +858,12 @@
           <Orientacao Valor="0"/>
           <Fraca Valor="0"/>
         </Ligacao>
-        <Ligacao Destino_ID="38">
-          <MostraCardinalidade Valor="-1" Card_id="44"/>
-          <Cardinalidades Cardinalidade="4">
-            <Cardinalidade nome="" id="44">
-              <Left Valor="260"/>
-              <Top Valor="255"/>
-              <Width Valor="40"/>
-              <Height Valor="20"/>
-              <Fonte default="-1"/>
-              <Dicionario></Dicionario>
-              <Nula Valor="0"/>
-              <Observacao></Observacao>
-              <Anexos/>
-              <Cor Valor="15780518"/>
-              <TamAuto Valor="-1"/>
-              <Tipo Valor="0"/>
-              <TextAlin Valor="0"/>
-              <Card Valor="4"/>
-              <Fixa Valor="0"/>
-              <Ligacoes/>
-            </Cardinalidade>
-          </Cardinalidades>
-          <Orientacao Valor="0"/>
-          <Fraca Valor="0"/>
-        </Ligacao>
-      </Ligacoes>
-    </LigaTabela>
-    <LigaTabela nome="produto_contém_1" id="46">
-      <Left Valor="709"/>
-      <Top Valor="437"/>
-      <Width Valor="15"/>
-      <Height Valor="10"/>
-      <Fonte default="-1"/>
-      <Dicionario></Dicionario>
-      <Nula Valor="0"/>
-      <Observacao></Observacao>
-      <Anexos/>
-      <Ligacoes>
-        <Ligacao Destino_ID="4">
-          <MostraCardinalidade Valor="-1" Card_id="47"/>
-          <Cardinalidades Cardinalidade="1">
-            <Cardinalidade nome="" id="47">
-              <Left Valor="719"/>
-              <Top Valor="430"/>
-              <Width Valor="40"/>
-              <Height Valor="20"/>
-              <Fonte default="-1"/>
-              <Dicionario></Dicionario>
-              <Nula Valor="0"/>
-              <Observacao></Observacao>
-              <Anexos/>
-              <Cor Valor="15780518"/>
-              <TamAuto Valor="-1"/>
-              <Tipo Valor="0"/>
-              <TextAlin Valor="0"/>
-              <Card Valor="1"/>
-              <Fixa Valor="0"/>
-              <Ligacoes/>
-            </Cardinalidade>
-          </Cardinalidades>
-          <Orientacao Valor="0"/>
-          <Fraca Valor="0"/>
-        </Ligacao>
-        <Ligacao Destino_ID="45">
-          <MostraCardinalidade Valor="-1" Card_id="48"/>
-          <Cardinalidades Cardinalidade="3">
-            <Cardinalidade nome="" id="48">
-              <Left Valor="661"/>
-              <Top Valor="389"/>
-              <Width Valor="40"/>
-              <Height Valor="20"/>
-              <Fonte default="-1"/>
-              <Dicionario></Dicionario>
-              <Nula Valor="0"/>
-              <Observacao></Observacao>
-              <Anexos/>
-              <Cor Valor="15780518"/>
-              <TamAuto Valor="-1"/>
-              <Tipo Valor="0"/>
-              <TextAlin Valor="0"/>
-              <Card Valor="3"/>
-              <Fixa Valor="0"/>
-              <Ligacoes/>
-            </Cardinalidade>
-          </Cardinalidades>
-          <Orientacao Valor="0"/>
-          <Fraca Valor="0"/>
-        </Ligacao>
-      </Ligacoes>
-    </LigaTabela>
-    <LigaTabela nome="venda_contém_1" id="49">
-      <Left Valor="584"/>
-      <Top Valor="341"/>
-      <Width Valor="15"/>
-      <Height Valor="10"/>
-      <Fonte default="-1"/>
-      <Dicionario></Dicionario>
-      <Nula Valor="0"/>
-      <Observacao></Observacao>
-      <Anexos/>
-      <Ligacoes>
         <Ligacao Destino_ID="5">
-          <MostraCardinalidade Valor="-1" Card_id="50"/>
-          <Cardinalidades Cardinalidade="1">
-            <Cardinalidade nome="" id="50">
-              <Left Valor="595"/>
-              <Top Valor="313"/>
-              <Width Valor="40"/>
-              <Height Valor="20"/>
-              <Fonte default="-1"/>
-              <Dicionario></Dicionario>
-              <Nula Valor="0"/>
-              <Observacao></Observacao>
-              <Anexos/>
-              <Cor Valor="15780518"/>
-              <TamAuto Valor="-1"/>
-              <Tipo Valor="0"/>
-              <TextAlin Valor="0"/>
-              <Card Valor="1"/>
-              <Fixa Valor="0"/>
-              <Ligacoes/>
-            </Cardinalidade>
-          </Cardinalidades>
-          <Orientacao Valor="0"/>
-          <Fraca Valor="0"/>
-        </Ligacao>
-        <Ligacao Destino_ID="45">
           <MostraCardinalidade Valor="-1" Card_id="51"/>
           <Cardinalidades Cardinalidade="4">
             <Cardinalidade nome="" id="51">
-              <Left Valor="594"/>
-              <Top Valor="356"/>
+              <Left Valor="349"/>
+              <Top Valor="247"/>
               <Width Valor="40"/>
               <Height Valor="20"/>
               <Fonte default="-1"/>
@@ -897,8 +886,8 @@
       </Ligacoes>
     </LigaTabela>
     <LigaTabela nome="usuario_venda_1" id="52">
-      <Left Valor="362"/>
-      <Top Valor="419"/>
+      <Left Valor="325"/>
+      <Top Valor="372"/>
       <Width Valor="15"/>
       <Height Valor="10"/>
       <Fonte default="-1"/>
@@ -907,12 +896,12 @@
       <Observacao></Observacao>
       <Anexos/>
       <Ligacoes>
-        <Ligacao Destino_ID="7">
+        <Ligacao Destino_ID="6">
           <MostraCardinalidade Valor="-1" Card_id="53"/>
           <Cardinalidades Cardinalidade="1">
             <Cardinalidade nome="" id="53">
-              <Left Valor="217"/>
-              <Top Valor="527"/>
+              <Left Valor="264"/>
+              <Top Valor="450"/>
               <Width Valor="40"/>
               <Height Valor="20"/>
               <Fonte default="-1"/>
@@ -936,8 +925,8 @@
           <MostraCardinalidade Valor="-1" Card_id="54"/>
           <Cardinalidades Cardinalidade="4">
             <Cardinalidade nome="" id="54">
-              <Left Valor="551"/>
-              <Top Valor="313"/>
+              <Left Valor="445"/>
+              <Top Valor="297"/>
               <Width Valor="40"/>
               <Height Valor="20"/>
               <Fonte default="-1"/>
