@@ -5,32 +5,29 @@ require_once('./src/controllers/Geral.controller.php');
 require_once('./src/general.php');
 
 class ControllerFuncionario {
-  public function lista($app){
+  public static function lista($app){
     $app->validarUsuario($app, "F");
 
     $dados = [
       'pagina' => 'funcionario/lista'
     ];
 
-    $controllerGeral = new ControllerGeral();
-    $controllerGeral->carregaTela($app, $dados);
+    ControllerGeral::CarregaTela($app, $dados);
   }
 
-  public function listajson($app){
-    $mdlFuncionario = new ModelFuncionario();
-    $lista_funcionario = $mdlFuncionario->todas($app->db);
+  public static function ListaJson($app){
+    $lista_funcionario = ModelFuncionario::Todas($app->db);
 
     echo(json_encode($lista_funcionario));
   }
 
-  public function cadastro($app) {
+  public static function Cadastro($app) {
     $app->validarUsuario($app, "F");
 
-    $mdlPessoa = new ModelPessoa();
     $dados = [
       'pagina' => 'funcionario/cadastro',
       'acao' => "cadastrar",
-      "pessoas" => $mdlPessoa->todas($app->db),
+      "pessoas" => ModelPessoa::Todas($app->db),
       'funcionario' => [
         'id' => 0,
         'id_pessoa' => '',
@@ -39,11 +36,10 @@ class ControllerFuncionario {
         'salario' => ''
       ]
     ];
-    $controllerGeral = new ControllerGeral();
-    $controllerGeral->carregaTela($app, $dados);
+    ControllerGeral::CarregaTela($app, $dados);
   }
 
-  public function cadastrar($app) {
+  public static function Cadastrar($app) {
     $app->validarUsuario($app, "F", true);
 
     $funcionario = [
@@ -72,41 +68,36 @@ class ControllerFuncionario {
       exit();
     }
 
-    $mdlFuncionario = new ModelFuncionario();
-    $result = $mdlFuncionario->cadastrar($app->db, $funcionario);
+    $result = ModelFuncionario::Cadastrar($app->db, $funcionario);
 
     echo(json_encode([ "success" => $result, "message" => "" ]));
   }
 
-  public function deletar($app) {
+  public static function Deletar($app) {
     $app->validarUsuario($app, "F", true);
 
     $id = $_GET['id'];
 
-    $mdlFuncionario = new ModelFuncionario();
-    $result = $mdlFuncionario->excluir($app->db, $id);
+    $result = ModelFuncionario::Excluir($app->db, $id);
 
     echo(json_encode([ "success" => $result, "message" => true === $result ? "Funcionário excluído com sucesso" : "Erro ao excluir funcionário" ]));
   }
 
-  public function alteracao($app) {
+  public static function Alteracao($app) {
     $app->validarUsuario($app, "F");
 
-    $mdlPessoa = new ModelPessoa();
-    $mdlFuncionario = new ModelFuncionario();
     $id = $_GET['id'];
 
     $dados = [
       'pagina' => 'funcionario/cadastro',
       'acao' => "alterar",
-      "pessoas" => $mdlPessoa->todas($app->db),
-      "funcionario" => $mdlFuncionario->um($app->db, $id)
+      "pessoas" => ModelPessoa::Todas($app->db),
+      "funcionario" => ModelFuncionario::Um($app->db, $id)
     ];
-    $controllerGeral = new ControllerGeral();
-    $controllerGeral->carregaTela($app, $dados);
+    ControllerGeral::CarregaTela($app, $dados);
   }
 
-  public function alterar($app) {
+  public static function Alterar($app) {
     $app->validarUsuario($app, "F", true);
 
     $funcionario = [
@@ -141,8 +132,7 @@ class ControllerFuncionario {
       exit();
     }
 
-    $mdlFuncionario = new ModelFuncionario();
-    $result = $mdlFuncionario->alterar($app->db, $funcionario);
+    $result = ModelFuncionario::Alterar($app->db, $funcionario);
 
     echo(json_encode([ "success" => $result, "message" => "" ]));
   }

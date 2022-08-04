@@ -5,47 +5,8 @@ require_once('./src/controllers/Geral.controller.php');
 require_once('./src/general.php');
 
 class ControllerPessoa {
-  public function lista($app){
-    $app->validarUsuario($app, "F");
-
-    $mdlPessoa = new ModelPessoa();
-    $lista_pessoa = $mdlPessoa->todas($app->db);
-
-    $dados = [
-      'pagina' => 'pessoa/lista',
-      'pessoas' => $lista_pessoa
-    ];
-    $controllerGeral = new ControllerGeral();
-    $controllerGeral->carregaTela($app, $dados);
-  }
-
-  public function listajson($app) {
-    $mdlPessoa = new ModelPessoa();
-    $lista_pessoa = $mdlPessoa->todas($app->db);
-
-    echo(json_encode($lista_pessoa));
-  }
-
-  public function cadastro($app) {
-    $app->validarUsuario($app, "F");
-
-    $dados = [
-      'pagina' => 'pessoa/cadastro',
-      'acao' => "cadastrar",
-      'pessoa' => [
-        "id" => 0,
-        "nome" => "",
-        "email" => "",
-        "telefone" => "",
-        "data_nascimento" => "",
-        "data_nascimento_original" => ""
-      ]
-    ];
-    $controllerGeral = new ControllerGeral();
-    $controllerGeral->carregaTela($app, $dados);
-  }
-
-  public function cadastrar($app) {
+  // api routes
+  public static function Cadastrar($app) {
     $app->validarUsuario($app, "F", true);
 
     $pessoa = [
@@ -77,46 +38,28 @@ class ControllerPessoa {
       }
     }
 
-    $mdlPessoa = new ModelPessoa();
-    $result = $mdlPessoa->cadastrar($app->db, $pessoa);
+    $result = ModelPessoa::Cadastrar($app->db, $pessoa);
 
     echo(json_encode([ "success" => $result, "message" => "" ]));
   }
 
-  public function deletar($app) {
+  public static function Deletar($app, $id) {
     $app->validarUsuario($app, "F", true);
 
-    $id = $_GET['id'];
-
-    $mdlFuncionario = new ModelFuncionario();
-    $lista_funcionarios = $mdlFuncionario->todosIdPessoa($app->db, $id);
+    $lista_funcionarios = ModelFuncionario::TodosIdPessoa($app->db, $id);
 
     if(count($lista_funcionarios) > 0){
       echo(json_encode([ "success" => false, "message" => "Não é possível excluir a pessoa pois já existe vínculos" ]));
       exit();
     }
 
-    $mdlPessoa = new ModelPessoa();
-    $result = $mdlPessoa->excluir($app->db, $id);
+    $result = ModelPessoa::Excluir($app->db, $id);
 
     echo(json_encode([ "success" => $result, "message" => "" ]));
   }
 
-  public function alteracao($app) {
-    $app->validarUsuario($app, "F");
-    $mdlPessoa = new ModelPessoa();
-    $id = $_GET['id'];
+  public static function Alterar($app) {
 
-    $dados = [
-      'pagina' => 'pessoa/cadastro',
-      'acao' => "alterar",
-      'pessoa' => $mdlPessoa->uma($app->db, $id)
-    ];
-    $controllerGeral = new ControllerGeral();
-    $controllerGeral->carregaTela($app, $dados);
-  }
-
-  public function alterar($app) {
     $app->validarUsuario($app, "F", true);
 
     $pessoa = [
@@ -154,10 +97,64 @@ class ControllerPessoa {
       }
     }
 
-    $mdlPessoa = new ModelPessoa();
-    $result = $mdlPessoa->alterar($app->db, $pessoa);
+    $result = ModelPessoa::Alterar($app->db, $pessoa);
 
     echo(json_encode([ "success" => $result, "message" => "" ]));
+
+  }
+
+  public static function Todos($app) {
+    $lista_pessoa = ModelPessoa::Todas($app->db);
+
+    echo(json_encode($lista_pessoa));
+  }
+
+  public static function Um($app, $id){
+    $pessoa = ModelPessoa::Uma($app->db, $id);
+
+    echo(json_encode($pessoa));
+  }
+
+  // view routes
+  public static function Lista($app){
+    $app->validarUsuario($app, "F");
+
+    $lista_pessoa = ModelPessoa::Todas($app->db);
+
+    $dados = [
+      'pagina' => 'pessoa/lista',
+      'pessoas' => $lista_pessoa
+    ];
+    ControllerGeral::CarregaTela($app, $dados);
+  }
+
+  public static function Cadastro($app) {
+    $app->validarUsuario($app, "F");
+
+    $dados = [
+      'pagina' => 'pessoa/cadastro',
+      'acao' => "cadastrar",
+      'pessoa' => [
+        "id" => 0,
+        "nome" => "",
+        "email" => "",
+        "telefone" => "",
+        "data_nascimento" => "",
+        "data_nascimento_original" => ""
+      ]
+    ];
+    ControllerGeral::CarregaTela($app, $dados);
+  }
+
+  public static function Alteracao($app, $id) {
+    $app->validarUsuario($app, "F");
+
+    $dados = [
+      'pagina' => 'pessoa/cadastro',
+      'acao' => "alterar",
+      'pessoa' => ModelPessoa::Uma($app->db, $id)
+    ];
+    ControllerGeral::CarregaTela($app, $dados);
   }
 }
 ?>

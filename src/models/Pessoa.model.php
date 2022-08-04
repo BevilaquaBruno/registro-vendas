@@ -1,6 +1,6 @@
 <?php
 class ModelPessoa {
-  public function todas(PDO $conexao){
+  public static function Todas(PDO $conexao){
     $pessoas = 0;
     try {
       $sm_query = $conexao->prepare("SELECT id, nome, email, telefone, date_format(data_nascimento, '%d/%m/%Y') as data_nascimento,
@@ -18,7 +18,7 @@ class ModelPessoa {
     return $pessoas;
   }
 
-  public function cadastrar(PDO $conexao, $pessoa){
+  public static function Cadastrar(PDO $conexao, $pessoa){
     $success = false;
     try {
       $sm_query = $conexao->prepare("INSERT INTO pessoa (nome, email, telefone, data_nascimento)
@@ -39,7 +39,7 @@ class ModelPessoa {
     return $success;
   }
 
-  public function excluir(PDO $conexao, $id) {
+  public static function Excluir(PDO $conexao, $id) {
     $success = false;
     try {
       $sm_query = $conexao->prepare("DELETE FROM pessoa WHERE id = :id");
@@ -56,7 +56,7 @@ class ModelPessoa {
     return $success;
   }
 
-  public function uma(PDO $conexao, $id){
+  public static function Uma(PDO $conexao, $id){
     $pessoa = [];
     try {
       $sm_query = $conexao->prepare("SELECT id, nome, email, telefone, date_format(data_nascimento, '%d/%m/%Y') as data_nascimento,
@@ -77,7 +77,7 @@ class ModelPessoa {
     return $pessoa;
   }
 
-  public function alterar(PDO $conexao, $pessoa){
+  public static function Alterar(PDO $conexao, $pessoa){
     $success = false;
     try {
       $sm_query = $conexao->prepare("UPDATE pessoa set nome = :nome, email = :email,
@@ -100,7 +100,7 @@ class ModelPessoa {
     return $success;
   }
 
-  public function quantidade($conexao){
+  public static function Quantidade($conexao){
     $quantidade_funcionario = 0;
     try {
       $sm_query = $conexao->prepare("SELECT count(*) as total FROM pessoa");

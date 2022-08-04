@@ -1,4 +1,4 @@
-<form class="pure-form pure-form-aligned" id="loginForm" action="index.php?m=login&a=<?=$dados['acao']?>" method="post">
+<form class="pure-form pure-form-aligned" id="loginForm" action="/login" method="post">
   <div class="pure-control-group">
     <div class="pure-u-1-4"></div>
     <div class="pure-u-1-4">
@@ -46,7 +46,7 @@
       if(false === response.data.success) {
         notifier.alert(response.data.message);
       }else if(true === response.data.success){
-        window.location.href = "index.php";
+        window.location.href = "/inicial";
       }else{
         notifier.alert("Erro ao logar");
       }

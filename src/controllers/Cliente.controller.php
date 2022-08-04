@@ -1,34 +1,31 @@
 <?php
 require_once('./src/models/Pessoa.model.php');
-require_once('./src/models/CLiente.model.php');
+require_once('./src/models/Cliente.model.php');
 
 class ControllerCliente {
-  public function lista($app){
+  public static function Lista($app){
     $app->validarUsuario($app, "F");
 
     $dados = [
       'pagina' => 'cliente/lista'
     ];
 
-    $controllerGeral = new ControllerGeral();
-    $controllerGeral->carregaTela($app, $dados);
+    ControllerGeral::CarregaTela($app, $dados);
   }
 
-  public function listajson($app){
-    $mdlCliente = new ModelCliente();
-    $lista_cliente = $mdlCliente->todos($app->db);
+  public static function ListaJson($app){
+    $lista_cliente = ModelCliente::Todos($app->db);
 
     echo(json_encode($lista_cliente));
   }
 
-  public function cadastro($app) {
+  public static function Cadastro($app) {
     $app->validarUsuario($app, "F");
 
-    $mdlPessoa = new ModelPessoa();
     $dados = [
       'pagina' => 'cliente/cadastro',
       'acao' => "cadastrar",
-      "pessoas" => $mdlPessoa->todas($app->db),
+      "pessoas" => ModelPessoa::Todas($app->db),
       "ufs" => $app->ufs,
       'cliente' => [
         'id' => 0,
@@ -40,11 +37,10 @@ class ControllerCliente {
         'cidade' => ''
       ]
     ];
-    $controllerGeral = new ControllerGeral();
-    $controllerGeral->carregaTela($app, $dados);
+    ControllerGeral::CarregaTela($app, $dados);
   }
 
-  public function cadastrar($app) {
+  public static function Cadastrar($app) {
     $app->validarUsuario($app, "F", true);
 
     $cliente = [
@@ -68,42 +64,37 @@ class ControllerCliente {
       }
     }
 
-    $mdlCliente = new ModelCliente();
-    $result = $mdlCliente->cadastrar($app->db, $cliente);
+    $result = ModelCliente::Cadastrar($app->db, $cliente);
 
     echo(json_encode([ "success" => $result, "message" => "" ]));
   }
 
-  public function deletar($app) {
+  public static function Deletar($app) {
     $app->validarUsuario($app, "F", true);
 
     $id = $_GET['id'];
 
-    $mdlCliente = new ModelCliente();
-    $result = $mdlCliente->excluir($app->db, $id);
+    $result = ModelCliente::Excluir($app->db, $id);
 
     echo(json_encode([ "success" => $result, "message" => true === $result ? "Cliente excluído com sucesso" : "Erro ao excluir cliente" ]));
   }
 
-  public function alteracao($app) {
+  public static function Alteracao($app) {
     $app->validarUsuario($app, "F");
 
-    $mdlPessoa = new ModelPessoa();
-    $mdlCliente = new ModelCliente();
     $id = $_GET['id'];
 
     $dados = [
       'pagina' => 'cliente/cadastro',
       'acao' => "alterar",
-      "pessoas" => $mdlPessoa->todas($app->db),
+      "pessoas" => ModelPessoa::Todas($app->db),
       "ufs" => $app->ufs,
-      "cliente" => $mdlCliente->um($app->db, $id)
+      "cliente" => ModelCliente::Um($app->db, $id)
     ];
-    $controllerGeral = new ControllerGeral();
-    $controllerGeral->carregaTela($app, $dados);
+    ControllerGeral::CarregaTela($app, $dados);
   }
 
-  public function alterar($app) {
+  public static function Alterar($app) {
     $app->validarUsuario($app, "F", true);
 
     $cliente = [
@@ -126,8 +117,7 @@ class ControllerCliente {
       exit();
     }
 
-    $mdlCliente = new ModelCliente();
-    $result = $mdlCliente->alterar($app->db, $cliente);
+    $result = ModelCliente::Alterar($app->db, $cliente);
 
     echo(json_encode([ "success" => $result, "message" => "" ]));
   }

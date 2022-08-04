@@ -20,8 +20,7 @@ class Aplicacao {
       if($json){
         echo(json_encode(['success' => false, 'message' => 'Não autorizado']));
       }else{
-        $controllerGeral = new ControllerGeral();
-        $controllerGeral->carregaTela($app, [
+        ControllerGeral::CarregaTela($app, [
           'pagina' => 'geral/401'
         ]);
       }

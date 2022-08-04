@@ -1,5 +1,5 @@
 <?php require_once('./src/general.php'); ?>
-<script src="public/javascripts/chart.min.js"></script>
+<script src="/public/javascripts/chart.min.js"></script>
 <div class="pure-u-1-3"></div>
 <div class="pure-u-1-3">
   <h2>Total de vendas: <span id="valor_total_vendas"></span></h2>

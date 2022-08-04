@@ -1,6 +1,6 @@
 <?php
 class ModelUsuario {
-  public function todos(PDO $conexao){
+  public static function Todos(PDO $conexao){
     $pessoas = 0;
     try {
       $sm_query = $conexao->prepare("SELECT u.id, u.nome, u.tipo, u.email
@@ -17,7 +17,7 @@ class ModelUsuario {
     return $pessoas;
   }
 
-  public function cadastrar(PDO $conexao, $usuario){
+  public static function Cadastrar(PDO $conexao, $usuario){
     $success = false;
     try {
       $sm_query = $conexao->prepare("INSERT INTO usuario (nome, email, tipo, senha)
@@ -38,7 +38,7 @@ class ModelUsuario {
     return $success;
   }
 
-  public function excluir(PDO $conexao, $id) {
+  public static function Excluir(PDO $conexao, $id) {
     $success = false;
     try {
       $sm_query = $conexao->prepare("DELETE FROM usuario WHERE id = :id");
@@ -55,7 +55,7 @@ class ModelUsuario {
     return $success;
   }
 
-  public function um(PDO $conexao, $id){
+  public static function Um(PDO $conexao, $id){
     $usuario = [];
     try {
       $sm_query = $conexao->prepare("SELECT u.id, u.nome, u.email, u.tipo
@@ -75,7 +75,7 @@ class ModelUsuario {
     return $usuario;
   }
 
-  public function todosPorEmail(PDO $conexao, $email, $id = 0){
+  public static function TodosPorEmail(PDO $conexao, $email, $id = 0){
     $usuario = [];
     try {
       if(0 === $id){
@@ -102,7 +102,7 @@ class ModelUsuario {
     return $usuario;
   }
 
-  public function alterar(PDO $conexao, $usuario){
+  public static function Alterar(PDO $conexao, $usuario){
     $success = false;
     try {
       $sm_query = $conexao->prepare("UPDATE usuario set nome = :nome,
@@ -124,7 +124,7 @@ class ModelUsuario {
     return $success;
   }
 
-  public function alterarComSenha(PDO $conexao, $usuario){
+  public static function AlterarComSenha(PDO $conexao, $usuario){
     $success = false;
     try {
       $sm_query = $conexao->prepare("UPDATE usuario set nome = :nome,
@@ -148,7 +148,7 @@ class ModelUsuario {
     return $success;
   }
 
-  public function quantidade(PDO $conexao){
+  public static function Quantidade(PDO $conexao){
     $quantidade_usuario = 0;
     try {
       $sm_query = $conexao->prepare("SELECT count(*) as total FROM usuario");

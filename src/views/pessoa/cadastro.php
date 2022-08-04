@@ -1,4 +1,4 @@
-<form class="pure-form pure-form-aligned" action="index.php?m=pessoa&a=<?=$dados['acao']?>" method="post" id="pessoaForm">
+<form class="pure-form pure-form-aligned" action="/api/pessoa/<?=$dados['acao']?>" method="post" id="pessoaForm">
   <div class="pure-control-group">
     <div class="pure-u-1-3"></div>
     <div class="pure-u-1-3">
@@ -42,7 +42,7 @@
     <div onclick="handleSalvar();" class="button-success pure-button">
         Gravar
     </div>
-    <a class="button-error pure-button" href="index.php?m=pessoa&a=lista">
+    <a class="button-error pure-button" href="/pessoa">
       Voltar
     </a>
   </div>
@@ -66,7 +66,7 @@
       if(false === response.data.success) {
         notifier.alert( ("" === response.data.message ? "Erro grave ao gravar pessoa" : response.data.message) );
       }else if(true === response.data.success){
-        window.location.href = "index.php?m=pessoa&a=lista";
+        window.location.href = "/pessoa";
       }else{
         notifier.alert("Erro grave ao gravar a pessoa");
       }

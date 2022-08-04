@@ -1,6 +1,6 @@
 <?php
 class ModelLogin {
-  public function logar(PDO $conexao, String $email, String $senha){
+  public static function Logar(PDO $conexao, String $email, String $senha){
     $usuario = 0;
     try {
       $sm_query = $conexao->prepare("SELECT u.id, u.nome, u.email, u.tipo FROM usuario u WHERE u.email = :email AND u.senha = :senha");

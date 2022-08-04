@@ -5,27 +5,25 @@ require_once('./src//models/Venda.model.php');
 require_once('./src/general.php');
 
 class ControllerUsuario {
-  public function lista($app){
+  public static function Lista($app){
     $app->validarUsuario($app, "A");
 
     $dados = [
       'pagina' => 'usuario/lista'
     ];
 
-    $controllerGeral = new ControllerGeral();
-    $controllerGeral->carregaTela($app, $dados);
+    ControllerGeral::CarregaTela($app, $dados);
   }
 
-  public function listajson($app){
+  public static function ListaJson($app){
     $app->validarUsuario($app, "A", true);
 
-    $mdlUsuario = new ModelUsuario();
-    $lista_usuarios = $mdlUsuario->todos($app->db);
+    $lista_usuarios = ModelUsuario::Todos($app->db);
 
     echo(json_encode($lista_usuarios));
   }
 
-  public function cadastro($app) {
+  public static function Cadastro($app) {
     $app->validarUsuario($app, "A");
 
     $dados = [
@@ -38,11 +36,10 @@ class ControllerUsuario {
         'tipo' => ''
       ]
     ];
-    $controllerGeral = new ControllerGeral();
-    $controllerGeral->carregaTela($app, $dados);
+    ControllerGeral::CarregaTela($app, $dados);
   }
 
-  public function cadastrar($app) {
+  public static function Cadastrar($app) {
     $app->validarUsuario($app, "A", true);
 
     $usuario = [
@@ -69,8 +66,7 @@ class ControllerUsuario {
       exit();
     }
 
-    $mdlUsuario = new ModelUsuario();
-    $usuarios_email = $mdlUsuario->todosPorEmail($app->db, $usuario['email']);
+    $usuarios_email = ModelUsuario::TodosPorEmail($app->db, $usuario['email']);
     if(count($usuarios_email) >= 1){
       echo(json_encode([ "success" => false, "message" => "Já existe um usuário com esse email vinculado" ]));
       exit();
@@ -91,45 +87,41 @@ class ControllerUsuario {
       exit();
     }
 
-    $result = $mdlUsuario->cadastrar($app->db, $usuario);
+    $result = ModelUsuario::Cadastrar($app->db, $usuario);
 
     echo(json_encode([ "success" => $result, "message" => "" ]));
   }
 
-  public function deletar($app) {
+  public static function Deletar($app) {
     $app->validarUsuario($app, "A", true);
 
     $id = $_GET['id'];
 
-    $mdlVenda = new ModelVenda();
-    $vendas_usuario = $mdlVenda->todasUsuario($app->db, $id);
+    $vendas_usuario = ModelVenda::TodasUsuario($app->db, $id);
 
     if(count($vendas_usuario) >= 1){
       echo(json_encode([ "success" => false, "message" => "Não é possível excluir o usuário porque ele está vinculado a vendas" ]));
       exit();
     }
 
-    $mdlUsuario = new ModelUsuario();
-    $result = $mdlUsuario->excluir($app->db, $id);
+    $result = ModelUsuario::Excluir($app->db, $id);
 
     echo(json_encode([ "success" => $result, "message" => "" ]));
   }
 
-  public function alteracao($app) {
+  public static function Alteracao($app) {
     $app->validarUsuario($app, "A");
-    $mdlUsuario = new ModelUsuario();
     $id = $_GET['id'];
 
     $dados = [
       'pagina' => 'usuario/cadastro',
       'acao' => "alterar",
-      'usuario' => $mdlUsuario->um($app->db, $id)
+      'usuario' => ModelUsuario::Um($app->db, $id)
     ];
-    $controllerGeral = new ControllerGeral();
-    $controllerGeral->carregaTela($app, $dados);
+    ControllerGeral::CarregaTela($app, $dados);
   }
 
-  public function alterar($app) {
+  public static function Alterar($app) {
     $app->validarUsuario($app, "A", true);
 
     $usuario = [
@@ -174,8 +166,7 @@ class ControllerUsuario {
       exit();
     }
 
-    $mdlUsuario = new ModelUsuario();
-    $usuarios_email = $mdlUsuario->todosPorEmail($app->db, $usuario['email'], $usuario['id']);
+    $usuarios_email = ModelUsuario::TodosPorEmail($app->db, $usuario['email'], $usuario['id']);
     if(count($usuarios_email) >= 1){
       echo(json_encode([ "success" => false, "message" => "Já existe um usuário com esse email vinculado" ]));
       exit();
@@ -187,9 +178,9 @@ class ControllerUsuario {
     }
 
     if($usuario['id'] == $_SESSION['id_u']){
-      $result = $mdlUsuario->alterarComSenha($app->db, $usuario);
+      $result = ModelUsuario::AlterarComSenha($app->db, $usuario);
     }else{
-      $result = $mdlUsuario->alterar($app->db, $usuario);
+      $result = ModelUsuario::Alterar($app->db, $usuario);
     }
 
     echo(json_encode([ "success" => $result, "message" => "" ]));

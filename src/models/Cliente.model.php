@@ -1,7 +1,7 @@
 <?php
 
 class ModelCliente {
-  public function todos(PDO $conexao){
+  public static function Todos(PDO $conexao){
     $clientes = 0;
     try {
       $sm_query = $conexao->prepare("SELECT c.id, c.endereco, c.uf, c.cidade, c.pais, c.bairro, c.id_pessoa,
@@ -20,7 +20,7 @@ class ModelCliente {
     return $clientes;
   }
 
-  public function cadastrar(PDO $conexao, $cliente){
+  public static function Cadastrar(PDO $conexao, $cliente){
     $success = false;
     try {
       $sm_query = $conexao->prepare("INSERT INTO cliente (endereco, uf, cidade, pais, bairro, id_pessoa)
@@ -43,7 +43,7 @@ class ModelCliente {
     return $success;
   }
 
-  public function excluir(PDO $conexao, int $id) {
+  public static function Excluir(PDO $conexao, int $id) {
     $success = false;
     try {
       $sm_query = $conexao->prepare("DELETE FROM cliente WHERE id = :id");
@@ -60,7 +60,7 @@ class ModelCliente {
     return $success;
   }
 
-  public function um(PDO $conexao, int $id){
+  public static function Um(PDO $conexao, int $id){
     $cliente = 0;
     try {
       $sm_query = $conexao->prepare("SELECT c.id, c.endereco, c.uf, c.cidade, c.pais, c.bairro, c.id_pessoa,
@@ -82,7 +82,7 @@ class ModelCliente {
     return $cliente;
   }
 
-  public function alterar(PDO $conexao, $cliente){
+  public static function Alterar(PDO $conexao, $cliente){
     $success = false;
     try {
       $sm_query = $conexao->prepare("UPDATE cliente
@@ -109,7 +109,7 @@ class ModelCliente {
     return $success;
   }
 
-  public function quantidade(PDO $conexao){
+  public static function Quantidade(PDO $conexao){
     $quantidade_cliente = 0;
     try {
       $sm_query = $conexao->prepare("SELECT count(*) as total FROM cliente");

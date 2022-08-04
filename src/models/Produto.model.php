@@ -1,6 +1,6 @@
 <?php
 class ModelProduto {
-  public function todos(PDO $conexao){
+  public static function Todos(PDO $conexao){
     $produtos = 0;
     try {
       $sm_query = $conexao->prepare("SELECT p.id, p.descricao, p.quantidade, p.valor_venda, p.valor_compra, p.unidade_medida
@@ -17,7 +17,7 @@ class ModelProduto {
     return $produtos;
   }
 
-  public function cadastrar(PDO $conexao, $produto){
+  public static function Cadastrar(PDO $conexao, $produto){
     $success = false;
     try {
       $sm_query = $conexao->prepare("INSERT INTO produto (descricao, quantidade, valor_venda, valor_compra, unidade_medida)
@@ -39,7 +39,7 @@ class ModelProduto {
     return $success;
   }
 
-  public function excluir(PDO $conexao, int $id) {
+  public static function Excluir(PDO $conexao, int $id) {
     $success = false;
     try {
       $sm_query = $conexao->prepare("DELETE FROM produto WHERE id = :id");
@@ -56,7 +56,7 @@ class ModelProduto {
     return $success;
   }
 
-  public function um(PDO $conexao, int $id){
+  public static function Um(PDO $conexao, int $id){
     $pessoa = 0;
     try {
       $sm_query = $conexao->prepare("SELECT p.id, p.descricao, p.quantidade, p.valor_venda, p.valor_compra, p.unidade_medida
@@ -75,7 +75,7 @@ class ModelProduto {
     return $pessoa;
   }
 
-  public function alterar(PDO $conexao, $produto){
+  public static function Alterar(PDO $conexao, $produto){
     $success = false;
     try {
       $sm_query = $conexao->prepare("UPDATE produto
@@ -101,7 +101,7 @@ class ModelProduto {
     return $success;
   }
 
-  public function quantidade(PDO $conexao){
+  public static function Quantidade(PDO $conexao){
     $quantidade_pessoa = 0;
     try {
       $sm_query = $conexao->prepare("SELECT count(*) as total FROM produto");

@@ -16,7 +16,7 @@
     <tbody></tbody>
   </table>
 </div>
-<a href="index.php?m=pessoa&a=cadastro" class="button-success pure-button">
+<a href="/pessoa/cadastro" class="button-success pure-button">
   <span>Cadastrar</span>
 </a>
 <script type="text/javascript">
@@ -29,7 +29,7 @@
   }
 
   function excluir(id, index){
-    axios.get("index.php?m=pessoa&a=deletar&id="+id)
+    axios.delete("/api/pessoa/deletar/"+id)
     .then(function (response) {
       console.log(response.data);
       if (true === response.data.success) {
@@ -69,7 +69,7 @@
         "<td>"+(pessoa['telefone'] == null ? "-" : pessoa['telefone'])+"</td> "+
         "<td>"+(pessoa['data_nascimento'] == null ? "-" : pessoa['data_nascimento'])+"</td> "+
         "<td> "+
-          "<a href='index.php?m=pessoa&a=alteracao&id="+pessoa['id']+"' class='pure-button pure-button-primary'> "+
+          "<a href='/pessoa/alteracao/"+pessoa['id']+"' class='pure-button pure-button-primary'> "+
             "<span>Editar</span> "+
           "</a> "+
           "<button onclick=\"handleExcluir("+pessoa['id']+", "+i+");\" class='button-error pure-button'> "+
@@ -83,7 +83,7 @@
   }
 
   function getPessoas(){
-    axios.get("index.php?m=pessoa&a=listajson")
+    axios.get("/api/pessoa")
     .then(function (response) {
       lista_pessoas = response.data;
       povoarTabela();

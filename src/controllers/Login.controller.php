@@ -3,24 +3,22 @@ require_once('./src/controllers/Geral.controller.php');
 require_once('./src/models/Login.model.php');
 
 class ControllerLogin {
-  public function lista($app){
+  public static function Lista($app){
     $dados = [
       'pagina' => 'login/login',
       'acao' => 'logar'
     ];
 
-    $controllerGeral = new ControllerGeral();
-    $controllerGeral->carregaTela($app, $dados);
+    ControllerGeral::CarregaTela($app, $dados);
   }
 
-  public function logar($app){
+  public static function Logar($app){
     $login = [
       'email' => $_POST['email'],
       'senha' => $_POST['senha']
     ];
 
-    $mdlLogin = new ModelLogin();
-    $usuario = $mdlLogin->logar($app->db, $login['email'], $login['senha']);
+    $usuario = ModelLogin::Logar($app->db, $login['email'], $login['senha']);
 
     if(false === $usuario || 0 === count($usuario)){
       echo(json_encode([ "success" => false, "message" => "Email ou senha incorretos" ]));
@@ -41,7 +39,7 @@ class ControllerLogin {
     echo(json_encode([ "success" => true, "message" => "Usuário logado com sucesso" ]));
   }
 
-  public function deslogar($app) {
+  public static function Deslogar($app) {
     if(isset($_SESSION['islogged']) && true === $_SESSION['islogged']){
       $_SESSION['islogged'] = false;
       session_destroy();

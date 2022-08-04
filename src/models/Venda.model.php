@@ -1,6 +1,6 @@
 <?php
 class ModelVenda {
-  public function todas(PDO $conexao){
+  public static function Todas(PDO $conexao){
     $pessoas = 0;
     try {
       $sm_query = $conexao->prepare("SELECT v.id, v.data_venda as data_venda_original,
@@ -31,7 +31,7 @@ class ModelVenda {
     return $pessoas;
   }
 
-  public function todasUsuario(PDO $conexao, $id_usuario){
+  public static function TodasUsuario(PDO $conexao, $id_usuario){
     $pessoas = 0;
     try {
       $sm_query = $conexao->prepare("SELECT v.id, v.data_venda as data_venda_original,
@@ -53,7 +53,7 @@ class ModelVenda {
     return $pessoas;
   }
 
-  public function todasProduto(PDO $conexao, $id_produto){
+  public static function TodasProduto(PDO $conexao, $id_produto){
     $pessoas = 0;
     try {
       $sm_query = $conexao->prepare("SELECT v.id, v.data_venda as data_venda_original,
@@ -76,7 +76,7 @@ class ModelVenda {
     return $pessoas;
   }
 
-  public function todasCliente(PDO $conexao, $id_cliente){
+  public static function TodasCliente(PDO $conexao, $id_cliente){
     $pessoas = 0;
     try {
       $sm_query = $conexao->prepare("SELECT v.id, v.data_venda as data_venda_original,
@@ -98,7 +98,7 @@ class ModelVenda {
     return $pessoas;
   }
 
-  public function excluir(PDO $conexao, int $id) {
+  public static function Excluir(PDO $conexao, int $id) {
     $success = false;
     try {
       $sm_query = $conexao->prepare("DELETE FROM venda WHERE id = :id");
@@ -115,7 +115,7 @@ class ModelVenda {
     return $success;
   }
 
-  public function cadastrar(PDO $conexao, Array $venda) {
+  public static function Cadastrar(PDO $conexao, Array $venda) {
     try {
       $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $conexao->beginTransaction();
@@ -153,7 +153,7 @@ class ModelVenda {
     }
   }
 
-  public function uma(PDO $conexao, int $id){
+  public static function Uma(PDO $conexao, int $id){
     $venda = 0;
     try {
       $sm_query = $conexao->prepare("SELECT v.id, v.data_venda as data_venda_original,
@@ -186,7 +186,7 @@ class ModelVenda {
     return $venda;
   }
 
-  public function todasVendaProduto(PDO $conexao, int $id_venda){
+  public static function TodasVendaProduto(PDO $conexao, int $id_venda){
     $pessoas = 0;
     try {
       $sm_query = $conexao->prepare("
@@ -207,7 +207,7 @@ class ModelVenda {
     return $pessoas;
   }
 
-  public function alterar(PDO $conexao, Array $venda) {
+  public static function Alterar(PDO $conexao, Array $venda) {
     try {
       $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $conexao->beginTransaction();
@@ -265,7 +265,7 @@ class ModelVenda {
     }
   }
 
-  public function totalVendas($conexao) {
+  public static function TotalVendas($conexao) {
     $venda = 0;
     try {
       $sm_query = $conexao->prepare("SELECT sum(vp.quantidade * vp.valor_unitario) as total FROM venda_produto vp");

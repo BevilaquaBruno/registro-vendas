@@ -12,7 +12,7 @@
       </li>
     <?php }else{ ?>
       <li class="pure-menu-item">
-        <a href="index.php?m=login" class="pure-menu-link">Login</a>
+        <a href="/login" class="pure-menu-link">Login</a>
       </li>
     <?php } ?>
     <?php if(isset($_SESSION['islogged']) && true === $_SESSION['islogged']){ ?>
@@ -20,7 +20,7 @@
         <a href="#" id="menuLink1" class="pure-menu-link">Cadastros</a>
         <ul class="pure-menu-children">
           <li class="pure-menu-item">
-            <a href="index.php?m=pessoa&a=lista" class="pure-menu-link">Pessoas</a>
+            <a href="/pessoa" class="pure-menu-link">Pessoas</a>
           </li>
           <li class="pure-menu-item">
             <a href="index.php?m=funcionario&a=lista" class="pure-menu-link">Funcionários</a>
@@ -46,12 +46,12 @@
 </div>
 <script type="text/javascript">
   function totallyLogout() {
-    axios.post("index.php?m=login&a=deslogar")
+    axios.get("/login/sair")
     .then(function (response) {
       if(false === response.data.success) {
         notifier.alert(response.data.message);
       }else if(true === response.data.success){
-        window.location.href = "index.php";
+        window.location.href = "/inicial";
       }else{
         notifier.alert("Erro ao deslogar");
       }

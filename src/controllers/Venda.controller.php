@@ -6,47 +6,41 @@ require_once('./src/models/Funcionario.model.php');
 require_once('./src/models/Produto.model.php');
 
 class ControllerVenda {
-  public function lista($app){
+  public static function Lista($app){
     $app->validarUsuario($app, "F");
 
     $dados = [
       'pagina' => 'venda/lista'
     ];
 
-    $controllerGeral = new ControllerGeral();
-    $controllerGeral->carregaTela($app, $dados);
+    ControllerGeral::CarregaTela($app, $dados);
   }
 
-  public function listajson($app){
-    $mdlVenda = new ModelVenda();
-    $lista = $mdlVenda->todas($app->db);
+  public static function ListaJson($app){
+    $lista = ModelVenda::Todas($app->db);
 
     echo(json_encode($lista));
   }
 
-  public function deletar($app) {
+  public static function Deletar($app) {
     $app->validarUsuario($app, "F", true);
 
     $id = $_GET['id'];
 
-    $mdlVenda = new ModelVenda();
-    $result = $mdlVenda->excluir($app->db, $id);
+    $result = ModelVenda::Excluir($app->db, $id);
 
     echo(json_encode([ "success" => $result, "message" => "" ]));
   }
 
-  public function cadastro($app) {
+  public static function Cadastro($app) {
     $app->validarUsuario($app, "F");
-    $mdlCliente = new ModelCliente();
-    $mdlFuncionario = new ModelFuncionario();
-    $mdlProduto = new ModelProduto();
 
     $dados = [
       'pagina' => 'venda/cadastro',
       'acao' => "cadastrar",
-      'clientes' => $mdlCliente->todos($app->db),
-      'funcionarios' => $mdlFuncionario->todas($app->db),
-      'produtos' => $mdlProduto->todos($app->db),
+      'clientes' => ModelCliente::Todos($app->db),
+      'funcionarios' => ModelFuncionario::Todas($app->db),
+      'produtos' => ModelProduto::Todos($app->db),
       'venda' => [
         'id' => 0,
         'data_venda' => date('d/m/Y'),
@@ -58,11 +52,10 @@ class ControllerVenda {
         'venda_produto' => []
       ],
     ];
-    $controllerGeral = new ControllerGeral();
-    $controllerGeral->carregaTela($app, $dados);
+    ControllerGeral::CarregaTela($app, $dados);
   }
 
-  public function cadastrar($app) {
+  public static function Cadastrar($app) {
     $venda = [
       'id_cliente' => $_POST['id_cliente'],
       'id_funcionario' => $_POST['id_funcionario'],
@@ -96,37 +89,31 @@ class ControllerVenda {
       exit();
     }
 
-    $mdlVenda = new ModelVenda();
-    $result = $mdlVenda->cadastrar($app->db, $venda);
+    $result = ModelVenda::Cadastrar($app->db, $venda);
 
     echo(json_encode([ "success" => $result, "message" => "" ]));
   }
 
-  public function alteracao($app) {
+  public static function Alteracao($app) {
     $app->validarUsuario($app, "F");
-    $mdlCliente = new ModelCliente();
-    $mdlFuncionario = new ModelFuncionario();
-    $mdlProduto = new ModelProduto();
-    $mdlVenda = new ModelVenda();
 
     $id = $_GET['id'];
-    $venda = $mdlVenda->uma($app->db, $id);
-    $venda['venda_produto'] = $mdlVenda->todasVendaProduto($app->db, $venda['id']);
+    $venda = ModelVenda::Uma($app->db, $id);
+    $venda['venda_produto'] = ModelVenda::TodasVendaProduto($app->db, $venda['id']);
 
     $dados = [
       'pagina' => 'venda/cadastro',
       'acao' => "alterar",
-      'clientes' => $mdlCliente->todos($app->db),
-      'funcionarios' => $mdlFuncionario->todas($app->db),
-      'produtos' => $mdlProduto->todos($app->db),
+      'clientes' => ModelCliente::Todos($app->db),
+      'funcionarios' => ModelFuncionario::Todas($app->db),
+      'produtos' => ModelProduto::Todos($app->db),
       'venda' => $venda,
     ];
 
-    $controllerGeral = new ControllerGeral();
-    $controllerGeral->carregaTela($app, $dados);
+    ControllerGeral::CarregaTela($app, $dados);
   }
 
-  public function alterar($app) {
+  public static function Alterar($app) {
     $venda = [
       'id' => $_POST['id'],
       'id_cliente' => $_POST['id_cliente'],
@@ -161,8 +148,7 @@ class ControllerVenda {
       exit();
     }
 
-    $mdlVenda = new ModelVenda();
-    $result = $mdlVenda->alterar($app->db, $venda);
+    $result = ModelVenda::Alterar($app->db, $venda);
 
     echo(json_encode([ "success" => $result, "message" => "" ]));
   }
