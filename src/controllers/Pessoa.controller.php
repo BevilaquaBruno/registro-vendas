@@ -4,6 +4,8 @@ require_once('./src/models/Funcionario.model.php');
 require_once('./src/controllers/Geral.controller.php');
 require_once('./src/general.php');
 
+require_once('./Aplicacao.php');
+
 class ControllerPessoa {
   // api routes
   public static function Cadastrar($app) {
@@ -59,15 +61,18 @@ class ControllerPessoa {
   }
 
   public static function Alterar($app) {
-
     $app->validarUsuario($app, "F", true);
 
+    // create put variable
+    global $_PUT;
+    Aplicacao::ParsePut();
+
     $pessoa = [
-      "id" => $_POST['id'],
-      "nome" => $_POST['nome'],
-      "email" => $_POST['email'] == "" ? null : $_POST['email'],
-      "telefone" => $_POST['telefone'] == "" ? null :  $_POST['telefone'],
-      "data_nascimento" => $_POST['data_nascimento'] == "" ? null : $_POST['data_nascimento']
+      "id" => $_PUT['id'],
+      "nome" => $_PUT['nome'],
+      "email" => $_PUT['email'] == "" ? null : $_PUT['email'],
+      "telefone" => $_PUT['telefone'] == "" ? null :  $_PUT['telefone'],
+      "data_nascimento" => $_PUT['data_nascimento'] == "" ? null : $_PUT['data_nascimento']
     ];
 
     if(null === $pessoa['id'] || 0 === $pessoa['id']){
@@ -103,13 +108,13 @@ class ControllerPessoa {
 
   }
 
-  public static function Todos($app) {
+  public static function Todas($app) {
     $lista_pessoa = ModelPessoa::Todas($app->db);
 
     echo(json_encode($lista_pessoa));
   }
 
-  public static function Um($app, $id){
+  public static function Uma($app, $id){
     $pessoa = ModelPessoa::Uma($app->db, $id);
 
     echo(json_encode($pessoa));

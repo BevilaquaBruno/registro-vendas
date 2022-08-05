@@ -4,7 +4,7 @@
   </a>
   <ul class="pure-menu-list">
     <li class="pure-menu-item">
-      <a href="index.php" class="pure-menu-link">Início</a>
+      <a href="/" class="pure-menu-link">Início</a>
     </li>
     <?php if(isset($_SESSION['islogged']) && true === $_SESSION['islogged']){ ?>
       <li class="pure-menu-item">

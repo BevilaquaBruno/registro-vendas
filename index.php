@@ -8,6 +8,7 @@ require __DIR__ . '/vendor/autoload.php';
 require_once('Aplicacao.php');
 require_once('./src/controllers/Geral.controller.php');
 require_once('./src/controllers/Pessoa.controller.php');
+require_once('./src/controllers/Cliente.controller.php');
 require_once('./src/controllers/Login.controller.php');
 
 // Create Router instance
@@ -27,15 +28,20 @@ $router->mount('/public', function() use($router){
   });
 });
 
+// tela inicial
+$router->all('/', function () use($app) {
+  ControllerGeral::Lista($app);
+});
+
 // api routes
 $router->mount('/api', function() use($router, $app){
   $router->mount('/pessoa', function () use($router, $app) {
     $router->get('/', function() use($app){
-      ControllerPessoa::Todos($app);
+      ControllerPessoa::Todas($app);
     });
 
     $router->get('/(\d+)', function($id) use($app){
-      ControllerPessoa::Um($app, $id);
+      ControllerPessoa::Uma($app, $id);
     });
 
     $router->post('/cadastrar', function() use($app){
@@ -48,6 +54,28 @@ $router->mount('/api', function() use($router, $app){
 
     $router->put('/alterar', function() use($app){
       ControllerPessoa::Alterar($app);
+    });
+  });
+
+  $router->mount('/cliente', function () use($router, $app) {
+    $router->get('/', function () use ($app) {
+        ControllerCliente::Todos($app);
+    });
+
+    $router->get('/(\d+)', function ($id) use ($app) {
+        ControllerCliente::Um($app, $id);
+    });
+
+    $router->post('/cadastrar', function () use ($app) {
+        ControllerCliente::Cadastrar($app);
+    });
+
+    $router->delete('/deletar/(\d+)', function ($id) use ($app) {
+        ControllerCliente::Deletar($app, $id);
+    });
+
+    $router->put('/alterar', function () use ($app) {
+        ControllerCliente::Alterar($app);
     });
   });
 });
@@ -71,6 +99,21 @@ $router->mount('/pessoa', function() use($router, $app){
 
   $router->get('/alteracao/(\d+)', function($id) use($app) {
     ControllerPessoa::Alteracao($app, $id);
+  });
+});
+
+// cliente routes
+$router->mount('/cliente', function() use($router, $app){
+  $router->get('/', function() use($app) {
+    ControllerCliente::Lista($app);
+  });
+
+  $router->get('/cadastro', function() use($app) {
+    ControllerCliente::Cadastro($app);
+  });
+
+  $router->get('/alteracao/(\d+)', function($id) use($app) {
+    ControllerCliente::Alteracao($app, $id);
   });
 });
 

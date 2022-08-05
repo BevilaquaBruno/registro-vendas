@@ -56,24 +56,40 @@
     );
   }
 
-  function salvar(){
-    let pessoaForm = document.getElementById("pessoaForm");
-
-    axios.post(pessoaForm.getAttribute("action"),
-      new FormData(pessoaForm)
-    )
-    .then(function (response) {
-      if(false === response.data.success) {
+  function validarResponse(response){
+    if(false === response.data.success) {
         notifier.alert( ("" === response.data.message ? "Erro grave ao gravar pessoa" : response.data.message) );
       }else if(true === response.data.success){
         window.location.href = "/pessoa";
       }else{
         notifier.alert("Erro grave ao gravar a pessoa");
       }
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
+  }
+
+  function salvar(){
+    let pessoaForm = document.getElementById("pessoaForm");
+
+    if("<?=$dados['acao']?>" === "cadastrar"){
+      axios.post(pessoaForm.getAttribute("action"),
+        new FormData(pessoaForm)
+      )
+      .then(function (response) {
+        validarResponse(response);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+    } else {
+      axios.put(pessoaForm.getAttribute("action"),
+        new FormData(pessoaForm)
+      )
+      .then(function (response) {
+        validarResponse(response);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+    }
   }
 
   window.addEventListener("load", function () {
