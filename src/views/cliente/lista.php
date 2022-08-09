@@ -16,7 +16,7 @@
     <tbody></tbody>
   </table>
 </div>
-<a href="index.php?m=cliente&a=cadastro" class="button-success pure-button">
+<a href="/cliente/cadastro" class="button-success pure-button">
   <span>Cadastrar</span>
 </a>
 
@@ -30,7 +30,7 @@
   }
 
   function excluir(id, index){
-    axios.get("index.php?m=cliente&a=deletar&id="+id)
+    axios.delete("/api/cliente/deletar/"+id)
     .then(function (response) {
       console.log(response.data);
       if (true === response.data.success) {
@@ -68,7 +68,7 @@
         "<td>"+(null === cliente['cidade'] ? '-' : cliente['cidade'])+"</td> "+
         "<td>"+cliente['qtd_vendas']+"</td> "+
         "<td> "+
-          "<a href='index.php?m=cliente&a=alteracao&id="+cliente['id']+"' class='pure-button pure-button-primary'> "+
+          "<a href='/cliente/alteracao/"+cliente['id']+"' class='pure-button pure-button-primary'> "+
             "<span>Editar</span> "+
           "</a> "+
           "<button onclick=\"handleExcluir("+cliente['id']+", "+i+");\" class='button-error pure-button'> "+
@@ -82,7 +82,7 @@
   }
 
   function getClientes(){
-    axios.get("index.php?m=cliente&a=listajson")
+    axios.get("/api/cliente")
     .then(function (response) {
       lista_clientes = response.data;
       povoarTabela();

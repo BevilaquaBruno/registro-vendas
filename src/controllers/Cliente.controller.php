@@ -45,10 +45,8 @@ class ControllerCliente {
     echo(json_encode([ "success" => $result, "message" => "" ]));
   }
 
-  public static function Deletar($app) {
+  public static function Deletar($app, $id) {
     $app->validarUsuario($app, "F", true);
-
-    $id = $_GET['id'];
 
     $result = ModelCliente::Excluir($app->db, $id);
 
@@ -58,14 +56,18 @@ class ControllerCliente {
   public static function Alterar($app) {
     $app->validarUsuario($app, "F", true);
 
+    // create put variable
+    global $_PUT;
+    Aplicacao::ParsePut();
+
     $cliente = [
-      "id" => (int)$_POST['id'],
-      "id_pessoa" => $_POST['id_pessoa'],
-      "endereco" => $_POST['endereco'],
-      "uf" => $_POST['uf'],
-      "bairro" => $_POST['bairro'],
-      "pais" => $_POST['pais'],
-      "cidade" => $_POST['cidade']
+      "id" => (int)$_PUT['id'],
+      "id_pessoa" => $_PUT['id_pessoa'],
+      "endereco" => $_PUT['endereco'],
+      "uf" => $_PUT['uf'],
+      "bairro" => $_PUT['bairro'],
+      "pais" => $_PUT['pais'],
+      "cidade" => $_PUT['cidade']
     ];
 
     if(null === $cliente['id'] || 0 === $cliente['id']){
@@ -115,10 +117,8 @@ class ControllerCliente {
     ControllerGeral::CarregaTela($app, $dados);
   }
 
-  public static function Alteracao($app) {
+  public static function Alteracao($app, $id) {
     $app->validarUsuario($app, "F");
-
-    $id = $_GET['id'];
 
     $dados = [
       'pagina' => 'cliente/cadastro',

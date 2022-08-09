@@ -1,4 +1,4 @@
-<form class="pure-form pure-form-aligned" id="clienteForm" action="index.php?m=cliente&a=<?=$dados['acao']?>" method="post">
+<form class="pure-form pure-form-aligned" id="clienteForm" action="/api/cliente/<?=$dados['acao']?>" method="post">
   <div class="pure-control-group">
     <div class="pure-u-1-3"></div>
     <div class="pure-u-1-3">
@@ -71,7 +71,7 @@
       <div onclick="handleSalvar();" class="button-success pure-button">
           Gravar
       </div>
-      <a class="button-error pure-button" href="index.php?m=cliente&a=lista">
+      <a class="button-error pure-button" href="/cliente">
         Voltar
       </a>
     </div>
@@ -89,20 +89,38 @@
   function salvar(){
     let clienteForm = document.getElementById("clienteForm");
 
-    axios.post(clienteForm.getAttribute("action"),
-      new FormData(clienteForm)
-    )
-    .then(function (response) {
-      if(false === response.data.success) {
-        notifier.alert(response.data.message);
-      }else if(true === response.data.success){
-        window.location.href = "index.php?m=cliente&a=lista";
-      }else{
-        notifier.alert("Erro grave ao gravar o cliente");
-      }
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
+    if("<?=$dados['acao']?>" === "cadastrar"){
+      axios.post(clienteForm.getAttribute("action"),
+        new FormData(clienteForm)
+      )
+      .then(function (response) {
+        if(false === response.data.success) {
+          notifier.alert(response.data.message);
+        }else if(true === response.data.success){
+          window.location.href = "/cliente";
+        }else{
+          notifier.alert("Erro grave ao gravar o cliente");
+        }
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+    } else {
+      axios.put(clienteForm.getAttribute("action"),
+        new FormData(clienteForm)
+      )
+      .then(function (response) {
+        if(false === response.data.success) {
+          notifier.alert(response.data.message);
+        }else if(true === response.data.success){
+          window.location.href = "/cliente";
+        }else{
+          notifier.alert("Erro grave ao gravar o cliente");
+        }
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+    }
   }
 </script>
