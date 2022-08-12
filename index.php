@@ -9,6 +9,7 @@ require_once('Aplicacao.php');
 require_once('./src/controllers/Geral.controller.php');
 require_once('./src/controllers/Pessoa.controller.php');
 require_once('./src/controllers/Cliente.controller.php');
+require_once('./src/controllers/Funcionario.controller.php');
 require_once('./src/controllers/Login.controller.php');
 
 // Create Router instance
@@ -20,11 +21,11 @@ $app = new Aplicacao();
 //css / js routes
 $router->mount('/public', function() use($router){
   $router->get('/javascripts/([A-Za-z0-9-_\.]+).js', function($filename){
-    echo(file_get_contents('./public/javascripts/'.$filename.'.js'));
+    echo(file_get_contents('./public/javascripts/'.$filename));
   });
 
-  $router->get('/styles/([A-Za-z0-9-_\.]+).js', function($filename){
-    echo(file_get_contents('./public/styles/'.$filename.'.js'));
+  $router->get('/styles/([A-Za-z0-9-_\.]+).css', function($filename){
+    echo(file_get_contents('./public/styles/'.$filename));
   });
 });
 
@@ -78,8 +79,31 @@ $router->mount('/api', function() use($router, $app){
         ControllerCliente::Alterar($app);
     });
   });
+
+  $router->mount('/funcionario', function () use($router, $app) {
+    $router->get('/', function () use ($app) {
+        ControllerFuncionario::Todos($app);
+    });
+
+    $router->get('/(\d+)', function ($id) use ($app) {
+        ControllerFuncionario::Um($app, $id);
+    });
+
+    $router->post('/cadastrar', function () use ($app) {
+        ControllerFuncionario::Cadastrar($app);
+    });
+
+    $router->delete('/deletar/(\d+)', function ($id) use ($app) {
+        ControllerFuncionario::Deletar($app, $id);
+    });
+
+    $router->put('/alterar', function () use ($app) {
+        ControllerFuncionario::Alterar($app);
+    });
+  });
 });
 
+// view routes
 // inicial routes
 $router->mount('/inicial', function() use($router, $app){
   $router->get('/', function() use($app) {
@@ -117,6 +141,21 @@ $router->mount('/cliente', function() use($router, $app){
   });
 });
 
+// funcionario routes
+$router->mount('/funcionario', function() use($router, $app){
+  $router->get('/', function() use($app) {
+    ControllerFuncionario::Lista($app);
+  });
+
+  $router->get('/cadastro', function() use($app) {
+    ControllerFuncionario::Cadastro($app);
+  });
+
+  $router->get('/alteracao/(\d+)', function($id) use($app) {
+    ControllerFuncionario::Alteracao($app, $id);
+  });
+});
+
 // login routes
 $router->mount('/login', function() use($router, $app){
   $router->get('/', function () use ($app) {
@@ -132,6 +171,7 @@ $router->mount('/login', function() use($router, $app){
   });
 });
 
+// 404 pages
 $router->set404('/', function() use($app) {
   ControllerGeral::CarregaTela($app, ['pagina' => 'geral/404']);
 });

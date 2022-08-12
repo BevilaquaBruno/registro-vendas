@@ -1,4 +1,4 @@
-<form class="pure-form pure-form-aligned" id="funcionarioForm" action="index.php?m=funcionario&a=<?=$dados['acao']?>" method="post">
+<form class="pure-form pure-form-aligned" id="funcionarioForm" action="/api/funcionario/<?=$dados['acao']?>" method="post">
   <div class="pure-control-group">
     <div class="pure-u-1-3"></div>
     <div class="pure-u-1-3">
@@ -42,7 +42,7 @@
       <div onclick="handleSalvar();" class="button-success pure-button">
           Gravar
       </div>
-      <a class="button-error pure-button" href="index.php?m=funcionario&a=lista">
+      <a class="button-error pure-button" href="/funcionario">
         Voltar
       </a>
     </div>
@@ -60,21 +60,39 @@
   function salvar(){
     let funcionarioForm = document.getElementById("funcionarioForm");
 
-    axios.post(funcionarioForm.getAttribute("action"),
-      new FormData(funcionarioForm)
-    )
-    .then(function (response) {
-      if(false === response.data.success) {
-        notifier.alert(response.data.message);
-      }else if(true === response.data.success){
-        window.location.href = "index.php?m=funcionario&a=lista";
-      }else{
-        notifier.alert("Erro grave ao gravar o funcionário");
-      }
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
+    if("<?=$dados['acao']?>" === "cadastrar"){
+      axios.post(funcionarioForm.getAttribute("action"),
+        new FormData(funcionarioForm)
+      )
+      .then(function (response) {
+        if(false === response.data.success) {
+          notifier.alert(response.data.message);
+        }else if(true === response.data.success){
+          window.location.href = "/funcionario";
+        }else{
+          notifier.alert("Erro grave ao gravar o funcionário");
+        }
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+    }else{
+      axios.put(funcionarioForm.getAttribute("action"),
+        new FormData(funcionarioForm)
+      )
+      .then(function (response) {
+        if(false === response.data.success) {
+          notifier.alert(response.data.message);
+        }else if(true === response.data.success){
+          window.location.href = "/funcionario";
+        }else{
+          notifier.alert("Erro grave ao gravar o funcionário");
+        }
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+    }
   }
 
   window.addEventListener("load", function () {

@@ -23,7 +23,7 @@
             <a href="/pessoa" class="pure-menu-link">Pessoas</a>
           </li>
           <li class="pure-menu-item">
-            <a href="index.php?m=funcionario&a=lista" class="pure-menu-link">Funcionários</a>
+            <a href="/funcionario" class="pure-menu-link">Funcionários</a>
           </li>
           <li class="pure-menu-item">
             <a href="index.php?m=produto&a=lista" class="pure-menu-link">Produtos</a>

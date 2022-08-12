@@ -16,7 +16,7 @@
     <tbody></tbody>
   </table>
 </div>
-<a href="index.php?m=funcionario&a=cadastro" class="button-success pure-button">
+<a href="/funcionario/cadastro" class="button-success pure-button">
   <span>Cadastrar</span>
 </a>
 
@@ -30,7 +30,7 @@
   }
 
   function excluir(id, index){
-    axios.get("index.php?m=funcionario&a=deletar&id="+id)
+    axios.delete("/api/funcionario/deletar/"+id)
     .then(function (response) {
       console.log(response.data);
       if (true === response.data.success) {
@@ -68,7 +68,7 @@
         "<td>"+funcionario['data_admissao']+"</td> "+
         "<td>"+(returnBrazilianCurrency(parseFloat(funcionario['salario'])))+"</td> "+
         "<td> "+
-          "<a href='index.php?m=funcionario&a=alteracao&id="+funcionario['id']+"' class='pure-button pure-button-primary'> "+
+          "<a href='/funcionario/alteracao/"+funcionario['id']+"' class='pure-button pure-button-primary'> "+
             "<span>Editar</span> "+
           "</a> "+
           "<button onclick=\"handleExcluir("+funcionario['id']+", "+i+");\" class='button-error pure-button'> "+
@@ -82,7 +82,7 @@
   }
 
   function getFuncionarios(){
-    axios.get("index.php?m=funcionario&a=listajson")
+    axios.get("/api/funcionario")
     .then(function (response) {
       lista_funcionarios = response.data;
       povoarTabela();

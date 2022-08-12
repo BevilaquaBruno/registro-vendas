@@ -5,38 +5,17 @@ require_once('./src/controllers/Geral.controller.php');
 require_once('./src/general.php');
 
 class ControllerFuncionario {
-  public static function lista($app){
-    $app->validarUsuario($app, "F");
-
-    $dados = [
-      'pagina' => 'funcionario/lista'
-    ];
-
-    ControllerGeral::CarregaTela($app, $dados);
-  }
-
-  public static function ListaJson($app){
+  // api routes
+  public static function Todos($app){
     $lista_funcionario = ModelFuncionario::Todas($app->db);
 
     echo(json_encode($lista_funcionario));
   }
 
-  public static function Cadastro($app) {
-    $app->validarUsuario($app, "F");
+  public static function Um($app, $id){
+    $funcionario = ModelFuncionario::Um($app->db, $id);
 
-    $dados = [
-      'pagina' => 'funcionario/cadastro',
-      'acao' => "cadastrar",
-      "pessoas" => ModelPessoa::Todas($app->db),
-      'funcionario' => [
-        'id' => 0,
-        'id_pessoa' => '',
-        'data_admissao' => '',
-        'data_admissao_original' => '',
-        'salario' => ''
-      ]
-    ];
-    ControllerGeral::CarregaTela($app, $dados);
+    echo(json_encode($funcionario));
   }
 
   public static function Cadastrar($app) {
@@ -73,38 +52,26 @@ class ControllerFuncionario {
     echo(json_encode([ "success" => $result, "message" => "" ]));
   }
 
-  public static function Deletar($app) {
+  public static function Deletar($app, $id) {
     $app->validarUsuario($app, "F", true);
-
-    $id = $_GET['id'];
 
     $result = ModelFuncionario::Excluir($app->db, $id);
 
     echo(json_encode([ "success" => $result, "message" => true === $result ? "Funcionário excluído com sucesso" : "Erro ao excluir funcionário" ]));
   }
 
-  public static function Alteracao($app) {
-    $app->validarUsuario($app, "F");
-
-    $id = $_GET['id'];
-
-    $dados = [
-      'pagina' => 'funcionario/cadastro',
-      'acao' => "alterar",
-      "pessoas" => ModelPessoa::Todas($app->db),
-      "funcionario" => ModelFuncionario::Um($app->db, $id)
-    ];
-    ControllerGeral::CarregaTela($app, $dados);
-  }
-
   public static function Alterar($app) {
     $app->validarUsuario($app, "F", true);
 
+    // create put variable
+    global $_PUT;
+    Aplicacao::ParsePut();
+
     $funcionario = [
-      "id" => (int)$_POST['id'],
-      "id_pessoa" => $_POST['id_pessoa'],
-      "data_admissao" => $_POST['data_admissao'],
-      "salario" => brlCurrencyToDb($_POST['salario'])
+      "id" => (int)$_PUT['id'],
+      "id_pessoa" => $_PUT['id_pessoa'],
+      "data_admissao" => $_PUT['data_admissao'],
+      "salario" => brlCurrencyToDb($_PUT['salario'])
     ];
 
     if(null === $funcionario['id'] || 0 === $funcionario['id']){
@@ -135,6 +102,47 @@ class ControllerFuncionario {
     $result = ModelFuncionario::Alterar($app->db, $funcionario);
 
     echo(json_encode([ "success" => $result, "message" => "" ]));
+  }
+
+  // view routes
+  public static function Lista($app){
+    $app->validarUsuario($app, "F");
+
+    $dados = [
+      'pagina' => 'funcionario/lista'
+    ];
+
+    ControllerGeral::CarregaTela($app, $dados);
+  }
+
+  public static function Cadastro($app) {
+    $app->validarUsuario($app, "F");
+
+    $dados = [
+      'pagina' => 'funcionario/cadastro',
+      'acao' => "cadastrar",
+      "pessoas" => ModelPessoa::Todas($app->db),
+      'funcionario' => [
+        'id' => 0,
+        'id_pessoa' => '',
+        'data_admissao' => '',
+        'data_admissao_original' => '',
+        'salario' => ''
+      ]
+    ];
+    ControllerGeral::CarregaTela($app, $dados);
+  }
+
+  public static function Alteracao($app, $id) {
+    $app->validarUsuario($app, "F");
+
+    $dados = [
+      'pagina' => 'funcionario/cadastro',
+      'acao' => "alterar",
+      "pessoas" => ModelPessoa::Todas($app->db),
+      "funcionario" => ModelFuncionario::Um($app->db, $id)
+    ];
+    ControllerGeral::CarregaTela($app, $dados);
   }
 }
 ?>
