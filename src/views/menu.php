@@ -26,7 +26,7 @@
             <a href="/funcionario" class="pure-menu-link">Funcionários</a>
           </li>
           <li class="pure-menu-item">
-            <a href="index.php?m=produto&a=lista" class="pure-menu-link">Produtos</a>
+            <a href="/produto" class="pure-menu-link">Produtos</a>
           </li>
           <li class="pure-menu-item">
             <a href="/cliente" class="pure-menu-link">Clientes</a>

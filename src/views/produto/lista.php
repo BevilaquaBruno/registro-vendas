@@ -15,7 +15,7 @@
     <tbody></tbody>
   </table>
 </div>
-<a href="index.php?m=produto&a=cadastro" class="button-success pure-button">
+<a href="/produto/cadastro" class="button-success pure-button">
   <span>Cadastrar</span>
 </a>
 <script type="text/javascript">
@@ -28,7 +28,7 @@
   }
 
   function excluir(id, index){
-    axios.get("index.php?m=produto&a=deletar&id="+id)
+    axios.delete("/api/produto/deletar/"+id)
     .then(function (response) {
       console.log(response.data);
       if (true === response.data.success) {
@@ -67,7 +67,7 @@
         "<td>"+returnBrazilianNumber(produto['quantidade'])+" "+produto['unidade_medida']+"</td> "+
         "<td>"+returnBrazilianCurrency(parseFloat(produto['valor_compra']))+" / "+returnBrazilianCurrency(parseFloat(produto['valor_venda']))+"</td> "+
         "<td> "+
-          "<a href='index.php?m=produto&a=alteracao&id="+produto['id']+"' class='pure-button pure-button-primary'> "+
+          "<a href='/produto/alteracao/"+produto['id']+"' class='pure-button pure-button-primary'> "+
             "<span>Editar</span> "+
           "</a> "+
           "<button onclick=\"handleExcluir("+produto['id']+", "+i+");\" class='button-error pure-button'> "+
@@ -80,7 +80,7 @@
     createProdutoDatatable();
   }
   function getProdutos(){
-    axios.get("index.php?m=produto&a=listajson")
+    axios.get("/api/produto")
     .then(function (response) {
       lista_produtos = response.data;
       povoarTabela();

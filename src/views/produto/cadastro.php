@@ -1,4 +1,4 @@
-<form class="pure-form pure-form-aligned" id="produtoForm" action="index.php?m=produto&a=<?=$dados['acao']?>" method="post">
+<form class="pure-form pure-form-aligned" id="produtoForm" action="/api/produto/<?=$dados['acao']?>" method="post">
   <div class="pure-control-group">
     <div class="pure-u-1-3"></div>
     <div class="pure-u-1-3">
@@ -63,7 +63,7 @@
       <div onclick="handleSalvar();" class="button-success pure-button">
           Gravar
       </div>
-      <a class="button-error pure-button" href="index.php?m=produto&a=lista">
+      <a class="button-error pure-button" href="/produto">
         Voltar
       </a>
     </div>
@@ -81,21 +81,39 @@
   function salvar(){
     let produtoForm = document.getElementById("produtoForm");
 
-    axios.post(produtoForm.getAttribute("action"),
-      new FormData(produtoForm)
-    )
-    .then(function (response) {
-      if(false === response.data.success) {
-        notifier.alert(response.data.message);
-      }else if(true === response.data.success){
-        window.location.href = "index.php?m=produto&a=lista";
-      }else{
-        notifier.alert("Erro grave ao gravar o produto");
-      }
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
+    if("<?=$dados['acao']?>" === "cadastrar"){
+      axios.post(produtoForm.getAttribute("action"),
+        new FormData(produtoForm)
+      )
+      .then(function (response) {
+        if(false === response.data.success) {
+          notifier.alert(response.data.message);
+        }else if(true === response.data.success){
+          window.location.href = "/produto";
+        }else{
+          notifier.alert("Erro grave ao gravar o produto");
+        }
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+    }else{
+      axios.put(produtoForm.getAttribute("action"),
+        new FormData(produtoForm)
+      )
+      .then(function (response) {
+        if(false === response.data.success) {
+          notifier.alert(response.data.message);
+        }else if(true === response.data.success){
+          window.location.href = "/produto";
+        }else{
+          notifier.alert("Erro grave ao gravar o produto");
+        }
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+    }
   }
 
   window.addEventListener("load", function () {
