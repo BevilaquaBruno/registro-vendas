@@ -12,6 +12,7 @@ require_once('./src/controllers/Cliente.controller.php');
 require_once('./src/controllers/Funcionario.controller.php');
 require_once('./src/controllers/Login.controller.php');
 require_once('./src/controllers/Produto.controller.php');
+require_once('./src/controllers/Usuario.controller.php');
 
 // Create Router instance
 $router = new \Bramus\Router\Router();
@@ -124,6 +125,28 @@ $router->mount('/api', function () use ($router, $app) {
       ControllerProduto::Alterar($app);
     });
   });
+
+  $router->mount('/usuario', function () use ($router, $app) {
+    $router->get('/', function () use ($app) {
+      ControllerUsuario::Todos($app);
+    });
+
+    $router->get('/(\d+)', function ($id) use ($app) {
+      ControllerUsuario::Um($app, $id);
+    });
+
+    $router->post('/cadastrar', function () use ($app) {
+      ControllerUsuario::Cadastrar($app);
+    });
+
+    $router->delete('/deletar/(\d+)', function ($id) use ($app) {
+      ControllerUsuario::Deletar($app, $id);
+    });
+
+    $router->put('/alterar', function () use ($app) {
+      ControllerUsuario::Alterar($app);
+    });
+  });
 });
 
 // view routes
@@ -191,6 +214,21 @@ $router->mount('/produto', function () use ($router, $app) {
 
   $router->get('/alteracao/(\d+)', function ($id) use ($app) {
     ControllerProduto::Alteracao($app, $id);
+  });
+});
+
+// usuario routes
+$router->mount('/usuario', function () use ($router, $app) {
+  $router->get('/', function () use ($app) {
+    ControllerUsuario::Lista($app);
+  });
+
+  $router->get('/cadastro', function () use ($app) {
+    ControllerUsuario::Cadastro($app);
+  });
+
+  $router->get('/alteracao/(\d+)', function ($id) use ($app) {
+    ControllerUsuario::Alteracao($app, $id);
   });
 });
 

@@ -5,17 +5,8 @@ require_once('./src//models/Venda.model.php');
 require_once('./src/general.php');
 
 class ControllerUsuario {
-  public static function Lista($app){
-    $app->validarUsuario($app, "A");
-
-    $dados = [
-      'pagina' => 'usuario/lista'
-    ];
-
-    ControllerGeral::CarregaTela($app, $dados);
-  }
-
-  public static function ListaJson($app){
+  //api routes
+  public static function Todos($app){
     $app->validarUsuario($app, "A", true);
 
     $lista_usuarios = ModelUsuario::Todos($app->db);
@@ -23,20 +14,10 @@ class ControllerUsuario {
     echo(json_encode($lista_usuarios));
   }
 
-  public static function Cadastro($app) {
-    $app->validarUsuario($app, "A");
+  public static function Um($app, $id){
+    $usuario = ModelUsuario::Um($app->db, $id);
 
-    $dados = [
-      'pagina' => 'usuario/cadastro',
-      'acao' => "cadastrar",
-      'usuario' => [
-        'id' => 0,
-        'nome' => '',
-        'email' => '',
-        'tipo' => ''
-      ]
-    ];
-    ControllerGeral::CarregaTela($app, $dados);
+    echo(json_encode($usuario));
   }
 
   public static function Cadastrar($app) {
@@ -92,10 +73,8 @@ class ControllerUsuario {
     echo(json_encode([ "success" => $result, "message" => "" ]));
   }
 
-  public static function Deletar($app) {
+  public static function Deletar($app, $id) {
     $app->validarUsuario($app, "A", true);
-
-    $id = $_GET['id'];
 
     $vendas_usuario = ModelVenda::TodasUsuario($app->db, $id);
 
@@ -109,31 +88,23 @@ class ControllerUsuario {
     echo(json_encode([ "success" => $result, "message" => "" ]));
   }
 
-  public static function Alteracao($app) {
-    $app->validarUsuario($app, "A");
-    $id = $_GET['id'];
-
-    $dados = [
-      'pagina' => 'usuario/cadastro',
-      'acao' => "alterar",
-      'usuario' => ModelUsuario::Um($app->db, $id)
-    ];
-    ControllerGeral::CarregaTela($app, $dados);
-  }
-
   public static function Alterar($app) {
     $app->validarUsuario($app, "A", true);
 
+    // create put variable
+    global $_PUT;
+    Aplicacao::ParsePut();
+
     $usuario = [
-      "id" => $_POST['id'],
-      "nome" => $_POST['nome'],
-      "email" => $_POST['email'],
-      "tipo" => $_POST['tipo']
+      "id" => $_PUT['id'],
+      "nome" => $_PUT['nome'],
+      "email" => $_PUT['email'],
+      "tipo" => $_PUT['tipo']
     ];
 
     if($usuario['id'] == $_SESSION['id_u']){
-      $usuario['senha'] = $_POST['senha'];
-      $usuario['repetir_senha'] = $_POST['repetir_senha'];
+      $usuario['senha'] = $_PUT['senha'];
+      $usuario['repetir_senha'] = $_PUT['repetir_senha'];
 
       if('' === $usuario['senha'] || '' === $usuario['repetir_senha']){
         echo(json_encode([ "success" => false, "message" => "As duas senhas são obrigatórias" ]));
@@ -184,5 +155,43 @@ class ControllerUsuario {
     }
 
     echo(json_encode([ "success" => $result, "message" => "" ]));
+  }
+
+  //view routes
+  public static function Lista($app){
+    $app->validarUsuario($app, "A");
+
+    $dados = [
+      'pagina' => 'usuario/lista'
+    ];
+
+    ControllerGeral::CarregaTela($app, $dados);
+  }
+
+  public static function Cadastro($app) {
+    $app->validarUsuario($app, "A");
+
+    $dados = [
+      'pagina' => 'usuario/cadastro',
+      'acao' => "cadastrar",
+      'usuario' => [
+        'id' => 0,
+        'nome' => '',
+        'email' => '',
+        'tipo' => ''
+      ]
+    ];
+    ControllerGeral::CarregaTela($app, $dados);
+  }
+
+  public static function Alteracao($app, $id) {
+    $app->validarUsuario($app, "A");
+
+    $dados = [
+      'pagina' => 'usuario/cadastro',
+      'acao' => "alterar",
+      'usuario' => ModelUsuario::Um($app->db, $id)
+    ];
+    ControllerGeral::CarregaTela($app, $dados);
   }
 }

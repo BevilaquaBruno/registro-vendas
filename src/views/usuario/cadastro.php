@@ -1,4 +1,4 @@
-<form class="pure-form pure-form-aligned" action="index.php?m=usuario&a=<?=$dados['acao']?>" method="post" id="usuarioForm">
+<form class="pure-form pure-form-aligned" action="/api/usuario/<?=$dados['acao']?>" method="post" id="usuarioForm">
   <div class="pure-control-group">
     <div class="pure-u-1-3"></div>
     <div class="pure-u-1-3">
@@ -63,7 +63,7 @@
     <div onclick="handleSalvar();" class="button-success pure-button">
         Gravar
     </div>
-    <a class="button-error pure-button" href="index.php?m=usuario&a=lista">
+    <a class="button-error pure-button" href="/usuario">
       Voltar
     </a>
   </div>
@@ -80,20 +80,38 @@
   function salvar(){
     let usuarioForm = document.getElementById("usuarioForm");
 
-    axios.post(usuarioForm.getAttribute("action"),
-      new FormData(usuarioForm)
-    )
-    .then(function (response) {
-      if(false === response.data.success) {
-        notifier.alert( ("" === response.data.message ? "Erro grave ao gravar usuário" : response.data.message) );
-      }else if(true === response.data.success){
-        window.location.href = "index.php?m=usuario&a=lista";
-      }else{
-        notifier.alert("Erro grave ao gravar o usuário");
-      }
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
+    if("<?=$dados['acao']?>" === "cadastrar"){
+      axios.post(usuarioForm.getAttribute("action"),
+        new FormData(usuarioForm)
+      )
+      .then(function (response) {
+        if(false === response.data.success) {
+          notifier.alert( ("" === response.data.message ? "Erro grave ao gravar usuário" : response.data.message) );
+        }else if(true === response.data.success){
+          window.location.href = "/usuario";
+        }else{
+          notifier.alert("Erro grave ao gravar o usuário");
+        }
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+    }else{
+      axios.put(usuarioForm.getAttribute("action"),
+        new FormData(usuarioForm)
+      )
+      .then(function (response) {
+        if(false === response.data.success) {
+          notifier.alert( ("" === response.data.message ? "Erro grave ao gravar usuário" : response.data.message) );
+        }else if(true === response.data.success){
+          window.location.href = "/usuario";
+        }else{
+          notifier.alert("Erro grave ao gravar o usuário");
+        }
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+    }
   }
 </script>

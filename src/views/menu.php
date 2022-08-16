@@ -33,7 +33,7 @@
           </li>
           <?php if("A" === $_SESSION['tipo']){ ?>
             <li class="pure-menu-item">
-              <a href="index.php?m=usuario&a=lista" class="pure-menu-link">Usuários</a>
+              <a href="/usuario" class="pure-menu-link">Usuários</a>
             </li>
           <?php } ?>
         </ul>

@@ -15,7 +15,7 @@
     <tbody></tbody>
   </table>
 </div>
-<a href="index.php?m=usuario&a=cadastro" class="button-success pure-button">
+<a href="/usuario/cadastro" class="button-success pure-button">
   <span>Cadastrar</span>
 </a>
 <script type="text/javascript">
@@ -28,7 +28,7 @@
   }
 
   function excluir(id, index){
-    axios.get("index.php?m=usuario&a=deletar&id="+id)
+    axios.delete("/api/usuario/deletar/"+id)
     .then(function (response) {
       console.log(response.data);
       if (true === response.data.success) {
@@ -79,7 +79,7 @@
         "<td>"+usuario['email']+"</td> "+
         "<td>"+(tipo_usuario)+"</td> "+
         "<td> "+
-          "<a href='index.php?m=usuario&a=alteracao&id="+usuario['id']+"' class='pure-button pure-button-primary'> "+
+          "<a href='/usuario/alteracao/"+usuario['id']+"' class='pure-button pure-button-primary'> "+
             "<span>Editar</span> "+
           "</a> "+
           "<button onclick=\"handleExcluir("+usuario['id']+", "+i+");\" class='button-error pure-button'> "+
@@ -92,7 +92,7 @@
     createUsuarioDatatable();
   }
   function getUsuarios(){
-    axios.get("index.php?m=usuario&a=listajson")
+    axios.get("/api/usuario")
     .then(function (response) {
       lista_usuarios = response.data;
       povoarTabela();
