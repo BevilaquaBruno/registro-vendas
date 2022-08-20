@@ -1,4 +1,4 @@
-<form class="pure-form pure-form-aligned" id="vendaForm" action="index.php?m=venda&a=<?=$dados['acao']?>" method="post">
+<form class="pure-form pure-form-aligned" id="vendaForm" action="/api/venda/<?=$dados['acao']?>" method="post">
 <!-- venda_produtos -->
 <input type="hidden" name="venda_produtos" id="venda_produtos" value="[]">
   <div class="pure-control-group">
@@ -84,7 +84,7 @@
       <div onclick="handleSalvar();" class="button-success pure-button">
           Gravar
       </div>
-      <a class="button-error pure-button" href="index.php?m=venda&a=lista">
+      <a class="button-error pure-button" href="/venda">
         Voltar
       </a>
     </div>
@@ -287,22 +287,39 @@
   function salvar(){
     document.getElementById("venda_produtos").value = JSON.stringify(lista_venda_produto);
     let vendaForm = document.getElementById("vendaForm");
-
-    axios.post(vendaForm.getAttribute("action"),
-      new FormData(vendaForm)
-    )
-    .then(function (response) {
-      if(false === response.data.success) {
-        notifier.alert(response.data.message);
-      }else if(true === response.data.success){
-        window.location.href = "index.php?m=venda&a=lista";
-      }else{
-        notifier.alert("Erro grave ao gravar a venda");
-      }
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
+    if("<?=$dados['acao']?>" === "cadastrar"){
+      axios.post(vendaForm.getAttribute("action"),
+        new FormData(vendaForm)
+      )
+      .then(function (response) {
+        if(false === response.data.success) {
+          notifier.alert(response.data.message);
+        }else if(true === response.data.success){
+          window.location.href = "/venda";
+        }else{
+          notifier.alert("Erro grave ao gravar a venda");
+        }
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+    }else{
+      axios.put(vendaForm.getAttribute("action"),
+        new FormData(vendaForm)
+      )
+      .then(function (response) {
+        if(false === response.data.success) {
+          notifier.alert(response.data.message);
+        }else if(true === response.data.success){
+          window.location.href = "/venda";
+        }else{
+          notifier.alert("Erro grave ao gravar a venda");
+        }
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+    }
   }
 
   window.addEventListener('load', function(){

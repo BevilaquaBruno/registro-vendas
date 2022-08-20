@@ -16,7 +16,7 @@
     <tbody></tbody>
   </table>
 </div>
-<a href="index.php?m=venda&a=cadastro" class="button-success pure-button">
+<a href="/venda/cadastro" class="button-success pure-button">
   <span>Cadastrar</span>
 </a>
 
@@ -30,7 +30,7 @@
   }
 
   function excluir(id, index){
-    axios.get("index.php?m=venda&a=deletar&id="+id)
+    axios.delete("/api/venda/deletar/"+id)
     .then(function (response) {
       console.log(response.data);
       if (true === response.data.success) {
@@ -68,7 +68,7 @@
         "<td>"+returnBrazilianNumber(parseFloat(venda['qtd_produtos']))+"</td> "+
         "<td>"+returnBrazilianCurrency(parseFloat(venda['valor_total']))+"</td> "+
         "<td> "+
-          "<a href='index.php?m=venda&a=alteracao&id="+venda['id']+"' class='pure-button pure-button-primary'> "+
+          "<a href='/venda/alteracao/"+venda['id']+"' class='pure-button pure-button-primary'> "+
             "<span>Editar</span> "+
           "</a> "+
           "<button onclick=\"handleExcluir("+venda['id']+", "+i+");\" class='button-error pure-button'> "+
@@ -82,7 +82,7 @@
   }
 
   function getVendas(){
-    axios.get("index.php?m=venda&a=listajson")
+    axios.get("/api/venda")
     .then(function (response) {
       lista_vendas = response.data;
       povoarTabela();

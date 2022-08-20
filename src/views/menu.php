@@ -39,7 +39,7 @@
         </ul>
       </li>
       <li class="pure-menu-item">
-        <a href="index.php?m=venda" class="pure-menu-link">Venda</a>
+        <a href="/venda" class="pure-menu-link">Venda</a>
       </li>
     <?php } ?>
   </ul>
