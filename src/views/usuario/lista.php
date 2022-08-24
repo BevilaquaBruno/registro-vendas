@@ -28,7 +28,7 @@
   }
 
   function excluir(id, index){
-    axios.delete("/api/usuario/deletar/"+id)
+    axios.delete("/api/usuario/"+id)
     .then(function (response) {
       console.log(response.data);
       if (true === response.data.success) {

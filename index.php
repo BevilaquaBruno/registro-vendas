@@ -48,15 +48,15 @@ $router->mount('/api', function () use ($router, $app) {
       ControllerPessoa::Uma($app, $id);
     });
 
-    $router->post('/cadastrar', function () use ($app) {
+    $router->post('/', function () use ($app) {
       ControllerPessoa::Cadastrar($app);
     });
 
-    $router->delete('/deletar/(\d+)', function ($id) use ($app) {
+    $router->delete('/(\d+)', function ($id) use ($app) {
       ControllerPessoa::Deletar($app, $id);
     });
 
-    $router->put('/alterar', function () use ($app) {
+    $router->put('/', function () use ($app) {
       ControllerPessoa::Alterar($app);
     });
   });
@@ -70,15 +70,15 @@ $router->mount('/api', function () use ($router, $app) {
       ControllerCliente::Um($app, $id);
     });
 
-    $router->post('/cadastrar', function () use ($app) {
+    $router->post('/', function () use ($app) {
       ControllerCliente::Cadastrar($app);
     });
 
-    $router->delete('/deletar/(\d+)', function ($id) use ($app) {
+    $router->delete('/(\d+)', function ($id) use ($app) {
       ControllerCliente::Deletar($app, $id);
     });
 
-    $router->put('/alterar', function () use ($app) {
+    $router->put('/', function () use ($app) {
       ControllerCliente::Alterar($app);
     });
   });
@@ -92,15 +92,15 @@ $router->mount('/api', function () use ($router, $app) {
       ControllerFuncionario::Um($app, $id);
     });
 
-    $router->post('/cadastrar', function () use ($app) {
+    $router->post('/', function () use ($app) {
       ControllerFuncionario::Cadastrar($app);
     });
 
-    $router->delete('/deletar/(\d+)', function ($id) use ($app) {
+    $router->delete('/(\d+)', function ($id) use ($app) {
       ControllerFuncionario::Deletar($app, $id);
     });
 
-    $router->put('/alterar', function () use ($app) {
+    $router->put('/', function () use ($app) {
       ControllerFuncionario::Alterar($app);
     });
   });
@@ -114,15 +114,15 @@ $router->mount('/api', function () use ($router, $app) {
       ControllerProduto::Um($app, $id);
     });
 
-    $router->post('/cadastrar', function () use ($app) {
+    $router->post('/', function () use ($app) {
       ControllerProduto::Cadastrar($app);
     });
 
-    $router->delete('/deletar/(\d+)', function ($id) use ($app) {
+    $router->delete('/(\d+)', function ($id) use ($app) {
       ControllerProduto::Deletar($app, $id);
     });
 
-    $router->put('/alterar', function () use ($app) {
+    $router->put('/', function () use ($app) {
       ControllerProduto::Alterar($app);
     });
   });
@@ -136,15 +136,15 @@ $router->mount('/api', function () use ($router, $app) {
       ControllerUsuario::Um($app, $id);
     });
 
-    $router->post('/cadastrar', function () use ($app) {
+    $router->post('/', function () use ($app) {
       ControllerUsuario::Cadastrar($app);
     });
 
-    $router->delete('/deletar/(\d+)', function ($id) use ($app) {
+    $router->delete('/(\d+)', function ($id) use ($app) {
       ControllerUsuario::Deletar($app, $id);
     });
 
-    $router->put('/alterar', function () use ($app) {
+    $router->put('/', function () use ($app) {
       ControllerUsuario::Alterar($app);
     });
   });
@@ -158,15 +158,15 @@ $router->mount('/api', function () use ($router, $app) {
       ControllerVenda::Uma($app, $id);
     });
 
-    $router->post('/cadastrar', function () use ($app) {
+    $router->post('/', function () use ($app) {
       ControllerVenda::Cadastrar($app);
     });
 
-    $router->delete('/deletar/(\d+)', function ($id) use ($app) {
+    $router->delete('/(\d+)', function ($id) use ($app) {
       ControllerVenda::Deletar($app, $id);
     });
 
-    $router->put('/alterar', function () use ($app) {
+    $router->put('/', function () use ($app) {
       ControllerVenda::Alterar($app);
     });
   });

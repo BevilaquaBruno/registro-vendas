@@ -1,4 +1,4 @@
-<form class="pure-form pure-form-aligned" id="vendaForm" action="/api/venda/<?=$dados['acao']?>" method="post">
+<form class="pure-form pure-form-aligned" id="vendaForm" action="/api/venda/" method="post">
 <!-- venda_produtos -->
 <input type="hidden" name="venda_produtos" id="venda_produtos" value="[]">
   <div class="pure-control-group">

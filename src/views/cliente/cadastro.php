@@ -1,4 +1,4 @@
-<form class="pure-form pure-form-aligned" id="clienteForm" action="/api/cliente/<?=$dados['acao']?>" method="post">
+<form class="pure-form pure-form-aligned" id="clienteForm" action="/api/cliente/" method="post">
   <div class="pure-control-group">
     <div class="pure-u-1-3"></div>
     <div class="pure-u-1-3">
