@@ -11,12 +11,15 @@ class ControllerUsuario {
 
     $lista_usuarios = ModelUsuario::Todos($app->db);
 
+    http_response_code(200);
     echo(json_encode($lista_usuarios));
   }
 
   public static function Um($app, $id){
+    $app->validarUsuario($app, "A", true);
     $usuario = ModelUsuario::Um($app->db, $id);
 
+    http_response_code(200);
     echo(json_encode($usuario));
   }
 
@@ -33,43 +36,51 @@ class ControllerUsuario {
 
 
     if("" === $usuario['nome'] || null === $usuario['nome']) {
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "Nome é obrigatório" ]));
       exit();
     }
 
     if("" === $usuario['email'] || null === $usuario['email']){
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "Email é obrigatório" ]));
       exit();
     }
 
     if(!validateEmail($usuario['email'])){
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "Email inválido" ]));
       exit();
     }
 
     $usuarios_email = ModelUsuario::TodosPorEmail($app->db, $usuario['email']);
     if(count($usuarios_email) >= 1){
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "Já existe um usuário com esse email vinculado" ]));
       exit();
     }
 
     if (false === array_search($usuario['tipo'], $app->tipos_usuarios)) {
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "Tipo de usuário inválido" ]));
       exit();
     }
 
     if('' === $usuario['senha'] || '' === $usuario['repetir_senha']){
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "As duas senhas são obrigatórias" ]));
       exit();
     }
 
     if($usuario['senha'] !== $usuario['repetir_senha']){
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "As duas senhas precisam ser iguais" ]));
       exit();
     }
 
     $result = ModelUsuario::Cadastrar($app->db, $usuario);
 
+    http_response_code(200);
     echo(json_encode([ "success" => $result, "message" => "" ]));
   }
 
@@ -79,12 +90,14 @@ class ControllerUsuario {
     $vendas_usuario = ModelVenda::TodasUsuario($app->db, $id);
 
     if(count($vendas_usuario) >= 1){
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "Não é possível excluir o usuário porque ele está vinculado a vendas" ]));
       exit();
     }
 
     $result = ModelUsuario::Excluir($app->db, $id);
 
+    http_response_code(200);
     echo(json_encode([ "success" => $result, "message" => "" ]));
   }
 
@@ -107,43 +120,51 @@ class ControllerUsuario {
       $usuario['repetir_senha'] = $_PUT['repetir_senha'];
 
       if('' === $usuario['senha'] || '' === $usuario['repetir_senha']){
+        http_response_code(400);
         echo(json_encode([ "success" => false, "message" => "As duas senhas são obrigatórias" ]));
         exit();
       }
 
       if($usuario['senha'] !== $usuario['repetir_senha']){
+        http_response_code(400);
         echo(json_encode([ "success" => false, "message" => "As duas senhas precisam ser iguais" ]));
         exit();
       }
     }
 
     if(null === $usuario['id'] || 0 === $usuario['id']){
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "Erro grave ao alterar o usuário, atualize a página" ]));
       exit();
     }
 
     if("" === $usuario['nome'] || null === $usuario['nome']) {
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "Nome é obrigatório" ]));
       exit();
     }
 
     if("" === $usuario['email'] || null === $usuario['email']){
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "Email é obrigatório" ]));
       exit();
     }
 
     if(!validateEmail($usuario['email'])){
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "Email inválido" ]));
       exit();
     }
 
     $usuarios_email = ModelUsuario::TodosPorEmail($app->db, $usuario['email'], $usuario['id']);
     if(count($usuarios_email) >= 1){
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "Já existe um usuário com esse email vinculado" ]));
       exit();
     }
 
     if (false === array_search($usuario['tipo'], $app->tipos_usuarios)) {
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "Tipo de usuário inválido" ]));
       exit();
     }
@@ -154,6 +175,7 @@ class ControllerUsuario {
       $result = ModelUsuario::Alterar($app->db, $usuario);
     }
 
+    http_response_code(200);
     echo(json_encode([ "success" => $result, "message" => "" ]));
   }
 

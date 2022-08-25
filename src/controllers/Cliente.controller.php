@@ -5,14 +5,20 @@ require_once('./src/models/Cliente.model.php');
 class ControllerCliente {
   // api routes
   public static function Todos($app) {
+    $app->validarUsuario($app, "F", true);
+
     $lista_cliente = ModelCliente::Todos($app->db);
 
+    http_response_code(200);
     echo(json_encode($lista_cliente));
   }
 
   public static function Um($app, $id){
+    $app->validarUsuario($app, "F", true);
+
     $cliente = ModelCliente::Um($app->db, $id);
 
+    http_response_code(200);
     echo(json_encode($cliente));
   }
 
@@ -29,12 +35,14 @@ class ControllerCliente {
     ];
 
     if(null === $cliente['id_pessoa'] || 0 === $cliente['id_pessoa']){
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "Falta selecionar a pessoa" ]));
       exit();
     }
 
     if(null != $cliente['uf']){
       if (false === array_search($cliente['uf'], $app->ufs)) {
+        http_response_code(400);
         echo(json_encode([ "success" => false, "message" => "UF inválida" ]));
         exit();
       }
@@ -42,6 +50,7 @@ class ControllerCliente {
 
     $result = ModelCliente::Cadastrar($app->db, $cliente);
 
+    http_response_code(200);
     echo(json_encode([ "success" => $result, "message" => "" ]));
   }
 
@@ -50,6 +59,7 @@ class ControllerCliente {
 
     $result = ModelCliente::Excluir($app->db, $id);
 
+    http_response_code(200);
     echo(json_encode([ "success" => $result, "message" => true === $result ? "Cliente excluído com sucesso" : "Erro ao excluir cliente" ]));
   }
 
@@ -71,17 +81,20 @@ class ControllerCliente {
     ];
 
     if(null === $cliente['id'] || 0 === $cliente['id']){
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "Erro grave ao alterar o cliente, atualize a página" ]));
       exit();
     }
 
     if(null === $cliente['id_pessoa'] || 0 === $cliente['id_pessoa']){
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "Falta selecionar a pessoa" ]));
       exit();
     }
 
     $result = ModelCliente::Alterar($app->db, $cliente);
 
+    http_response_code(200);
     echo(json_encode([ "success" => $result, "message" => "" ]));
   }
 

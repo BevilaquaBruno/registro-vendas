@@ -75,6 +75,26 @@ class ModelUsuario {
     return $usuario;
   }
 
+  public static function GetUserByToken(PDO $conexao, $token){
+    $usuario = [];
+    try {
+      $sm_query = $conexao->prepare("SELECT u.id, u.nome, u.email, u.tipo
+        FROM usuario u
+        WHERE u.token = :token");
+
+      $sm_query->bindParam(":token", $token);
+
+      if($sm_query->execute()){
+        $usuario = $sm_query->fetch(PDO::FETCH_ASSOC);
+      }
+
+    } catch (\Throwable $th) {
+      $usuario = [];
+    }
+
+    return $usuario;
+  }
+
   public static function TodosPorEmail(PDO $conexao, $email, $id = 0){
     $usuario = [];
     try {

@@ -1,5 +1,7 @@
 <?php
 require_once('./src/controllers/Geral.controller.php');
+require_once('./src/models/Usuario.model.php');
+
 class Aplicacao {
   const db = null;
   public $tipos_usuarios = ["A", "F"];
@@ -16,8 +18,9 @@ class Aplicacao {
   }
 
   public function validarUsuario($app, String $needed = "", $json = false){
-    if(!$this->permissoesUsuarios($needed)){
+    if(!$this->permissoesUsuarios($needed, $app->db)){
       if($json){
+        http_response_code(401);
         echo(json_encode(['success' => false, 'message' => 'Não autorizado']));
       }else{
         ControllerGeral::CarregaTela($app, [
@@ -28,13 +31,20 @@ class Aplicacao {
     }
   }
 
-  public function permissoesUsuarios(String $needed){
+  public function permissoesUsuarios(String $needed, $db){
     $result = true;
-    if(!isset($_SESSION['islogged']) || false === $_SESSION['islogged']){
-      $result = false;
-    }else if("A" !== $_SESSION['tipo']){
-      if($needed !== $_SESSION['tipo'])
+    if(isset($_SERVER['HTTP_API_TOKEN'])){
+      $user = ModelUsuario::GetUserByToken($db, $_SERVER['HTTP_API_TOKEN']);
+      if(!isset($user['nome']) && !isset($user['id'])){
+        return false;
+      }
+    }else{
+      if(!isset($_SESSION['islogged']) || false === $_SESSION['islogged']){
         $result = false;
+      }else if("A" !== $_SESSION['tipo']){
+        if($needed !== $_SESSION['tipo'])
+          $result = false;
+      }
     }
 
     return $result;

@@ -19,22 +19,26 @@ class ControllerPessoa {
     ];
 
     if("" === $pessoa['nome'] || null === $pessoa['nome']) {
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "Nome é obrigatório" ]));
       exit();
     }
 
     if("" === $pessoa['email'] || null === $pessoa['email']){
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "Email é obrigatório" ]));
       exit();
     }
 
     if(!validateEmail($pessoa['email'])){
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "Email inválido" ]));
       exit();
     }
 
     if("" !== $pessoa['data_nascimento'] && null !== $pessoa['data_nascimento']){
       if(date_create($pessoa['data_nascimento']) > date_create('now')){
+        http_response_code(400);
         echo(json_encode([ "success" => false, "message" => "Data de nascimento não pode ser depois de hoje" ]));
         exit();
       }
@@ -42,6 +46,7 @@ class ControllerPessoa {
 
     $result = ModelPessoa::Cadastrar($app->db, $pessoa);
 
+    http_response_code(200);
     echo(json_encode([ "success" => $result, "message" => "" ]));
   }
 
@@ -51,12 +56,14 @@ class ControllerPessoa {
     $lista_funcionarios = ModelFuncionario::TodosIdPessoa($app->db, $id);
 
     if(count($lista_funcionarios) > 0){
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "Não é possível excluir a pessoa pois já existe vínculos" ]));
       exit();
     }
 
     $result = ModelPessoa::Excluir($app->db, $id);
 
+    http_response_code(200);
     echo(json_encode([ "success" => $result, "message" => "" ]));
   }
 
@@ -76,27 +83,32 @@ class ControllerPessoa {
     ];
 
     if(null === $pessoa['id'] || 0 === $pessoa['id']){
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "Erro grave ao alterar a pessoa, atualize a página" ]));
       exit();
     }
 
     if("" === $pessoa['nome'] || null === $pessoa['nome']) {
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "Nome é obrigatório" ]));
       exit();
     }
 
     if("" === $pessoa['email'] || null === $pessoa['email']){
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "Email é obrigatório" ]));
       exit();
     }
 
     if(!validateEmail($pessoa['email'])){
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "Email inválido" ]));
       exit();
     }
 
     if("" !== $pessoa['data_nascimento'] && null !== $pessoa['data_nascimento']){
       if(date_create($pessoa['data_nascimento']) > date_create('now')){
+        http_response_code(400);
         echo(json_encode([ "success" => false, "message" => "Data de nascimento não pode ser depois de hoje" ]));
         exit();
       }
@@ -104,19 +116,24 @@ class ControllerPessoa {
 
     $result = ModelPessoa::Alterar($app->db, $pessoa);
 
+    http_response_code(200);
     echo(json_encode([ "success" => $result, "message" => "" ]));
 
   }
 
   public static function Todas($app) {
+    $app->validarUsuario($app, "F", true);
     $lista_pessoa = ModelPessoa::Todas($app->db);
 
+    http_response_code(200);
     echo(json_encode($lista_pessoa));
   }
 
   public static function Uma($app, $id){
+    $app->validarUsuario($app, "F", true);
     $pessoa = ModelPessoa::Uma($app->db, $id);
 
+    http_response_code(200);
     echo(json_encode($pessoa));
   }
 

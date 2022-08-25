@@ -8,8 +8,10 @@ require_once('./src/models/Produto.model.php');
 class ControllerVenda {
   // api routes
   public static function Todas($app){
+    $app->validarUsuario($app, "F", true);
     $lista = ModelVenda::Todas($app->db);
 
+    http_response_code(200);
     echo(json_encode($lista));
   }
 
@@ -18,12 +20,15 @@ class ControllerVenda {
 
     $result = ModelVenda::Excluir($app->db, $id);
 
+    http_response_code(200);
     echo(json_encode([ "success" => $result, "message" => "" ]));
   }
 
   public static function Uma($app, $id){
+    $app->validarUsuario($app, "F", true);
     $venda = ModelVenda::Uma($app->db, $id);
 
+    http_response_code(200);
     echo(json_encode($venda));
   }
 
@@ -37,32 +42,38 @@ class ControllerVenda {
     ];
 
     if(null === $venda['id_cliente'] || '' === $venda['id_cliente']){
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "Cliente é obrigatório" ]));
       exit();
     }
 
     if(null === $venda['id_funcionario'] || '' === $venda['id_funcionario']){
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "Vendedor é obrigatório" ]));
       exit();
     }
 
     if(null === $venda['venda_produto'] || 0 === count($venda['venda_produto'])){
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "É obrigatório ter pelo menos um produto!" ]));
       exit();
     }
 
     if("" == $venda['data_venda'] && null == $venda['data_venda']){
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "Data da venda é obrigatória" ]));
       exit();
     }
 
     if(date_create($venda['data_venda']) > date_create('now')){
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "Data da venda não pode ser maior que hoje" ]));
       exit();
     }
 
     $result = ModelVenda::Cadastrar($app->db, $venda);
 
+    http_response_code(200);
     echo(json_encode([ "success" => $result, "message" => "" ]));
   }
 
@@ -82,32 +93,38 @@ class ControllerVenda {
     ];
 
     if(null === $venda['id_cliente'] || '' === $venda['id_cliente']){
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "Cliente é obrigatório" ]));
       exit();
     }
 
     if(null === $venda['id_funcionario'] || '' === $venda['id_funcionario']){
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "Vendedor é obrigatório" ]));
       exit();
     }
 
     if(null === $venda['venda_produto'] || 0 === count($venda['venda_produto'])){
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "É obrigatório ter pelo menos um produto!" ]));
       exit();
     }
 
     if("" == $venda['data_venda'] && null == $venda['data_venda']){
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "Data da venda é obrigatória" ]));
       exit();
     }
 
     if(date_create($venda['data_venda']) > date_create('now')){
+      http_response_code(400);
       echo(json_encode([ "success" => false, "message" => "Data da venda não pode ser maior que hoje" ]));
       exit();
     }
 
     $result = ModelVenda::Alterar($app->db, $venda);
 
+    http_response_code(200);
     echo(json_encode([ "success" => $result, "message" => "" ]));
   }
 
