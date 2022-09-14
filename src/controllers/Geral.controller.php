@@ -36,6 +36,83 @@ class ControllerGeral {
     require('./src/views/principal.php');
   }
 
+  public static function Developer($app) {
+    $dados = [
+      'pagina' => 'developer'
+    ];
+
+    require('./src/views/principal.php');
+  }
+
+  public static function CriarContaPage($app) {
+    $dados = [
+      'pagina' => 'usuario/cadastro',
+      'acao' => "signup",
+      'usuario' => [
+        'id' => 0,
+        'nome' => '',
+        'email' => '',
+        'tipo' => ''
+      ]
+    ];
+
+    require('./src/views/principal.php');
+  }
+
+  public static function CriarConta($app) {
+    $usuario = [
+      "nome" => $_POST['nome'],
+      "email" => $_POST['email'],
+      "tipo" => "W",
+      "senha" => $_POST['senha'],
+      "repetir_senha" => $_POST['repetir_senha'],
+      "token" => hash("ripemd160", $_POST['email'])
+    ];
+
+
+    if("" === $usuario['nome'] || null === $usuario['nome']) {
+      http_response_code(400);
+      echo(json_encode([ "success" => false, "message" => "Nome é obrigatório" ]));
+      exit();
+    }
+
+    if("" === $usuario['email'] || null === $usuario['email']){
+      http_response_code(400);
+      echo(json_encode([ "success" => false, "message" => "Email é obrigatório" ]));
+      exit();
+    }
+
+    if(!validateEmail($usuario['email'])){
+      http_response_code(400);
+      echo(json_encode([ "success" => false, "message" => "Email inválido" ]));
+      exit();
+    }
+
+    $usuarios_email = ModelUsuario::TodosPorEmail($app->db, $usuario['email']);
+    if(count($usuarios_email) >= 1){
+      http_response_code(400);
+      echo(json_encode([ "success" => false, "message" => "Já existe um usuário com esse email vinculado" ]));
+      exit();
+    }
+
+    if('' === $usuario['senha'] || '' === $usuario['repetir_senha']){
+      http_response_code(400);
+      echo(json_encode([ "success" => false, "message" => "As duas senhas são obrigatórias" ]));
+      exit();
+    }
+
+    if($usuario['senha'] !== $usuario['repetir_senha']){
+      http_response_code(400);
+      echo(json_encode([ "success" => false, "message" => "As duas senhas precisam ser iguais" ]));
+      exit();
+    }
+
+    $result = ModelUsuario::Cadastrar($app->db, $usuario);
+
+    http_response_code(200);
+    echo(json_encode([ "success" => $result, "message" => "" ]));
+  }
+
   public static function CarregaTela($app, $dados){
     require('./src/views/principal.php');
   }

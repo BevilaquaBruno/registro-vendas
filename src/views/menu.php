@@ -14,8 +14,16 @@
       <li class="pure-menu-item">
         <a href="/login" class="pure-menu-link">Login</a>
       </li>
+      <li class="pure-menu-item">
+        <a href="/signup" class="pure-menu-link">Criar Conta</a>
+      </li>
     <?php } ?>
-    <?php if(isset($_SESSION['islogged']) && true === $_SESSION['islogged']){ ?>
+    <?php if(isset($_SESSION['islogged']) && true === $_SESSION['islogged'] && "W" === $_SESSION['tipo']){ ?>
+      <li class="pure-menu-item">
+        <a href="/usuario/perfil" class="pure-menu-link">Perfil</a>
+      </li>
+    <?php } ?>
+    <?php if(isset($_SESSION['islogged']) && true === $_SESSION['islogged'] && ("A" === $_SESSION['tipo'] || "F" === $_SESSION['tipo'])){ ?>
       <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
         <a href="#" id="menuLink1" class="pure-menu-link">Cadastros</a>
         <ul class="pure-menu-children">
@@ -42,6 +50,9 @@
         <a href="/venda" class="pure-menu-link">Venda</a>
       </li>
     <?php } ?>
+    <li class="pure-menu-item">
+      <a href="/developer" class="pure-menu-link">Developer</a>
+    </li>
   </ul>
 </div>
 <script type="text/javascript">

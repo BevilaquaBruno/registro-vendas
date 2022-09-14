@@ -41,3 +41,7 @@ select[readonly] {
   pointer-events: none;
   touch-action: none;
 }
+.signup-link {
+  color: black;
+  text-decoration: underline;
+}

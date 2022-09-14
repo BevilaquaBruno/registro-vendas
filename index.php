@@ -173,6 +173,21 @@ $router->mount('/api', function () use ($router, $app) {
 });
 
 // view routes
+// developer page
+$router->get('/developer', function() use ($router, $app) {
+  ControllerGeral::Developer($app);
+});
+
+$router->mount('/signup', function() use ($router, $app) {
+  $router->get('/', function() use ($app) {
+    ControllerGeral::CriarContaPage($app);
+  });
+
+  $router->post('/', function() use ($app) {
+    ControllerGeral::CriarConta($app);
+  });
+});
+
 // inicial routes
 $router->mount('/inicial', function () use ($router, $app) {
   $router->get('/', function () use ($app) {
@@ -244,6 +259,10 @@ $router->mount('/produto', function () use ($router, $app) {
 $router->mount('/usuario', function () use ($router, $app) {
   $router->get('/', function () use ($app) {
     ControllerUsuario::Lista($app);
+  });
+
+  $router->get('/perfil', function () use ($app) {
+    ControllerUsuario::Perfil($app);
   });
 
   $router->get('/cadastro', function () use ($app) {

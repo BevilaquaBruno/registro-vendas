@@ -2,7 +2,7 @@
   <div class="pure-control-group">
     <div class="pure-u-1-3"></div>
     <div class="pure-u-1-3">
-      <h2>Cadastro de Usuário</h2>
+      <h2>Cadastro de Usuário <?=('signup' === $dados['acao'] ? 'Do WS' : '')?></h2>
     </div>
   </div>
   <input maxlength="10" type="hidden" name="id" value="<?=$dados['usuario']['id']?>">
@@ -25,20 +25,22 @@
     <span class="pure-form-message-inline">* Obrigatório.</span>
   </div>
 
-  <!-- Tipo -->
-  <div class="pure-control-group">
-    <label for="tipo">Tipo: </label>
-      <div class="pure-u-1-4">
-        <select class="full-width" name="tipo" id="tipo">
-          <option value="nenhum">Selecione...</option>
-          <option value="F" <?=($dados['usuario']['tipo'] === 'F' ? 'selected' : '')?> >Funcionário</option>
-          <option value="A" <?=($dados['usuario']['tipo'] === 'A' ? 'selected' : '')?> >Administrador</option>
-        </select>
-      </div>
-      <span class="pure-form-message-inline">* Obrigatório.</span>
-  </div>
+  <?php if($dados['acao'] === 'cadastrar' || $dados['acao'] === 'alterar'){?>
+    <!-- Tipo -->
+    <div class="pure-control-group">
+      <label for="tipo">Tipo: </label>
+        <div class="pure-u-1-4">
+          <select class="full-width" name="tipo" id="tipo">
+            <option value="nenhum">Selecione...</option>
+            <option value="F" <?=($dados['usuario']['tipo'] === 'F' ? 'selected' : '')?> >Funcionário</option>
+            <option value="A" <?=($dados['usuario']['tipo'] === 'A' ? 'selected' : '')?> >Administrador</option>
+          </select>
+        </div>
+        <span class="pure-form-message-inline">* Obrigatório.</span>
+    </div>
+    <?php }?>
 
-  <?php if ('cadastrar' === $dados['acao'] || $dados['usuario']['id'] == $_SESSION['id_u']){ ?>
+  <?php if ('cadastrar' === $dados['acao'] || (isset($_SESSION['id_u']) && $dados['usuario']['id'] == $_SESSION['id_u']) || 'signup' === $dados['acao']){ ?>
     <!-- Senha -->
     <div class="pure-control-group">
       <label for="senha">Senha: </label>
@@ -96,7 +98,7 @@
       .catch(function (error) {
         console.error(error);
       });
-    }else{
+    }else if("<?=$dados['acao']?>" === "alterar"){
       axios.put(usuarioForm.getAttribute("action"),
         new FormData(usuarioForm)
       )
@@ -105,6 +107,22 @@
           notifier.alert( ("" === response.data.message ? "Erro grave ao gravar usuário" : response.data.message) );
         }else if(true === response.data.success){
           window.location.href = "/usuario";
+        }else{
+          notifier.alert("Erro grave ao gravar o usuário");
+        }
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+    }else{
+      axios.post("/signup",
+        new FormData(usuarioForm)
+      )
+      .then(function (response) {
+        if(false === response.data.success) {
+          notifier.alert( ("" === response.data.message ? "Erro grave ao gravar usuário" : response.data.message) );
+        }else if(true === response.data.success){
+          window.location.href = "/login";
         }else{
           notifier.alert("Erro grave ao gravar o usuário");
         }

@@ -180,6 +180,15 @@ class ControllerUsuario {
   }
 
   //view routes
+  public static function Perfil($app){
+    $dados = [
+      'pagina' => 'usuario/perfil',
+      'usuario' => ModelUsuario::UmComToken($app->db, $_SESSION['id_u'])
+    ];
+
+    ControllerGeral::CarregaTela($app, $dados);
+  }
+
   public static function Lista($app){
     $app->validarUsuario($app, "A");
 

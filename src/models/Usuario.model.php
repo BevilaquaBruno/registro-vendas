@@ -20,14 +20,16 @@ class ModelUsuario {
   public static function Cadastrar(PDO $conexao, $usuario){
     $success = false;
     try {
-      $sm_query = $conexao->prepare("INSERT INTO usuario (nome, email, tipo, senha)
-        VALUES (:nome, :email, :tipo, :senha);");
+      $sm_query = $conexao->prepare("INSERT INTO usuario (nome, email, tipo, senha, token)
+        VALUES (:nome, :email, :tipo, :senha, :token);");
 
       $sm_query->bindParam(":nome", $usuario['nome']);
       $sm_query->bindParam(":email", $usuario['email']);
       $sm_query->bindParam(":tipo", $usuario['tipo']);
       $usuario['senha'] = md5($usuario['senha']);
       $sm_query->bindParam(":senha", $usuario['senha']);
+      $token = isset($usuario['token']) ? $usuario['token'] : null;
+      $sm_query->bindParam(":token", $token);
 
       if($sm_query->execute()){
         $success = true;
@@ -59,6 +61,26 @@ class ModelUsuario {
     $usuario = [];
     try {
       $sm_query = $conexao->prepare("SELECT u.id, u.nome, u.email, u.tipo
+        FROM usuario u
+        WHERE u.id = :id");
+
+      $sm_query->bindParam(":id", $id);
+
+      if($sm_query->execute()){
+        $usuario = $sm_query->fetch(PDO::FETCH_ASSOC);
+      }
+
+    } catch (\Throwable $th) {
+      $usuario = [];
+    }
+
+    return $usuario;
+  }
+
+  public static function UmComToken(PDO $conexao, $id){
+    $usuario = [];
+    try {
+      $sm_query = $conexao->prepare("SELECT u.id, u.nome, u.email, u.tipo, u.token
         FROM usuario u
         WHERE u.id = :id");
 
