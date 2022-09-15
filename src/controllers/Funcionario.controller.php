@@ -26,9 +26,9 @@ class ControllerFuncionario {
     $app->validarUsuario($app, "F", true);
 
     $funcionario = [
-      "id_pessoa" => (int)$_POST['id_pessoa'],
-      "data_admissao" => $_POST['data_admissao'],
-      "salario" => brlCurrencyToDb($_POST['salario'])
+      "id_pessoa" => (isset($_POST['id_pessoa']) ? (int)$_POST['id_pessoa'] : NULL),
+      "data_admissao" => (!isset($_POST['data_admissao']) || '' === $_POST['data_admissao']) ? null : $_POST['data_admissao'],
+      "salario" => (!isset($_POST['salario']) || '' === $_POST['salario']) ? null : brlCurrencyToDb($_POST['salario'])
     ];
 
     if(null === $funcionario['id_pessoa'] || 0 === $funcionario['id_pessoa']){
@@ -79,9 +79,9 @@ class ControllerFuncionario {
 
     $funcionario = [
       "id" => (int)$_PUT['id'],
-      "id_pessoa" => $_PUT['id_pessoa'],
-      "data_admissao" => $_PUT['data_admissao'],
-      "salario" => brlCurrencyToDb($_PUT['salario'])
+      "id_pessoa" => (isset($_PUT['id_pessoa']) ? (int)$_PUT['id_pessoa'] : NULL),
+      "data_admissao" => (!isset($_PUT['data_admissao']) || '' === $_PUT['data_admissao']) ? null : $_PUT['data_admissao'],
+      "salario" => (!isset($_PUT['salario']) || '' === $_PUT['salario']) ? null : brlCurrencyToDb($_PUT['salario'])
     ];
 
     if(null === $funcionario['id'] || 0 === $funcionario['id']){

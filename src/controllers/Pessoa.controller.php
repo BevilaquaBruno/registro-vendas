@@ -12,10 +12,10 @@ class ControllerPessoa {
     $app->validarUsuario($app, "F", true);
 
     $pessoa = [
-      "nome" => $_POST['nome'],
-      "email" => $_POST['email'] == "" ? null : $_POST['email'],
-      "telefone" => $_POST['telefone'] == "" ? null :  $_POST['telefone'],
-      "data_nascimento" => $_POST['data_nascimento'] == "" ? null : $_POST['data_nascimento']
+      "nome" => (!isset($_POST['nome'])) ? null : $_POST['nome'],
+      "email" => !isset($_POST['email']) || $_POST['email'] == "" ? null : $_POST['email'],
+      "telefone" => !isset($_POST['telefone']) || $_POST['telefone'] == "" ? null :  $_POST['telefone'],
+      "data_nascimento" => !isset($_POST['data_nascimento']) || $_POST['data_nascimento'] == "" ? null : $_POST['data_nascimento']
     ];
 
     if("" === $pessoa['nome'] || null === $pessoa['nome']) {
@@ -75,11 +75,11 @@ class ControllerPessoa {
     Aplicacao::ParsePut();
 
     $pessoa = [
-      "id" => $_PUT['id'],
-      "nome" => $_PUT['nome'],
-      "email" => $_PUT['email'] == "" ? null : $_PUT['email'],
-      "telefone" => $_PUT['telefone'] == "" ? null :  $_PUT['telefone'],
-      "data_nascimento" => $_PUT['data_nascimento'] == "" ? null : $_PUT['data_nascimento']
+      "id" => (!isset($_PUT['id'])) ? null : $_PUT['id'],
+      "nome" => (!isset($_PUT['nome'])) ? null : $_PUT['nome'],
+      "email" => !isset($_PUT['email']) || $_PUT['email'] == "" ? null : $_PUT['email'],
+      "telefone" => !isset($_PUT['telefone']) || $_PUT['telefone'] == "" ? null :  $_PUT['telefone'],
+      "data_nascimento" => !isset($_PUT['data_nascimento']) || $_PUT['data_nascimento'] == "" ? null : $_PUT['data_nascimento']
     ];
 
     if(null === $pessoa['id'] || 0 === $pessoa['id']){

@@ -26,12 +26,12 @@ class ControllerCliente {
     $app->validarUsuario($app, "F", true);
 
     $cliente = [
-      "id_pessoa" => (int)$_POST['id_pessoa'],
-      "endereco" => ('' === $_POST['endereco']) ? null : $_POST['endereco'],
-      "uf" => ($_POST['uf']) === "nenhuma" ? null : $_POST['uf'],
-      "bairro" => ('' === $_POST['bairro']) ? null : $_POST['bairro'],
-      "pais" => ('' === $_POST['pais']) ? null : $_POST['pais'],
-      "cidade" => ('' === $_POST['cidade']) ? null : $_POST['cidade']
+      "id_pessoa" => (isset($_POST['id_pessoa']) ? (int)$_POST['id_pessoa'] : NULL),
+      "endereco" => (!isset($_POST['endereco']) || '' === $_POST['endereco']) ? null : $_POST['endereco'],
+      "uf" => (!isset($_POST['uf']) || $_POST['uf'] === "nenhuma") ? null : $_POST['uf'],
+      "bairro" => (!isset($_POST['bairro']) || '' === $_POST['bairro']) ? null : $_POST['bairro'],
+      "pais" => (!isset($_POST['pais']) || '' === $_POST['pais']) ? null : $_POST['pais'],
+      "cidade" => (!isset($_POST['cidade']) || '' === $_POST['cidade']) ? null : $_POST['cidade']
     ];
 
     if(null === $cliente['id_pessoa'] || 0 === $cliente['id_pessoa']){
@@ -72,12 +72,12 @@ class ControllerCliente {
 
     $cliente = [
       "id" => (int)$_PUT['id'],
-      "id_pessoa" => $_PUT['id_pessoa'],
-      "endereco" => $_PUT['endereco'],
-      "uf" => $_PUT['uf'],
-      "bairro" => $_PUT['bairro'],
-      "pais" => $_PUT['pais'],
-      "cidade" => $_PUT['cidade']
+      "id_pessoa" => (isset($_PUT['id_pessoa']) ? (int)$_PUT['id_pessoa'] : NULL),
+      "endereco" => (!isset($_PUT['endereco']) || '' === $_PUT['endereco']) ? null : $_PUT['endereco'],
+      "uf" => (!isset($_PUT['uf']) || $_PUT['uf'] === "nenhuma") ? null : $_PUT['uf'],
+      "bairro" => (!isset($_PUT['bairro']) || '' === $_PUT['bairro']) ? null : $_PUT['bairro'],
+      "pais" => (!isset($_PUT['pais']) || '' === $_PUT['pais']) ? null : $_PUT['pais'],
+      "cidade" => (!isset($_PUT['cidade']) || '' === $_PUT['cidade']) ? null : $_PUT['cidade']
     ];
 
     if(null === $cliente['id'] || 0 === $cliente['id']){

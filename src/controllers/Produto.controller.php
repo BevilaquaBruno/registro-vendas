@@ -22,8 +22,7 @@ class ControllerProduto
     echo(json_encode($produto));
   }
 
-  public static function Deletar($app, $id)
-  {
+  public static function Deletar($app, $id) {
     $app->validarUsuario($app, "F", true);
 
     $lista_vendas = ModelVenda::TodasProduto($app->db, $id);
@@ -44,11 +43,11 @@ class ControllerProduto
     $app->validarUsuario($app, "F", true);
 
     $produto = [
-      "descricao" => $_POST['descricao'],
-      "quantidade" => brlCurrencyToDb($_POST['quantidade']),
-      "unidade_medida" => $_POST['unidade_medida'],
-      "valor_venda" => brlCurrencyToDb($_POST['valor_venda']),
-      "valor_compra" => brlCurrencyToDb($_POST['valor_compra'])
+      "descricao" => (!isset($_POST['descricao']) || $_POST['descricao'] === "") ? null : $_POST['descricao'],
+      "quantidade" => (!isset($_POST['quantidade']) ) ? null : brlCurrencyToDb($_POST['quantidade']),
+      "unidade_medida" => (!isset($_POST['unidade_medida'])) ? null : $_POST['unidade_medida'],
+      "valor_venda" => (!isset($_POST['valor_venda'])) ? null : brlCurrencyToDb($_POST['valor_venda']),
+      "valor_compra" => (!isset($_POST['valor_compra'])) ? null : brlCurrencyToDb($_POST['valor_compra'])
     ];
 
     if ("" === $produto['descricao']) {
@@ -77,12 +76,12 @@ class ControllerProduto
     Aplicacao::ParsePut();
 
     $produto = [
-      "id" => $_PUT['id'],
-      "descricao" => $_PUT['descricao'],
-      "quantidade" => brlCurrencyToDb($_PUT['quantidade']),
-      "unidade_medida" => $_PUT['unidade_medida'],
-      "valor_venda" => brlCurrencyToDb($_PUT['valor_venda']),
-      "valor_compra" => brlCurrencyToDb($_PUT['valor_compra'])
+      "id" => (!isset($_PUT['id'])) ? null : $_PUT['id'],
+      "descricao" => (!isset($_PUT['descricao']) || $_PUT['descricao'] === "") ? null : $_PUT['descricao'],
+      "quantidade" => (!isset($_PUT['quantidade']) ) ? null : brlCurrencyToDb($_PUT['quantidade']),
+      "unidade_medida" => (!isset($_PUT['unidade_medida'])) ? null : $_PUT['unidade_medida'],
+      "valor_venda" => (!isset($_PUT['valor_venda'])) ? null : brlCurrencyToDb($_PUT['valor_venda']),
+      "valor_compra" => (!isset($_PUT['valor_compra'])) ? null : brlCurrencyToDb($_PUT['valor_compra'])
     ];
 
     if (null === $produto['id'] || 0 === $produto['id']) {
