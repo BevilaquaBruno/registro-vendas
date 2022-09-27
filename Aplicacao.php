@@ -33,7 +33,7 @@ class Aplicacao {
 
   public function permissoesUsuarios(String $needed, $db){
     $result = true;
-    if(isset($_SERVER['HTTP_API_TOKEN'])){
+    if(isset($_SERVER['HTTP_API_TOKEN']) && "" !== $_SERVER['HTTP_API_TOKEN']){
       $user = ModelUsuario::GetUserByToken($db, $_SERVER['HTTP_API_TOKEN']);
       if(!isset($user['nome']) && !isset($user['id'])){
         return false;

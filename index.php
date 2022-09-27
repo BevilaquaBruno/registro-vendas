@@ -6,14 +6,14 @@ require __DIR__ . '/vendor/autoload.php';
 
 // required files
 require_once('Aplicacao.php');
-require_once('./src/controllers/Geral.controller.php');
-require_once('./src/controllers/Pessoa.controller.php');
-require_once('./src/controllers/Cliente.controller.php');
-require_once('./src/controllers/Funcionario.controller.php');
-require_once('./src/controllers/Login.controller.php');
-require_once('./src/controllers/Produto.controller.php');
-require_once('./src/controllers/Usuario.controller.php');
-require_once('./src/controllers/Venda.controller.php');
+require_once(__DIR__ . '/src/controllers/Geral.controller.php');
+require_once(__DIR__ . '/src/controllers/Pessoa.controller.php');
+require_once(__DIR__ . '/src/controllers/Cliente.controller.php');
+require_once(__DIR__ . '/src/controllers/Funcionario.controller.php');
+require_once(__DIR__ . '/src/controllers/Login.controller.php');
+require_once(__DIR__ . '/src/controllers/Produto.controller.php');
+require_once(__DIR__ . '/src/controllers/Usuario.controller.php');
+require_once(__DIR__ . '/src/controllers/Venda.controller.php');
 
 // Create Router instance
 $router = new \Bramus\Router\Router();
@@ -24,11 +24,11 @@ $app = new Aplicacao();
 //css / js routes
 $router->mount('/public', function () use ($router) {
   $router->get('/javascripts/([A-Za-z0-9-_\.]+).js', function ($filename) {
-    echo (file_get_contents('./public/javascripts/' . $filename));
+    echo (file_get_contents(__DIR__ . '/public/javascripts/' . $filename));
   });
 
   $router->get('/styles/([A-Za-z0-9-_\.]+).css', function ($filename) {
-    echo (file_get_contents('./public/styles/' . $filename));
+    echo (file_get_contents(__DIR__ . '/public/styles/' . $filename));
   });
 });
 
