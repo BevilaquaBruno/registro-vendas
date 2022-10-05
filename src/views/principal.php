@@ -67,6 +67,8 @@
       };
     </script>
     <?php require('menu.php'); ?>
-    <?php require('./src/views/'.$dados['pagina'].'.php'); ?>
+    <?php
+    $extensao_arquivo_principal = $dados['pagina'] === 'developer' ? 'html' : 'php';
+    require('./src/views/'.$dados['pagina'].'.'.$extensao_arquivo_principal); ?>
 </body>
 </html>

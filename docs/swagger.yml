@@ -1,0 +1,762 @@
+openapi: 3.0.0
+info:
+  title: Bruno Vendas API
+  version: 1.0.0
+  description: API Desenvolvida na aula de desenvolvimento de software II, é necessário sempre passar como parâmetro o header api_token
+  contact:
+    name: Bruno Fernando Bevilaqua
+    email: bruno.bevilaqua@protonmail.com
+    url: https://bevilaqua.surge.sh/
+
+servers:
+ - url: http://192.168.0.103/api
+
+
+paths:
+  /pessoa:
+    get:
+      tags:
+        - Pessoa
+      description: Retorna todas as pessoas
+      parameters:
+        - in: header
+          name: api_token
+          schema:
+            type: string
+            format: string
+          required: true
+      responses:
+        '200':
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    nome:
+                      type: string
+                    email:
+                      type: integer
+                    telefone:
+                      type: string
+                    data_nascimento:
+                      type: string
+                    data_nascimento_original:
+                      type: string
+    post:
+      tags:
+        - Pessoa
+      description: Cadastrar uma pessoa
+      parameters:
+        - in: header
+          name: api_token
+          schema:
+            type: string
+            format: string
+          required: true
+      requestBody:
+        required: true
+        content:
+          multipart/formdata:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                email:
+                  type: integer
+                telefone:
+                  type: string
+                data_nascimento:
+                  type: string
+      responses:
+        '200':
+          description: Pessoa cadastrada com sucesso
+        '400':
+          description: Dados incorretos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+    put:
+      tags:
+        - Pessoa
+      description: Atualizar uma pessoa
+      parameters:
+        - in: header
+          name: api_token
+          schema:
+            type: string
+            format: string
+          required: true
+      requestBody:
+        required: true
+        content:
+          multipart/formdata:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                nome:
+                  type: string
+                email:
+                  type: integer
+                telefone:
+                  type: string
+                data_nascimento:
+                  type: string
+      responses:
+        '200':
+          description: Pessoa Atualizada com sucesso
+        '400':
+          description: Dados incorretos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+  /pessoa/{id}:
+    get:
+      tags:
+        - Pessoa
+      description: Retorna uma pessoa baseado no id
+      parameters:
+        - in: header
+          name: api_token
+          schema:
+            type: string
+            format: string
+          required: true
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Sucesso na requisição
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  nome:
+                    type: string
+                  email:
+                    type: integer
+                  telefone:
+                    type: string
+                  data_nascimento:
+                    type: string
+                  data_nascimento_original:
+                    type: string
+    delete:
+      tags:
+        - Pessoa
+      description: Deleta uma pessoa
+      parameters:
+        - in: header
+          name: api_token
+          schema:
+            type: string
+            format: string
+          required: true
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Sucesso na exclusão de uma pessoa
+
+  /cliente:
+    get:
+      tags:
+        - Cliente
+      description: Retorna todos os clientes
+      parameters:
+        - in: header
+          name: api_token
+          schema:
+            type: string
+            format: string
+          required: true
+      responses:
+        '200':
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    endereco:
+                      type: string
+                    uf:
+                      type: string
+                    cidade:
+                      type: string
+                    pais:
+                      type: string
+                    bairro:
+                      type: string
+                    id_pessoa:
+                      type: integer
+                    nome:
+                      type: string
+                    email:
+                      type: string
+                    telefone:
+                      type: string
+                    data_nascimento:
+                      type: string
+                    qtd_vendas:
+                      type: integer
+    post:
+      tags:
+        - Cliente
+      description: Cadastrar um cliente
+      parameters:
+        - in: header
+          name: api_token
+          schema:
+            type: string
+            format: string
+          required: true
+      requestBody:
+        required: true
+        content:
+          multipart/formdata:
+            schema:
+              type: object
+              properties:
+                endereco:
+                  type: string
+                uf:
+                  type: string
+                cidade:
+                  type: string
+                pais:
+                  type: string
+                bairro:
+                  type: string
+                id_pessoa:
+                  type: integer
+      responses:
+        '200':
+          description: Cliente cadastrado com sucesso
+        '400':
+          description: Dados incorretos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+    put:
+      tags:
+        - Cliente
+      description: Atualizar um cliente
+      parameters:
+        - in: header
+          name: api_token
+          schema:
+            type: string
+            format: string
+          required: true
+      requestBody:
+        required: true
+        content:
+          multipart/formdata:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                endereco:
+                  type: string
+                uf:
+                  type: string
+                cidade:
+                  type: string
+                pais:
+                  type: string
+                bairro:
+                  type: string
+                id_pessoa:
+                  type: integer
+      responses:
+        '200':
+          description: Cliente atualizado com sucesso
+        '400':
+          description: Dados incorretos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+  /cliente/{id}:
+    get:
+      tags:
+        - Cliente
+      description: Retorna um cliente baseado no id
+      parameters:
+        - in: header
+          name: api_token
+          schema:
+            type: string
+            format: string
+          required: true
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Sucesso na requisição
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                    id:
+                      type: integer
+                    endereco:
+                      type: string
+                    uf:
+                      type: string
+                    cidade:
+                      type: string
+                    pais:
+                      type: string
+                    bairro:
+                      type: string
+                    id_pessoa:
+                      type: integer
+                    nome:
+                      type: string
+                    email:
+                      type: string
+                    telefone:
+                      type: string
+                    data_nascimento:
+                      type: string
+                    qtd_vendas:
+                      type: integer
+    delete:
+      tags:
+        - Cliente
+      description: Deleta um cliente
+      parameters:
+        - in: header
+          name: api_token
+          schema:
+            type: string
+            format: string
+          required: true
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Sucesso na exclusão de um cliente
+
+  /funcionario:
+    get:
+      tags:
+        - Funcionário
+      description: Retorna todos os funcionários
+      parameters:
+        - in: header
+          name: api_token
+          schema:
+            type: string
+            format: string
+          required: true
+      responses:
+        '200':
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    id_pessoa:
+                      type: integer
+                    salario:
+                      type: number
+                    nome:
+                      type: string
+                    email:
+                      type: string
+                    telefone:
+                      type: string
+                    data_admissao_original:
+                      type: string
+                    data_admissao:
+                      type: string
+                    data_nascimento_original:
+                      type: string
+                    data_nascimento:
+                      type: string
+    post:
+      tags:
+        - Funcionário
+      description: Cadastrar um funcionario
+      parameters:
+        - in: header
+          name: api_token
+          schema:
+            type: string
+            format: string
+          required: true
+      requestBody:
+        required: true
+        content:
+          multipart/formdata:
+            schema:
+              type: object
+              properties:
+                salario:
+                  type: number
+                data_admissao:
+                  type: string
+                id_pessoa:
+                  type: integer
+      responses:
+        '200':
+          description: Funcionário cadastrado com sucesso
+        '400':
+          description: Dados incorretos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+    put:
+      tags:
+        - Funcionário
+      description: Atualizar um funcionário
+      parameters:
+        - in: header
+          name: api_token
+          schema:
+            type: string
+            format: string
+          required: true
+      requestBody:
+        required: true
+        content:
+          multipart/formdata:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                salario:
+                  type: number
+                data_admissao:
+                  type: string
+                id_pessoa:
+                  type: integer
+      responses:
+        '200':
+          description: Funcionário atualizado com sucesso
+        '400':
+          description: Dados incorretos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+  /funcionario/{id}:
+    get:
+      tags:
+        - Funcionário
+      description: Retorna um funcionário baseado no id
+      parameters:
+        - in: header
+          name: api_token
+          schema:
+            type: string
+            format: string
+          required: true
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Sucesso na requisição
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  id_pessoa:
+                    type: integer
+                  salario:
+                    type: number
+                  nome:
+                    type: string
+                  email:
+                    type: string
+                  telefone:
+                    type: string
+                  data_admissao_original:
+                    type: string
+                  data_admissao:
+                    type: string
+                  data_nascimento_original:
+                    type: string
+                  data_nascimento:
+                    type: string
+    delete:
+      tags:
+        - Funcionário
+      description: Deleta um funcionário
+      parameters:
+        - in: header
+          name: api_token
+          schema:
+            type: string
+            format: string
+          required: true
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Sucesso na exclusão de um funcionário
+
+  /produto:
+    get:
+      tags:
+        - Produto
+      description: Retorna todos os produtos
+      parameters:
+        - in: header
+          name: api_token
+          schema:
+            type: string
+            format: string
+          required: true
+      responses:
+        '200':
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    descricao:
+                      type: string
+                    quantidade:
+                      type: number
+                    valor_venda:
+                      type: number
+                    valor_compra:
+                      type: number
+                    unidade_medida:
+                      type: string
+    post:
+      tags:
+        - Produto
+      description: Cadastrar um produto
+      parameters:
+        - in: header
+          name: api_token
+          schema:
+            type: string
+            format: string
+          required: true
+      requestBody:
+        required: true
+        content:
+          multipart/formdata:
+            schema:
+              type: object
+              properties:
+                descricao:
+                  type: string
+                quantidade:
+                  type: number
+                valor_venda:
+                  type: number
+                valor_compra:
+                  type: number
+                unidade_medida:
+                  type: string
+      responses:
+        '200':
+          description: Produto cadastrado com sucesso
+        '400':
+          description: Dados incorretos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+    put:
+      tags:
+        - Produto
+      description: Atualizar um produto
+      parameters:
+        - in: header
+          name: api_token
+          schema:
+            type: string
+            format: string
+          required: true
+      requestBody:
+        required: true
+        content:
+          multipart/formdata:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                descricao:
+                  type: string
+                quantidade:
+                  type: number
+                valor_venda:
+                  type: number
+                valor_compra:
+                  type: number
+                unidade_medida:
+                  type: string
+      responses:
+        '200':
+          description: Produto atualizado com sucesso
+        '400':
+          description: Dados incorretos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+  /produto/{id}:
+    get:
+      tags:
+        - Produto
+      description: Retorna um produto baseado no id
+      parameters:
+        - in: header
+          name: api_token
+          schema:
+            type: string
+            format: string
+          required: true
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Sucesso na requisição
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  descricao:
+                    type: string
+                  quantidade:
+                    type: number
+                  valor_venda:
+                    type: number
+                  valor_compra:
+                    type: number
+                  unidade_medida:
+                    type: string
+    delete:
+      tags:
+        - Produto
+      description: Deleta um produto
+      parameters:
+        - in: header
+          name: api_token
+          schema:
+            type: string
+            format: string
+          required: true
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Sucesso na exclusão de um produto
