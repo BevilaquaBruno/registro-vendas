@@ -170,6 +170,20 @@ $router->mount('/api', function () use ($router, $app) {
       ControllerVenda::Alterar($app);
     });
   });
+
+  $router->mount('/ws', function () use ($router, $app) {
+    $router->get('/wilhyam', function () use ($app) {
+      ControllerGeral::InserirWilhyam($app);
+    });
+
+    $router->get('/maria', function () use ($app) {
+      ControllerGeral::InserirMaria($app);
+    });
+
+    $router->get('/gabriel', function () use ($app) {
+      ControllerGeral::InserirGabriel($app);
+    });
+  });
 });
 
 // view routes

@@ -69,6 +69,9 @@
         case 'F':
           tipo_usuario = 'Funcionário';
           break;
+        case 'W':
+          tipo_usuario = 'WebService';
+          break;
         default:
           tipo_usuario = '-';
           break;

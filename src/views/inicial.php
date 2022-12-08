@@ -12,8 +12,52 @@
     <canvas id="chartSalarios"></canvas>
   </div>
 </div>
+<div>
+  <?php if(isset($_SESSION['islogged']) && true === $_SESSION['islogged'] && "A" === $_SESSION['tipo']){ ?>
+  <span class="button-success pure-button" onclick="inserirWilhyam();">
+    Inserir Wilhyam
+  </span>
+  <span class="button-success pure-button" onclick="inserirMaria();">
+    Inserir Maria
+  </span>
+  <span class="button-success pure-button" onclick="inserirGabriel();">
+    Inserir Gabriel
+  </span>
+  <?php } ?>
+</div>
 
 <script type="text/javascript">
+
+  function inserirWilhyam() {
+    axios.get("/api/ws/wilhyam")
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  }
+
+  function inserirMaria() {
+    axios.get("/api/ws/maria")
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  }
+
+  function inserirGabriel() {
+    axios.get("/api/ws/gabriel")
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  }
+
   var chartCadastros = null;
   var chartSalarios = null;
 

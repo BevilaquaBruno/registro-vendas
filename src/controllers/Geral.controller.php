@@ -7,6 +7,46 @@ require_once('./src/models/Cliente.model.php');
 require_once('./src/models/Venda.model.php');
 
 class ControllerGeral {
+  public static function InserirWilhyam($app){
+    $dados = json_decode(file_get_contents("http://192.168.0.101/ws_fire/cliente.php"));
+    foreach ($dados as $cliente) {
+      ModelPessoa::Cadastrar($app->db, [
+        "nome" => $cliente->nome,
+        "email" => $cliente->email,
+        "telefone" => $cliente->telefone,
+        "data_nascimento" => null
+      ]);
+    }
+  }
+
+  public static function InserirMaria($app){
+    $dados = json_decode(file_get_contents("http://192.168.0.104:3001/api/clientes"));
+    $dados = $dados->result;
+    foreach ($dados as $cliente) {
+      $dt = explode("/",$cliente->nasc_cli);
+      ModelPessoa::Cadastrar($app->db, [
+        "nome" => $cliente->nome_cli,
+        "email" => null,
+        "telefone" => $cliente->tel_cli,
+        "data_nascimento" => $dt[2]."/".$dt[1]."/".$dt[0]
+      ]);
+    }
+  }
+
+  public static function InserirGabriel($app){
+    $dados = json_decode(file_get_contents("http://192.168.0.107/WSHospital/src/controllers/clientscontroller.php"));
+    var_dump($dados);
+    foreach ($dados as $cliente) {
+      $dt = explode("/",$cliente->nasc_cli);
+      ModelPessoa::Cadastrar($app->db, [
+        "nome" => $cliente->nome,
+        "email" => $cliente->cidade,
+        "telefone" => null,
+        "data_nascimento" => null
+      ]);
+    }
+  }
+
   public static function Lista($app){
     $data_media_salarial = [];
     $media_salarial_valor = 0;
